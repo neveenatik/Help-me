@@ -22,6 +22,10 @@ app.post('/api/message', function(req, res){
 	res.status(200);
 });
 
+app.post('/auth/register', function(req, res){
+	console.log(req.body);
+})
+
 app.get('/api/message', GetMessages)
 
 function GetMessages(req, res){
