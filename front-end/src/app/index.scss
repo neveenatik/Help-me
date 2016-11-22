@@ -12,6 +12,21 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
 // bower:scss
 // endbower
 
+body {
+    background-color: #444;
+    font-family: "Open Sans", sans-serif;
+}
+
+.logo{
+	font-family: 'Oleo Script', cursive;
+  color: #D88E09 !important;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
