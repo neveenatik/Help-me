@@ -3,6 +3,7 @@
 import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
+import { DataModels } from './index.constants';
 import { MainController } from './main/main.controller';
 import { AuthController } from './auth/auth.controller';
 import { CompareToDirective } from './directives/compareTo.directive';
@@ -15,6 +16,7 @@ angular.module('helpFront', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 
   .constant('API_URL', 'http://localhost:5000/')
   .constant('malarkey', malarkey)
   .constant('moment', moment)
+  .constant('DataModels', DataModels)
   .config(config)
   .config(routerConfig)
   .run(runBlock)
