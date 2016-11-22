@@ -27,7 +27,7 @@ export class AuthController {
 		var d = new Date().getFullYear();
 		var years = [];
 		for(var i = d-100; i < d-13; i++){
-			years.push(i);
+			years.unshift(i);
 		}
 		return years;
 	}

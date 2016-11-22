@@ -1,12 +1,12 @@
 <div class="container">
-	<div class="col-md-5">
-		<div class="panel panel-default">
-			<div class="panel-heading"><strong>Register</strong></div>
-			<div class="panel-body">
+	<div class="col-md-5 col-centered">
+		<div class="panel register panel-default">
+			<div class="panel-heading register-heading"><strong>Register</strong></div>
+			<div class="register-body panel-body">
 				<form style="font-size: 12px" name="register" ng-submit="auth.register()">
 					<div class="form-group">
 						<span><strong>First Name</strong></span>
-						<input type="text" class="form-control" ng-model="auth.user.name.first">
+						<input type="text" class="form-control register-form" ng-model="auth.user.name.first">
 					</div>
 					<div class="form-group">
 						<span><strong>Last Name</strong></span>

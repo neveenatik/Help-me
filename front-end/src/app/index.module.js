@@ -11,8 +11,21 @@ import { GithubContributorService } from '../app/components/githubContributor/gi
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
+import helpmeHome from './components/home';
 
-angular.module('helpFront', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ui.router', 'ui.bootstrap', 'toastr', 'satellizer'])
+angular.module('helpFront', [
+    'ngAnimate',
+    'ngCookies',
+    'ngTouch',
+    'ngSanitize',
+    'ngMessages',
+    'ngAria',
+    'ui.router',
+    'ui.bootstrap',
+    'toastr',
+    'satellizer',
+    helpmeHome,
+    ])
   .constant('API_URL', 'http://localhost:5000/')
   .constant('malarkey', malarkey)
   .constant('moment', moment)
@@ -24,6 +37,6 @@ angular.module('helpFront', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 
   .service('webDevTec', WebDevTecService)
   .controller('MainController', MainController)
   .controller('AuthController', AuthController)
-  .directive('acmeNavbar', NavbarDirective)
+  .directive('navbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective)
   .directive('compareTo', CompareToDirective);
