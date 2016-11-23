@@ -1,17 +1,23 @@
-<nav class="navbar navbar-static-top navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="https://github.com/Swiip/generator-gulp-angular">
-        <span class="glyphicon glyphicon-home"></span> My message
-      </a>
-    </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand logo" href="#">Help Me Out</a>
+    </div>
+    <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
       <ul class="nav navbar-nav">
-        <li class="active"><a ng-href="#">Home</a></li>
-        <li><a ui-sref="auth">Login</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a ui-sref="auth">Profile</a></li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <li><a ui-sref="auth">Signup</a></li>
+        <li><a ui-sref="auth">Logout</a></li>
       </ul>
     </div>
-
-  </div>
-</nav>
+  </nav>
