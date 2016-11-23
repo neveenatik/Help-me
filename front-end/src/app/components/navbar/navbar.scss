@@ -5,6 +5,9 @@ $dropDown       : true;
   border-color: $bgHighlight;
   border: 0px ;
   border-radius: 1px;
+  .pull-el {
+    float: right;
+  }
   .navbar-brand {
     color: $colDefault;
     &:hover, &:focus {
@@ -64,7 +67,7 @@ $dropDown       : true;
       > a, > a:hover, > a:focus {
         color: $colHighlight;
         background-color: $bgHighlight; }}}
-  .pull-right {
+  .pull-el {
 	float: left !important; }
 }
 
