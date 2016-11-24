@@ -9,7 +9,6 @@ export function config ($logProvider, toastrConfig, $authProvider, API_URL) {
   toastrConfig.positionClass = 'toast-top-right';
   toastrConfig.preventDuplicates = true;
   toastrConfig.progressBar = true;
-
-
   $authProvider.signupUrl = API_URL + 'auth/register';
+  $authProvider.loginUrl = API_URL + 'auth/login';
 }

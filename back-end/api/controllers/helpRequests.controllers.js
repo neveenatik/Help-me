@@ -1,4 +1,4 @@
-var dbconn = require('../data/dbconnection.js');
+/*var dbconn = require('../data/dbconnection.js');
 var requestData = require('../data/request-data.json');
 
 // Get all with paginaiton 
@@ -47,4 +47,4 @@ module.exports.helpRequestsAddOne = function(req, res) {
 	res
 		.status(200)
 		.json(req.body);
-};
+};*/

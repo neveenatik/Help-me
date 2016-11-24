@@ -1,4 +1,4 @@
-var MongoClient = require('mongodb').MongoClient;
+/*var MongoClient = require('mongodb').MongoClient;
 var dburl = 'mongodb://localhost:27017/helprequestsdb'
 
 var _connection = null;
@@ -21,4 +21,4 @@ var get = function () {
 module.exports = {
 	open : open,
 	get : get
-};
+};*/

@@ -6,6 +6,7 @@ import { runBlock } from './index.run';
 import { DataModels } from './index.constants';
 import { MainController } from './main/main.controller';
 import { AuthController } from './auth/auth.controller';
+import { NavbarController } from './components/navbar/navbar.controller';
 import { CompareToDirective } from './directives/compareTo.directive';
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
@@ -24,7 +25,7 @@ angular.module('helpFront', [
     'ui.bootstrap',
     'toastr',
     'satellizer',
-    helpmeHome,
+    helpmeHome
     ])
   .constant('API_URL', 'http://localhost:5000/')
   .constant('malarkey', malarkey)
@@ -37,6 +38,7 @@ angular.module('helpFront', [
   .service('webDevTec', WebDevTecService)
   .controller('MainController', MainController)
   .controller('AuthController', AuthController)
+  .controller('NavbarController', NavbarController)
   .directive('navbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective)
   .directive('compareTo', CompareToDirective);

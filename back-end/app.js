@@ -1,4 +1,4 @@
-require('./api/data/dbconnection.js').open();
+/*require('./api/data/dbconnection.js').open();
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -23,4 +23,4 @@ app.use(bodyParser.json());
 
 var server = app.listen(app.get('port'), function() {
 	console.log("listening on port", server.address().port);
-});
+});*/

@@ -1,4 +1,4 @@
-var express = require('express');
+/*var express = require('express');
 var router = express.Router();
 var ctrlHelpReqeusts = require('../controllers/helpRequests.controllers.js')
 
@@ -14,4 +14,4 @@ router
 	.route('/helpRequests/new')
 	.post(ctrlHelpReqeusts.helpRequestsAddOne);
 
-module.exports = router;
+module.exports = router;*/

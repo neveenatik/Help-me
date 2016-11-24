@@ -23,6 +23,8 @@ app.post('/api/message',checkAuthenticated , message.post);
 
 app.post('/auth/register', auth.register);
 
+app.post('/auth/login', auth.login);
+
 app.get('/api/message', message.get);
 
 

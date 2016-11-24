@@ -14,6 +14,13 @@ export class AuthController {
 		});
 	}
 
+	login() {
+		var vm = this;
+		this.$auth.login(this.user).then(function(token) {
+			vm.$auth.setToken(token);
+		});
+	}
+
 	getDayNumber(value) {
 		if(['January', 'March', 'May', 'July', 'August', 'October', 'December'].includes(value)){
 			 return this.DataModels.month31;

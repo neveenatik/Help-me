@@ -1,6 +1,6 @@
 
 
-<nav class="navbar navbar-default" role="navigation">
+<nav ng-controller="NavbarController as nav" class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
         <span class="sr-only">Toggle navigation</span>
@@ -13,11 +13,12 @@
     <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
       <ul class="nav navbar-nav">
         <li><a href="#">Home</a></li>
-        <li><a ui-sref="auth">Profile</a></li>
+        <li ng-show="nav.isAuthenticated()"><a ui-sref="auth">Profile</a></li>
       </ul>
       <ul class="nav navbar-nav pull-right">
-        <li><a ui-sref="auth">Signup</a></li>
-        <li><a ui-sref="auth">Logout</a></li>
+        <li ng-hide="nav.isAuthenticated()"><a ui-sref="auth">Signup</a></li>
+        <li ng-hide="nav.isAuthenticated()"><a ui-sref="auth">login</a></li>
+        <li ng-show="nav.isAuthenticated()"><a ng-click="nav.logout()">Logout</a></li>
       </ul>
     </div>
   </nav>
