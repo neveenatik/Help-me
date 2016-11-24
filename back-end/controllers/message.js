@@ -1,4 +1,4 @@
-var Message = require('../models/message');
+/*var Message = require('../models/message');
 module.exports = {
 	get: function(req, res) {
 		Message.find({}).populate('user','-pwd').exec(function(err, result) {
@@ -14,3 +14,4 @@ module.exports = {
 		res.status(200);
 	}
 }
+*/

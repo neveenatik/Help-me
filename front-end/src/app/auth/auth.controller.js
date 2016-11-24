@@ -1,9 +1,10 @@
 export class AuthController {
 
-	constructor($auth, DataModels) {
+	constructor($auth, DataModels, $location) {
 		'ngInject';
 
 		this.$auth = $auth;
+		this.$location = $location;
 		this.DataModels = DataModels;
 		this.isAuthenticated = $auth.isAuthenticated;
 	}
@@ -12,6 +13,7 @@ export class AuthController {
 		var vm = this;
 		this.$auth.signup(this.user).then(function(token) {
 			vm.$auth.setToken(token);
+			vm.$location.path('/');
 		});
 	}
 
@@ -19,6 +21,7 @@ export class AuthController {
 		var vm = this;
 		this.$auth.login(this.user).then(function(token) {
 			vm.$auth.setToken(token);
+			vm.$location.path('/');
 		});
 	}
 

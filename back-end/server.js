@@ -8,7 +8,7 @@ mongoose.Promise = require('bluebird');
 var jwt = require('jwt-simple');
 var moment = require('moment');
 var auth = require('./controllers/auth');
-var message = require('./controllers/message');
+/*var message = require('./controllers/message');*/
 var checkAuthenticated = require('./services/checkAuthenticated');
 var cors = require('./services/cors')
 
@@ -19,13 +19,13 @@ app.use(cors);
 
 //==================Requests======================
 
-app.post('/api/message',checkAuthenticated , message.post);
+/*app.post('/api/message',checkAuthenticated , message.post);*/
 
 app.post('/auth/register', auth.register);
 
 app.post('/auth/login', auth.login);
 
-app.get('/api/message', message.get);
+/*app.get('/api/message', message.get);*/
 
 
 
