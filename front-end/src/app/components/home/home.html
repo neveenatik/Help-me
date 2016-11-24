@@ -1,9 +1,16 @@
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js">
+    </script>
+</head>
 <style>
     .container {
         background-color: #333 !important;
         color: #999;
+        padding-top: 5%;
     }
     
     .home-imgs {
@@ -13,10 +20,25 @@
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-md-6">LOGIN DESIIGN AREA HERE</div>
-
-        <div class="col-md-6">List of requests example
-            <br>
+        <!--------------login-------------->
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Login</div>
+                <div class="panel-body">
+                    <form name="loginForm" novalidate>
+                        <div class="form-group">
+                            <label>Email address</label>
+                            <input type="email" class="form-control" required> </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" required> </div>
+                        <button type="submit" class="btn btn-default" ng-disabled="loginForm.$invalid">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+<!--------------list example-------------->
+        <div class="col-md-6">
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">Mazen Ali<span class="badge pull-right">Moving</span></div>
