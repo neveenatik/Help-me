@@ -5,6 +5,7 @@ export class AuthController {
 
 		this.$auth = $auth;
 		this.DataModels = DataModels;
+		this.isAuthenticated = $auth.isAuthenticated;
 	}
 
 	register() {

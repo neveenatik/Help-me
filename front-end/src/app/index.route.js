@@ -7,9 +7,15 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       controller: 'MainController',
       controllerAs: 'main'
     })
-    .state('auth', {
-      url: '/auth',
-      templateUrl: 'app/auth/auth.html',
+    .state('auth/login', {
+      url: '/auth/login',
+      templateUrl: 'app/auth/login.html',
+      controller: 'AuthController',
+      controllerAs: 'auth'
+    })
+    .state('auth/signup', {
+      url: '/auth/signup',
+      templateUrl: 'app/auth/signup.html',
       controller: 'AuthController',
       controllerAs: 'auth'
     });
