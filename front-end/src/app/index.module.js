@@ -25,7 +25,7 @@ angular.module('helpFront', [
     'ui.bootstrap',
     'toastr',
     'satellizer',
-    helpmeHome
+    helpmeHome,
     ])
   .constant('API_URL', 'http://localhost:5000/')
   .constant('malarkey', malarkey)

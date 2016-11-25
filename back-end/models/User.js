@@ -1,15 +1,17 @@
 var mongoose = require('mongoose');
-//========================================
+
 module.exports = mongoose.model('User', {
-	fName: String,
-	lName: String,
+	name: {
+		first: String,
+		last: String
+	},
 	email: String,
 	pwd: String,
 	gender: String,
-	birthDate: {
-		month: String,
-		day: String,
-		year: String
+	date: {
+		month:String,
+		day: Number,
+		year: Number
 	},
 	city: String
-});
+})

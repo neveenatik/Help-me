@@ -1,29 +1,25 @@
 export class AuthController {
 
-	constructor($auth, DataModels, $location) {
+	constructor($auth, DataModels) {
 		'ngInject';
 
 		this.$auth = $auth;
-		this.$location = $location;
 		this.DataModels = DataModels;
-		this.isAuthenticated = $auth.isAuthenticated;
 	}
 
-	register() {
-		var vm = this;
-		this.$auth.signup(this.user).then(function(token) {
-			vm.$auth.setToken(token);
-			vm.$location.path('/');
-		});
-	}
-
-	login() {
-		var vm = this;
-		this.$auth.login(this.user).then(function(token) {
-			vm.$auth.setToken(token);
-			vm.$location.path('/');
-		});
-	}
+    register() {
+        var vm = this;
+        this.$auth.signup(this.user).then(function (token) {
+            vm.$auth.setToken(token);
+        });
+    }
+    
+    login() {
+        var vm = this;
+        this.$auth.login(this.login.user).then(function (token) {
+            vm.$auth.setToken(token);
+        });
+    }
 
 	getDayNumber(value) {
 		if(['January', 'March', 'May', 'July', 'August', 'October', 'December'].includes(value)){

@@ -1,7 +1,9 @@
-/*var mongoose = require('mongoose');
-//========================================
+var mongoose = require('mongoose');
+
 module.exports = mongoose.model('Message', {
 	msg: String,
-	user: {type: mongoose.Schema.ObjectId, ref: 'User'}
+	user: {
+		type: mongoose.Schema.ObjectId,
+		ref: 'User'
+	}
 });
-*/
