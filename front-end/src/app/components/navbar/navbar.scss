@@ -64,7 +64,10 @@ $dropDown       : true;
       > a, > a:hover, > a:focus {
         color: $colHighlight;
         background-color: $bgHighlight; }}}
-  .pull-right {
-	float: left !important; }
 }
 
+@media only screen and (max-width: 768px) {
+    #hide {
+        display: none;
+    }
+}
