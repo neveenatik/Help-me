@@ -22,6 +22,10 @@ app.post('/auth/register', auth.register);
 
 app.post('/auth/login', auth.login);
 
+app.get('/api/helpRequest', helpRequest.get);
+
+app.post('/api/helpRequest',checkAuthenticated, helpRequest.post);
+
 //Connection
 mongoose.connect("mongodb://localhost:27017/test", function (err, db) {
     if (!err) {
