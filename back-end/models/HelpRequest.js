@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 module.exports = mongoose.model('HelpRequest', {
 	helprequest: {
-		title: String,
-		text: String
+		category: String,
+		description: String
 	},
 	user: {
 		type: mongoose.Schema.ObjectId,

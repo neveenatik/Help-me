@@ -6,13 +6,13 @@ import { runBlock } from './index.run';
 import { DataModels } from './index.constants';
 import { MainController } from './main/main.controller';
 import { AuthController } from './auth/auth.controller';
-import { HelpRequestController } from './helprequest/helprequest.controller';
 import { CompareToDirective } from './directives/compareTo.directive';
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 import helpmeHome from './components/home';
+import helpmeHelpRequest from './components/help-request';
 
 angular.module('helpFront', [
     'ngAnimate',
@@ -26,6 +26,7 @@ angular.module('helpFront', [
     'toastr',
     'satellizer',
     helpmeHome,
+    helpmeHelpRequest,
     ])
   .constant('API_URL', 'http://localhost:5000/')
   .constant('malarkey', malarkey)
@@ -38,7 +39,6 @@ angular.module('helpFront', [
   .service('webDevTec', WebDevTecService)
   .controller('MainController', MainController)
   .controller('AuthController', AuthController)
-  .controller('HelpRequestController', HelpRequestController)
   .directive('navbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective)
   .directive('compareTo', CompareToDirective);

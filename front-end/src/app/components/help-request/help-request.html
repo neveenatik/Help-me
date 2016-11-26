@@ -9,9 +9,9 @@
           <div class="col-md-5">
               <div class="form-group" style="font-size: 12px">
                 <span><strong>Choose a category</strong></span>
-                <select class="form-control" ng-model="vm.helprequest.title" ng-options="category for category in vm.DataModels.helpCategory"></select>
+                <select class="form-control" ng-model="vm.helprequest.category" ng-options="category for category in vm.DataModels.helpCategory"></select>
               </div>
-              <textarea class="form-control" rows="10" style="resize: none;" ng-model="vm.helprequest.text"  placeholder="Write the details about the help (max. 1500 characters)."></textarea>
+              <textarea class="form-control" rows="10" style="resize: none;" ng-model="vm.helprequest.description"  placeholder="Write the details about the help (max. 1500 characters)."></textarea>
           </div>
           <br>
           <div id="hide">
