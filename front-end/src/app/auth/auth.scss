@@ -1,20 +1,7 @@
-.register-heading {
-  background: $colHighlight !important;
-}
-
-.register-body {
-  background: $bgBlock  !important;
-}
 
 .form-control {
   background: $bgInput !important;
   border: 0px ;
   border-radius: 1px;
-}
-
-@media only screen and (min-width: 768px) {
-    #show {
-        display: none;
-    }
 }
 

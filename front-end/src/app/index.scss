@@ -40,6 +40,26 @@ body {
     border-radius: 1px;
 }
 
+.helpme-heading {
+  background: $colHighlight !important;
+}
+
+.helpme-body {
+  background: $bgBlock  !important;
+}
+
+@media only screen and (max-width: 768px) {
+    #hide {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #show {
+        display: none;
+    }
+}
+
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject

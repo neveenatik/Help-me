@@ -1,0 +1,26 @@
+
+<div class="container">
+  <div class="panel no-border panel-default">
+      <div class="panel-heading helpme-heading no-border">
+        What do you need help with?
+      </div>
+      <div class="helpme-body panel-body">
+        <div class="col-md-5">
+            <div class="form-group" style="font-size: 12px">
+              <span><strong>Choose a category</strong></span>
+              <select class="form-control" ng-model="vm.helprequest.title" ng-options="gender for gender in [1,2,3,4,5,6]"></select>
+            </div>
+            <textarea class="form-control" rows="10" style="resize: none;" ng-model="vm.helprequest.text"  placeholder="Write the details about the help (max. 1500 characters)."></textarea>
+        </div>
+        <br>
+        <div id="hide">
+          <br><br><br>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+            <button class="btn btn-primary btn-block input-lg" ng-click="vm.postHelpRequest()">Send</button>
+            <button class="btn btn-default btn-block input-lg">Cancel</button>
+        </div>
+      </div>
+  </div>
+</div>
