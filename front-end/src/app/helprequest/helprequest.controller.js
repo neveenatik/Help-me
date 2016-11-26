@@ -1,13 +1,13 @@
 export class HelpRequestController {
-  constructor ($http) {
+  constructor ($http, DataModels) {
     'ngInject';
 
     this.$http = $http;
-    //this.getMessages();
+    this.DataModels = DataModels;
   }
 
 	postHelpRequest() {
-		this.$http.post('http://localhost:5000/api/helpRequest', {req: this.helprequest});
+		this.$http.post('http://localhost:5000/api/helpRequest', {helprequest: this.helprequest});
 	}
 
 }

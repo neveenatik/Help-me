@@ -6,6 +6,8 @@ var mongoose = require('mongoose');
 
 var auth = require('./controllers/auth');
 var message = require('./controllers/message');
+var helpRequest = require('./controllers/helpRequest');
+
 var checkAuthenticated = require('./services/checkAuthenticated');
 var cors = require('./services/cors');
 

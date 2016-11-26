@@ -23,16 +23,18 @@
         </div>
         <div class="col-md-5" ng-if="$ctrl.isAuthenticated()">
             <div class="panel no-border panel-default">
-                <div class="panel-heading helpme-heading no-border">Please choose:</div>
+                <div class="panel-heading helpme-heading no-border"><strong>Please choose:</strong></div>
                 <div class="helpme-body panel-body">
-                    <form style="font-size: 12px" ng-submit="auth.login()">
+
                         <div class="form-group">
-                            <label><strong><a ui-sref="helpRequest">I need help</a></strong></label>
+                            <label>What do you want</label>
+                            <button class="btn btn-default btn-block input-lg" ui-sref="helpRequest"><strong>I need help</strong></button>
                         </div>
                         <div class="form-group">
-                            <label><strong>I want help</strong></label>
+                            <label>Be a volunteer</label>
+                            <button class="btn btn-default btn-block input-lg"><strong>I want help</strong></button>
                         </div>
-                    </form>
+
                 </div>
             </div>
         </div>

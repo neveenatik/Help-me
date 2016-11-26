@@ -11,18 +11,18 @@
   </div>
   <div class="collapse navbar-collapse" uib-collapse="!isNavCollapsed">
     <ul class="nav navbar-nav">
-      <li><a href="#">Home</a></li>
-      <li ng-hide="vm.isAuthenticated()"><a ui-sref="auth">Signup</a></li>
+      <li><a href="#"><strong>Home</strong></a></li>
+      <li ng-hide="vm.isAuthenticated()"><a ui-sref="auth"><strong>Signup</strong></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li ng-hide="vm.isAuthenticated()">
         <form class="navbar-form" id="hide" ng-submit="vm.login()">
               <input type="email" class="form-control input-sm" placeholder="Email" ng-model="vm.login.user.email">
               <input type="password" class="form-control input-sm" placeholder="Password" ng-model="vm.login.user.pwd">
-              <button type="submit" class="btn btn-sm">Login</button>
+              <button type="submit" class="btn btn-sm"><strong>Login</strong></button>
         </form>
       </li>
-      <li ng-show="vm.isAuthenticated()"><a ng-click="vm.logout()" style="cursor:pointer">Logout</a></li>
+      <li ng-show="vm.isAuthenticated()"><a ng-click="vm.logout()" ui-sref="home" style="cursor:pointer"><strong>Logout</strong></a></li>
     </ul>
   </div>
 </nav> 
