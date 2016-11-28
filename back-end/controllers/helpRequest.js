@@ -14,6 +14,6 @@ module.exports = {
 
 		helpRequest.save();
 
-		res.status(200);
+		res.status(201);
 	}
 }

@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 module.exports = mongoose.model('HelpRequest', {
 	helprequest: {
 		category: String,
+		title: String,
 		description: String
 	},
 	user: {
