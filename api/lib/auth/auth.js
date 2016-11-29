@@ -1,14 +1,16 @@
-var User = require('../models/user');
+'use strict';
+
+var User = require('../users/user');
 var jwt = require('jwt-simple');
 var moment = require('moment');
 
 module.exports = {
-    register: function (req, res) {
+    register: function(req, res) {
         console.log(req.body);
 
         User.findOne({
             email: req.body.email
-        }, function (err, existingUser) {
+        }, function(err, existingUser) {
 
             if (existingUser)
                 return res.status(409).send({
@@ -17,7 +19,7 @@ module.exports = {
 
             var user = new User(req.body);
 
-            user.save(function (err, result) {
+            user.save(function(err, result) {
                 if (err) {
                     res.status(500).send({
                         message: err.message
@@ -29,10 +31,10 @@ module.exports = {
             })
         });
     },
-    login: function (req, res) {
+    login: function(req, res) {
         User.findOne({
             email: req.body.email
-        }, function (err, user) {
+        }, function(err, user) {
 
             if (!user)
                 return res.status(401).send({
@@ -46,10 +48,14 @@ module.exports = {
                 });
             } else {
                 return res.status(401).send({
-                    message: 'Invalid password'
+                    message: 'Invalid email and/or password'
                 });
             }
         });
+    },
+    signout: function(req, res) {
+        req.logout();
+        res.redirect('/');
     }
 }
 
