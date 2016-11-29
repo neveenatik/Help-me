@@ -1,0 +1,93 @@
+{
+	"id": "56ae278a-5428-7bbb-e62d-8e1b45bc1745",
+	"name": "HelpMe",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"owner": "340455",
+			"lastUpdatedBy": "176087",
+			"lastRevision": 161340161,
+			"id": "771cb9cc-8a37-ec65-83a9-a573f495f996",
+			"name": "001.Auth",
+			"description": "",
+			"order": [
+				"c5a4b334-9931-b3e1-9ee5-ed1d67e6481a",
+				"c22bfb41-55db-b63d-1822-2bee057d75d7"
+			],
+			"collectionId": "56ae278a-5428-7bbb-e62d-8e1b45bc1745"
+		},
+		{
+			"id": "ea5b4198-0898-7236-da53-db908af039b5",
+			"name": "002.Users",
+			"description": "",
+			"order": [],
+			"owner": "340455"
+		}
+	],
+	"timestamp": 1480096807886,
+	"owner": "340455",
+	"public": false,
+	"requests": [
+		{
+			"id": "c22bfb41-55db-b63d-1822-2bee057d75d7",
+			"headers": "x-access-token: {{token}}\n",
+			"url": "{{hostname}}/auth/login",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "{{email}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "pwd",
+					"value": "{{pwd}}",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": "var data = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"token\", data.token);\n\ntests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480098098431,
+			"name": "Token Renew",
+			"description": "",
+			"collectionId": "56ae278a-5428-7bbb-e62d-8e1b45bc1745"
+		},
+		{
+			"id": "c5a4b334-9931-b3e1-9ee5-ed1d67e6481a",
+			"headers": "",
+			"url": "{{hostname}}/auth/login",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "{{email}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "pwd",
+					"value": "{{pwd}}",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": "var data = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"token\", data.token);\n\ntests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480098094700,
+			"name": "Login",
+			"description": "",
+			"collectionId": "56ae278a-5428-7bbb-e62d-8e1b45bc1745"
+		}
+	]
+}
