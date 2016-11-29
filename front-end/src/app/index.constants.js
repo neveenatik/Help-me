@@ -4,6 +4,15 @@ export const DataModels = {
 
 	gender :['Male', 'Female'],
 
+	profilePic: [{
+		gender: 'Male',
+		picURL: 'https://d1qb2nb5cznatu.cloudfront.net/users/9826-large?1405442363'
+	},
+	{
+		gender: 'Female',
+		picURL: 'http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg'
+	}],
+
 	months :['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 
 	month31 :[1, 2, 3, 4, 5, 6, 7 ,8 , 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],

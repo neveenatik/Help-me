@@ -1,6 +1,6 @@
 export class AuthController {
 
-	constructor($auth, DataModels) {
+	constructor($auth, $state, DataModels) {
 		'ngInject';
 
 		this.$auth = $auth;
@@ -11,6 +11,7 @@ export class AuthController {
         var vm = this;
         this.$auth.signup(this.user).then(function (token) {
             vm.$auth.setToken(token);
+            //state here
         }, (error, status) => console.log(error.data.message));
     }
     
@@ -18,6 +19,7 @@ export class AuthController {
         var vm = this;
         this.$auth.login(this.login.user).then(function (token) {
             vm.$auth.setToken(token);
+            //state here
         }).catch(
         // Log the rejection error
         function(error) {

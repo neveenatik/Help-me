@@ -27,7 +27,7 @@ class NavbarController {
     this.relativeDate = moment(this.creationDate).fromNow();
 
     vm.validation = {
-      message: "",
+      message: ""
     };
   }
 

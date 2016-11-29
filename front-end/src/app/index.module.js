@@ -12,6 +12,7 @@ import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service'
 import { NavbarDirective } from '../app/components/navbar/navbar.directive';
 import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
 import helpmeHome from './components/home';
+import helpmeProfile from './components/profile';
 import helpmeHelpRequest from './components/help-request';
 
 angular.module('helpFront', [
@@ -26,6 +27,7 @@ angular.module('helpFront', [
     'toastr',
     'satellizer',
     helpmeHome,
+    helpmeProfile,
     helpmeHelpRequest,
     ])
   .constant('API_URL', 'http://localhost:5000/')

@@ -12,13 +12,9 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       templateUrl: 'app/auth/auth.html',
       controller: 'AuthController',
       controllerAs: 'auth'
-    }).state('helpRequest', {
-      url: '/helpRequest',
-      template: '<helpme-help-request></helpme-help-request>',
-
-      // templateUrl: 'app/helprequest/helprequest.html',
-      // controller: 'HelpRequestController',
-      // controllerAs: 'vm'
+    }).state('profile', {
+      url: '/profile',
+      template: '<helpme-profile></helpme-profile>',
     });
 
   $urlRouterProvider.otherwise('/');
