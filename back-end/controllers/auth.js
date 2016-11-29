@@ -46,7 +46,7 @@ module.exports = {
                 });
             } else {
                 return res.status(401).send({
-                    message: 'Invalid email and/or password'
+                    message: 'Invalid password'
                 });
             }
         });

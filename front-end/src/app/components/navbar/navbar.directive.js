@@ -19,17 +19,28 @@ class NavbarController {
   constructor (moment, $auth) {
     'ngInject';
 
+    var vm = this;
+
     this.$auth = $auth;
     this.isAuthenticated = $auth.isAuthenticated;
     // "this.creationDate" is available by directive option "bindToController: true"
     this.relativeDate = moment(this.creationDate).fromNow();
+
+    vm.validation = {
+      message: "",
+    };
   }
 
-  login() { 
-    var vm = this;
-    this.$auth.login(this.login.user).then(function (token) {
-        vm.$auth.setToken(token);
-    });
+  login() {
+      var vm = this;
+      this.$auth.login(this.login.user).then(function (token) {
+          vm.$auth.setToken(token);
+          vm.validation.message = "";
+      }).catch(
+      // Log the rejection reason
+      function(error) {
+          vm.validation.message = error.data.message;
+      });
   }
 
   logout() {

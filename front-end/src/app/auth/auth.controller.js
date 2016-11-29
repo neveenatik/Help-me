@@ -11,13 +11,17 @@ export class AuthController {
         var vm = this;
         this.$auth.signup(this.user).then(function (token) {
             vm.$auth.setToken(token);
-        });
+        }, (error, status) => console.log(error.data.message));
     }
     
     login() {
         var vm = this;
         this.$auth.login(this.login.user).then(function (token) {
             vm.$auth.setToken(token);
+        }).catch(
+        // Log the rejection error
+        function(error) {
+            console.log('Handle rejected promise (', error.data.message ,') here.');
         });
     }
 
