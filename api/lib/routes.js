@@ -16,13 +16,14 @@ var router = express.Router();
 //========= authentication ====
 
 router.post('/api/auth/signup', auth.register);
-router.post('/api/auth/signin', auth.login);
+router.post('/api/auth/login', auth.login);
 router.get('/api/auth/signout', auth.signout);
 
 //======== Users ========
+
+router.get('/api/user/:userId', checkAuthenticated, users.list);//display his profile and the others profile
+router.put('/api/profile', checkAuthenticated, users.update);// update his profile
 /*
-router.put('/api/users/profile/userId', checkAuthenticated, users.update);
-router.delete('/api/users/:userId', checkAuthenticated, users.delete);
 router.get('/api/auth/signout', auth.signout);*/
 
 //========= Messages =======

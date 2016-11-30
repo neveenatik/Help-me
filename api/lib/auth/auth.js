@@ -1,12 +1,13 @@
 'use strict';
 
-var User = require('../users/user');
-var jwt = require('jwt-simple');
-var moment = require('moment');
+var path = require('path'),
+    errorHandler = require(path.resolve('./lib/errors.server.controller')),
+    User = require('../users/user'),
+    jwt = require('jwt-simple'),
+    moment = require('moment');
 
 module.exports = {
     register: function(req, res) {
-        console.log(req.body);
 
         User.findOne({
             email: req.body.email
@@ -14,15 +15,16 @@ module.exports = {
 
             if (existingUser)
                 return res.status(409).send({
-                    message: 'Email is already registered'
+                    message: errorHandler.getErrorMessage('Email is already registered')
                 });
-
+            console.log(req.body);
             var user = new User(req.body);
+            user.displayName = user.firstName + ' ' + user.lastName;
 
             user.save(function(err, result) {
                 if (err) {
                     res.status(500).send({
-                        message: err.message
+                        message: errorHandler.getErrorMessage(err)
                     });
                 }
                 res.status(200).send({
@@ -41,8 +43,7 @@ module.exports = {
                     message: 'Email or Password invalid'
                 });
 
-            if (req.body.pwd == user.pwd) {
-                console.log(req.body, user.pwd)
+            if (req.body.password == user.password) {
                 res.send({
                     token: createToken(user)
                 });
@@ -65,5 +66,5 @@ function createToken(user) {
         iat: moment().unix(),
         exp: moment().add(14, 'days').unix()
     };
-    return jwt.encode(payload, 'secret');
+    return jwt.encode(payload, '_o0OMd9#ud');
 }
