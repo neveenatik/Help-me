@@ -16,14 +16,14 @@ function HelpmeHelpRequestController($http, DataModels) {
 
   function getHelpRequest(){
     //var vm = this;
-    this.$http.get('http://localhost:5000/api/helpRequest').then(function (result) {
+    this.$http.get('http://localhost:5000/api/helpRequests').then(function (result) {
       // vm.sasa = result.data;
       console.log(result.data);
     }); 
   }
 
   function postHelpRequest() {
-		this.$http.post('http://localhost:5000/api/helpRequest', {helprequest: this.helprequest});
+		this.$http.post('http://localhost:5000/api/helpRequests', {helprequest: this.helprequest});
 	}
 
 }

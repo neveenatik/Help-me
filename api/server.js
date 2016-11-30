@@ -12,6 +12,7 @@ var routes = require('./lib/routes');
 
 var mongoose = require('mongoose');
 
+mongoose.Promise = global.Promise;
 
 var app = express();
 

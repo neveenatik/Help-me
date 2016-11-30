@@ -1,14 +1,12 @@
-
 'use strict';
 
 //packages
-var express = require('express');
-
-var auth = require('./auth/auth');
-var checkAuthenticated = require('./services/checkAuthenticated');
-var users = require('./users/users_controller');
-var messages = require('./messages/messages_controller');
-var helpRequest = require('./helprequest/helpRequest_controller');
+var express = require('express'),
+	auth = require('./auth/auth'),
+	checkAuthenticated = require('./services/checkAuthenticated'),
+	users = require('./users/users_controller'),
+	messages = require('./messages/messages_controller'),
+	helpRequests = require('./helprequest/helpRequest_controller');
 
 //====== Start routing ========
 var router = express.Router();
@@ -21,8 +19,8 @@ router.get('/auth/signout', auth.signout);
 
 //======== Users ========
 
-router.get('/api/user/:userId', checkAuthenticated, users.list);//display his profile and the others profile
-router.put('/api/profile', checkAuthenticated, users.update);// update his profile
+router.get('/api/user/:userId', checkAuthenticated, users.list); //display his profile and the others profile
+router.put('/api/user/:userId', checkAuthenticated, users.update); // update his profile
 /*
 router.get('/api/auth/signout', auth.signout);*/
 
@@ -35,12 +33,32 @@ router.get('/api/messages', messages.list)
 router.param('messageId', messages.messageByID);
 
 //========= HelpRequest =======
-router.get('/api/helpRequest', helpRequest.list)
-	.post('/api/helpRequest', checkAuthenticated, helpRequest.create)
-	.get('/api/helpRequest/:helpRequestId', helpRequest.read)
-	.put('/api/helpRequest/:helpRequestId', checkAuthenticated, helpRequest.update)
-	.delete('/api/helpRequest/:helpRequestId', checkAuthenticated, helpRequest.delete);
-//router.param('messageId', helpRequest.messageByID);
+router.get('/api/helpRequests', helpRequests.list)
+	.post('/api/helpRequests', checkAuthenticated, helpRequests.create)
+	.get('/api/helpRequests/:helpRequestId', helpRequests.read)
+	.put('/api/helpRequests/:helpRequestId', checkAuthenticated, helpRequests.update)
+	.delete('/api/helpRequests/:helpRequestId', checkAuthenticated, helpRequests.delete);
+router.param('helprequestId', function(req, res, next, id) {
+
+	if (!mongoose.Types.ObjectId.isValid(id)) {
+		return res.status(400).send({
+			message: 'HelpRequest is invalid'
+		});
+	}
+
+	HelpRequest.findById(id).populate('user', 'displayName').exec(function(err, helpRequest) {
+		if (err) {
+			return next(err);
+		} else if (!helpRequest) {
+			return res.status(404).send({
+				message: 'No helpRequest with that identifier has been found'
+			});
+		}
+		console.log(helprequest);
+		req.helpRequest = helpRequest;
+		next();
+	});
+});
 
 
 
