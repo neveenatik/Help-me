@@ -146,7 +146,7 @@
 		{
 			"id": "87e4ea3b-d910-4752-4477-17d87e031946",
 			"headers": "Content-Type: application/json\n",
-			"url": "{{hostname}}/api/auth/signup",
+			"url": "{{hostname}}/auth/signup",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -155,11 +155,11 @@
 			"tests": "var data = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"token\", data.token);\n\ntests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1480460005459,
+			"time": 1480529198586,
 			"name": "signup",
 			"description": "",
 			"collectionId": "56ae278a-5428-7bbb-e62d-8e1b45bc1745",
-			"rawModeData": "{\n\t\"firstName\": \"Zaher\" ,\n  \t\"lastName\": \"Alyousef\",\n  \t\"email\": \"zaheralyousef@gmail.com\",\n    \"password\": \"helpMe2016\"\n}"
+			"rawModeData": "{ \n\t\"user\":\n\t{\n\t\t\"firstName\": \"sarea\" ,\n  \t\t\"lastName\": \"kebly\",\n  \t\t\"email\": \"sareak3@gmail.com\",\n    \t\"password\": \"helpMe2016\"\n\t}\n}"
 		},
 		{
 			"folder": "0d437cdf-3bb4-70fa-7d7e-95b338c9f621",
@@ -201,7 +201,7 @@
 		{
 			"id": "c5a4b334-9931-b3e1-9ee5-ed1d67e6481a",
 			"headers": "Content-Type: application/json\n",
-			"url": "{{hostname}}/api/auth/login",
+			"url": "{{hostname}}/auth/login",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -210,11 +210,11 @@
 			"tests": "var data = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"token\", data.token);\n\ntests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1480460301153,
+			"time": 1480530137670,
 			"name": "Login",
 			"description": "",
 			"collectionId": "56ae278a-5428-7bbb-e62d-8e1b45bc1745",
-			"rawModeData": "{\n  \t\"email\": \"zaheralyousef@gmail.com\",\n    \"password\": \"helpMe2016\"\n}"
+			"rawModeData": "{ \n\t\"login\":\n\t{\n  \t\t\"email\": \"zaheralyousef@gmail.com\",\n    \t\"password\": \"helpMe2016\"\n\n\t}\n}"
 		},
 		{
 			"id": "e554f307-5b7b-c5ac-5510-2244de1edb02",

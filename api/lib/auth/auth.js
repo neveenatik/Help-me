@@ -10,15 +10,15 @@ module.exports = {
     register: function(req, res) {
 
         User.findOne({
-            email: req.body.email
+            email: req.body.user.email
         }, function(err, existingUser) {
 
             if (existingUser)
                 return res.status(409).send({
                     message: errorHandler.getErrorMessage('Email is already registered')
                 });
-            console.log(req.body);
-            var user = new User(req.body);
+            console.log(req.body.user);
+            var user = new User(req.body.user);
             user.displayName = user.firstName + ' ' + user.lastName;
 
             user.save(function(err, result) {
@@ -27,7 +27,7 @@ module.exports = {
                         message: errorHandler.getErrorMessage(err)
                     });
                 }
-                res.status(200).send({
+                res.status(201).send({
                     token: createToken(result)
                 });
             })
@@ -35,7 +35,7 @@ module.exports = {
     },
     login: function(req, res) {
         User.findOne({
-            email: req.body.email
+            email: req.body.login.email
         }, function(err, user) {
 
             if (!user)
@@ -43,8 +43,8 @@ module.exports = {
                     message: 'Email or Password invalid'
                 });
 
-            if (req.body.password == user.password) {
-                res.send({
+            if (req.body.login.password == user.password) {
+                res.status(202).send({
                     token: createToken(user)
                 });
             } else {

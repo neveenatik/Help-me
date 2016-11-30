@@ -15,9 +15,9 @@ var router = express.Router();
 
 //========= authentication ====
 
-router.post('/api/auth/signup', auth.register);
-router.post('/api/auth/login', auth.login);
-router.get('/api/auth/signout', auth.signout);
+router.post('/auth/signup', auth.register);
+router.post('/auth/login', auth.login);
+router.get('/auth/signout', auth.signout);
 
 //======== Users ========
 

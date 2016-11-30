@@ -10,18 +10,18 @@ export class AuthController {
 	}
 
     register() {
-        var vm = this;
+     /*   var vm = this;
         this.$auth.signup(this.user).then(function (token) {
             vm.$auth.setToken(token);
             //state here
         }, (error, status) => console.log(error.data.message));
-       	
+       	*/
 		
-		// var vm = this;
-  //       this.$http.post('http://localhost:5000/api/auth/signup', {user: this.user}).then(function (token) {
-  //           vm.$auth.setToken(token);
-  //           //state here
-  //       }, (error, status) => console.log(error));
+		var vm = this;
+        this.$http.post('http://localhost:5000/auth/signup', {user: this.user}).then(function (token) {
+            vm.$auth.setToken(token);
+            //state here
+        }, (error, status) => console.log(error));
         console.log("post");
     }
     
@@ -38,7 +38,8 @@ export class AuthController {
     // }    
     login() {
         var vm = this;
-        this.$http.post('http://localhost:5000/api/auth/login', {login: this.login.user})
+        console.log(this.login.user);
+        this.$http.post('http://localhost:5000/auth/login', {login: this.login.user})
         .then(function (token) {
             vm.$auth.setToken(token);
             //state here
