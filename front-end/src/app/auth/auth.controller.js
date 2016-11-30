@@ -1,10 +1,12 @@
 export class AuthController {
 
-	constructor($auth, $state, DataModels) {
+	constructor($auth, $state, DataModels, $http) {
 		'ngInject';
 
+		this.$http = $http
 		this.$auth = $auth;
 		this.DataModels = DataModels;
+
 	}
 
     register() {
@@ -13,11 +15,31 @@ export class AuthController {
             vm.$auth.setToken(token);
             //state here
         }, (error, status) => console.log(error.data.message));
+       	
+		
+		// var vm = this;
+  //       this.$http.post('http://localhost:5000/api/auth/signup', {user: this.user}).then(function (token) {
+  //           vm.$auth.setToken(token);
+  //           //state here
+  //       }, (error, status) => console.log(error));
+        console.log("post");
     }
     
+    // login() {
+    //     var vm = this;
+    //     this.$auth.login(this.login.user).then(function (token) {
+    //         vm.$auth.setToken(token);
+    //         //state here
+    //     }).catch(
+    //     // Log the rejection error
+    //     function(error) {
+    //         console.log('Handle rejected promise (', error.data.message ,') here.');
+    //     });
+    // }    
     login() {
         var vm = this;
-        this.$auth.login(this.login.user).then(function (token) {
+        this.$http.post('http://localhost:5000/api/auth/login', {login: this.login.user})
+        .then(function (token) {
             vm.$auth.setToken(token);
             //state here
         }).catch(

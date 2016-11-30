@@ -12,7 +12,5 @@ function HelpmeProfile($auth) {
 	vm.$auth = $auth;
     vm.isAuthenticated = $auth.isAuthenticated;
 
-    
-
 
 }

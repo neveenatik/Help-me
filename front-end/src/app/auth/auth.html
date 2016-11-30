@@ -10,7 +10,7 @@
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control" ng-model="auth.login.user.pwd">
+                        <input type="password" class="form-control" ng-model="auth.login.user.password">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
@@ -24,11 +24,11 @@
 				<form style="font-size: 12px" name="register" ng-submit="auth.register()">
 					<div class="form-group">
 						<span><strong>First Name</strong></span>
-						<input type="text" class="form-control register-form" ng-model="auth.user.name.first">
+						<input type="text" class="form-control register-form" ng-model="auth.user.firstName">
 					</div>
 					<div class="form-group">
 						<span><strong>Last Name</strong></span>
-						<input type="text" class="form-control" ng-model="auth.user.name.last">
+						<input type="text" class="form-control" ng-model="auth.user.lastName">
 					</div>
 					<div class="form-group">
 						<span><strong>Email Adress</strong></span>
@@ -36,9 +36,9 @@
 					</div>
 					<div class="form-group">
 						<span><strong>Password</strong></span>
-						<input type="password" class="form-control" name="pwd" ng-model="auth.user.pwd">
+						<input type="password" class="form-control" name="pwd" ng-model="auth.user.password">
 					</div>
-					<div class="form-group">
+<!-- 					<div class="form-group">
 						<span><strong>Password Confirm</strong></span>
 						<span class="pull-right" style="color:red;" ng-show="register.pwdConfirm.$viewValue.length >= register.pwd.$viewValue.length && register.pwdConfirm.$dirty && register.pwdConfirm.$invalid">Not match</span>
 						<input type="password" class="form-control" compare-to="auth.user.pwd" name="pwdConfirm" ng-model="pwdConfirm">
@@ -68,7 +68,7 @@
 					<div class="form-group">
 						<span><strong>City</strong></span>
 						<input type="text" ng-model="auth.user.city" uib-typeahead="city for city in auth.DataModels.netherlandsCity | filter:$viewValue | limitTo:6" class="form-control">
-					</div>
+					</div> -->
 					<button ng-disabled="register.pwdConfirm.$invalid" type="submit" class="btn btn-default">Submit</button>
 				</form>
 			</div>
