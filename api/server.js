@@ -25,7 +25,7 @@ app.use(cors);
 app.use(routes);
 
 //Connection
-mongoose.connect("mongodb://localhost:27017/test", function (err, db) {
+mongoose.connect("mongodb://127.0.0.1:27017/test", function (err, db) {
     if (!err) {
         console.log("we are connected to mongo");
     } else {

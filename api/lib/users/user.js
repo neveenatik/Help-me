@@ -42,6 +42,17 @@ var UserSchema = new Schema({
     type: String,
     default: ''
   },
+  gender: {
+    type: String,
+    default: ''
+  },
+  city: {
+    type: String,
+    default: ''
+  },
+  dateOfbirth: {
+    type: Date
+  }
   helpCategory: {
     type: String
   },

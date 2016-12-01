@@ -6,36 +6,25 @@ export class AuthController {
 		this.$http = $http
 		this.$auth = $auth;
 		this.DataModels = DataModels;
+		this.user = {};
+		this.date = {
+			year: '',
+			month: '',
+			day: ''
+		};
 
 	}
 
     register() {
-     /*   var vm = this;
-        this.$auth.signup(this.user).then(function (token) {
-            vm.$auth.setToken(token);
-            //state here
-        }, (error, status) => console.log(error.data.message));
-       	*/
-		
 		var vm = this;
+		this.user.dateOfbirth = new Date(this.date.year, this.date.month, this.date.day);
         this.$http.post('http://localhost:5000/auth/signup', {user: this.user}).then(function (token) {
             vm.$auth.setToken(token);
             //state here
         }, (error, status) => console.log(error));
-        console.log("post");
+        console.log("post", this.user);
     }
     
-    // login() {
-    //     var vm = this;
-    //     this.$auth.login(this.login.user).then(function (token) {
-    //         vm.$auth.setToken(token);
-    //         //state here
-    //     }).catch(
-    //     // Log the rejection error
-    //     function(error) {
-    //         console.log('Handle rejected promise (', error.data.message ,') here.');
-    //     });
-    // }    
     login() {
         var vm = this;
         console.log(this.login.user);

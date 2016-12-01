@@ -5,14 +5,16 @@ export var helpmeHelpRequest = {
   templateUrl: 'app/components/help-request/help-request.html'
 };
 
-function HelpmeHelpRequestController($http, DataModels) {
+function HelpmeHelpRequestController($auth, $http, DataModels) {
 	'ngInject';
 
 	var vm = this;
+    vm.$auth = $auth;
     vm.$http = $http;
     vm.DataModels = DataModels;
     vm.postHelpRequest = postHelpRequest;
     vm.getHelpRequest = getHelpRequest;
+    //vm.user = user;
 
   function getHelpRequest(){
     //var vm = this;
@@ -26,4 +28,13 @@ function HelpmeHelpRequestController($http, DataModels) {
 		this.$http.post('http://localhost:5000/api/helpRequests', {helprequest: this.helprequest});
 	}
 
+  // function user() {
+  //     var vm = this;
+  //     var user_id = vm.$auth.getPayload().sub;
+  //     console.log(user_id);
+  //     this.$http.get('http://localhost:5000/api/helpRequest/'+ user_id).then(function (result) {
+  //     // vm.sasa = result.data;
+  //     console.log(result);
+  //   }); 
+  // }
 }
