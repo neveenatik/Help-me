@@ -3,15 +3,15 @@
 /**
  * Module dependencies.
  */
-var path = require('path'),
-  mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
   HelpRequest = require('./helpRequest'),
-  errorHandler = require(path.resolve('./lib/errors.server.controller'));
+  errorHandler = require('../errors.server.controller'),
+  _ = require('lodash');
 /**
  * Create a helpRequest
  */
 exports.create = function (req, res) {
-  var helpRequest = new HelpRequest(req.body);
+  var helpRequest = new HelpRequest(req.body.helprequest);
   helpRequest.user = req.user;
 
   helpRequest.save(function (err) {
@@ -20,7 +20,7 @@ exports.create = function (req, res) {
         message: errorHandler.getErrorHelpRequest(err)
       });
     } else {
-      res.json(helpRequest);
+      res.jsonp(helpRequest);
     }
   });
 };
@@ -29,7 +29,14 @@ exports.create = function (req, res) {
  * Show the current helpRequest
  */
 exports.read = function (req, res) {
-  res.json(req.helpRequest);
+  // convert mongoose document to JSON
+  var helprequest = req.helprequest ? req.helprequest.toJSON() : {};
+
+  // Add a custom field to the helpRequest, for determining if the current User is the "owner".
+  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the helpRequest model.
+  helprequest.isCurrentUserOwner = req.user && helprequest.user && helprequest.user._id.toString() === req.user._id.toString();
+
+  res.jsonp(helprequest);
 };
 
 /**
@@ -38,17 +45,19 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var helpRequest = req.helpRequest;
 
+  helprequest = _.extend(helprequest, req.body.helprequest);
+  /*
   helpRequest.category = req.body.category;
   helpRequest.title = req.body.title;
   helpRequest.description = req.body.description;
-
+*/
   helpRequest.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorHelpRequest(err)
       });
     } else {
-      res.json(helpRequest);
+      res.jsonp(helpRequest);
     }
   });
 };
@@ -65,7 +74,7 @@ exports.delete = function (req, res) {
         message: errorHandler.getErrorHelpRequest(err)
       });
     } else {
-      res.json(helpRequest);
+      res.jsonp(helpRequest);
     }
   });
 };
