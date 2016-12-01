@@ -42,7 +42,7 @@
 						<span><strong>Password Confirm</strong></span>
 						<span class="pull-right" style="color:red;" ng-show="register.pwdConfirm.$viewValue.length >= register.pwd.$viewValue.length && register.pwdConfirm.$dirty && register.pwdConfirm.$invalid">Not match</span>
 						<input type="password" class="form-control" compare-to="auth.user.pwd" name="pwdConfirm" ng-model="pwdConfirm">
-					</div>
+					</div> -->
 					<div class="form-group">
 						<span><strong>Gender</strong></span>
 						<select class="form-control" ng-model="auth.user.gender" ng-options="gender for gender in auth.DataModels.gender"></select>
@@ -52,23 +52,24 @@
 						<div class="row"> 
 						    <div class="col-xs-4">
 						        <small>Month:</small>
-						      <select class="form-control" ng-model="auth.user.date.month" ng-options="month for month in auth.DataModels.months"></select>
+						      <select class="form-control" ng-model="auth.date.month" ng-options="month.value-1 as month.name for month in auth.DataModels.months"></select>
 						    </div>
 						    <div class="col-xs-4">
 						        <small>Day:</small>
-						      <select class="form-control" ng-model="auth.user.date.day" ng-options="day for day in auth.getDayNumber(auth.user.date.month)"></select>
+						      <select class="form-control" ng-model="auth.date.day" ng-options="day for day in auth.getDayNumber(auth.user.date.month)"></select>
 						    </div>						    
 						    <div class="col-xs-4">
 						        <small>Year:</small>
-						      <select class="form-control" ng-model="auth.user.date.year" ng-options="year for year in auth.getYears()"></select>
+						      <select class="form-control" ng-model="auth.date.year" ng-options="year for year in auth.getYears()"></select>
 						    </div>
+						    <button ng-click="auth.getDateOfBirht()">date</button>
 						</div>
 
 					</div>
 					<div class="form-group">
 						<span><strong>City</strong></span>
 						<input type="text" ng-model="auth.user.city" uib-typeahead="city for city in auth.DataModels.netherlandsCity | filter:$viewValue | limitTo:6" class="form-control">
-					</div> -->
+					</div>
 					<button ng-disabled="register.pwdConfirm.$invalid" type="submit" class="btn btn-default">Submit</button>
 				</form>
 			</div>
