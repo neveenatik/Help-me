@@ -33,32 +33,12 @@ router.get('/api/messages', messages.list)
 router.param('messageId', messages.messageByID);
 
 //========= HelpRequest =======
-router.get('/api/helpRequests', helpRequests.list)
-	.post('/api/helpRequests', checkAuthenticated, helpRequests.create)
-	.get('/api/helpRequests/:helpRequestId', helpRequests.read)
-	.put('/api/helpRequests/:helpRequestId', checkAuthenticated, helpRequests.update)
-	.delete('/api/helpRequests/:helpRequestId', checkAuthenticated, helpRequests.delete);
-router.param('helprequestId', function(req, res, next, id) {
-
-	if (!mongoose.Types.ObjectId.isValid(id)) {
-		return res.status(400).send({
-			message: 'HelpRequest is invalid'
-		});
-	}
-
-	HelpRequest.findById(id).populate('user', 'displayName').exec(function(err, helpRequest) {
-		if (err) {
-			return next(err);
-		} else if (!helpRequest) {
-			return res.status(404).send({
-				message: 'No helpRequest with that identifier has been found'
-			});
-		}
-		console.log(helprequest);
-		req.helpRequest = helpRequest;
-		next();
-	});
-});
+router.get('/api/helprequests', helpRequests.list)
+	.post('/api/helprequests', checkAuthenticated, helpRequests.create)
+	.get('/api/helprequests/:helpRequestId', helpRequests.read)
+	.put('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.update)
+	.delete('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.delete);
+router.param('helpRequestId', helpRequests.helpRequestByID);
 
 
 
