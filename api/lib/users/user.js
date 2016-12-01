@@ -52,7 +52,7 @@ var UserSchema = new Schema({
   },
   dateOfbirth: {
     type: Date
-  }
+  },
   helpCategory: {
     type: String
   },

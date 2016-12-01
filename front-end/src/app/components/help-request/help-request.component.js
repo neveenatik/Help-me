@@ -18,14 +18,16 @@ function HelpmeHelpRequestController($auth, $http, DataModels) {
 
   function getHelpRequest(){
     //var vm = this;
-    this.$http.get('http://localhost:5000/api/helpRequests').then(function (result) {
+    this.$http.get('http://localhost:5000/api/helprequests').then(function (result) {
       // vm.sasa = result.data;
       console.log(result.data);
     }); 
   }
 
   function postHelpRequest() {
-		this.$http.post('http://localhost:5000/api/helpRequests', {helprequest: this.helprequest});
+		this.$http.post('http://localhost:5000/api/helprequests', {helprequest: this.helprequest});
+
+    //this is general post but now you need another one to send the token through it via headers 
 	}
 
   // function user() {

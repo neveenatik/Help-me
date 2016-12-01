@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  * Create a helpRequest
  */
 exports.create = function (req, res) {
-  var helpRequest = new HelpRequest(req.body.helpRequest);
+  var helpRequest = new HelpRequest(req.body.helprequest);
   helpRequest.user = req.user;
 
   helpRequest.save(function (err) {
@@ -23,6 +23,7 @@ exports.create = function (req, res) {
       res.jsonp(helpRequest);
     }
   });
+  console.log(req.user);
 };
 
 /**
@@ -45,7 +46,7 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var helpRequest = req.helpRequest;
 
-  helpRequest = _.extend(helpRequest, req.body.helpRequest);
+  helpRequest = _.extend(helpRequest, req.body.helprequest);
   /*
   helpRequest.category = req.body.category;
   helpRequest.title = req.body.title;
