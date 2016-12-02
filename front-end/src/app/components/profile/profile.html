@@ -1,21 +1,88 @@
-<div class=""> 
-    <div class="container">
-        <div class="helpme-body panel-body">
-                <div class="col-md-2"> 
-                    <img src="http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg" class="thumbnail  pull-left home-imgs">
-                </div>
-                <div class="col-md-8">
-                    <div class="col-md-6"> 
-                        <h4><strong>Sarea al kebaly</strong></h4>
-                    </div>                
-                    <div class="col-md-6"> 
-                        <h5>feedbak reting:</h5>
-                        <span ng-repeat="star in [1,2,3,4,5]"><i class="fa fa-star" aria-hidden="true"></i>
-</span>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-3">
+            <div class="user-wrapper">
+                <img src="http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg" class="img-responsive" /> 
+                <div class="description">
+                    <hr>
+                    <h4><strong>{{vm.firstName + " " + vm.lastName}}</strong></h4>
+                    <!-- <a href="#" class="btn btn-danger btn-sm"> <i class="fa fa-user-plus" ></i> &nbsp;Profile + </a> --> 
+            </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-9  user-wrapper">
+            <div class="description">
+                <h3><strong>{{vm.firstName}}'s Profile :</strong></h3>
+                <div class="table-responsive">          
+                    <table class="table">
+                        <!-- <thead></thead> -->
+                        <tbody>
+                            <tr>
+                                <td>First:</td>
+                                <td>{{vm.firstName}}</td>
+                                <td>City:</td>
+                                <td>{{vm.userInfo.city}}</td>
+                            </tr>
+                            <tr>
+                                <td>Last:</td>
+                                <td>{{vm.lastName}}</td>
+                                <td>Gender:</td>
+                                <td>{{vm.userInfo.gender}}</td>
+                                <td>Birth:</td>
+                                <td>{{vm.dateOfBirth}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>  
+                <hr>
+                <h4> Social Links: </h4>              
+                <a href="#" class="btn btn-social btn-facebook">
+                <i class="fa fa-facebook"></i>&nbsp; Facebook </a>
+                <a href="#" class="btn btn-social btn-google">
+                <i class="fa fa-google-plus"></i>&nbsp; Google</a>
+                <a href="#" class="btn btn-social btn-twitter">
+                <i class="fa fa-twitter"></i>&nbsp; Twitter </a>
+                <a href="#" class="btn btn-social btn-linkedin">
+                <i class="fa fa-linkedin"></i>&nbsp; Linkedin </a>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+<helpme-help-request></helpme-help-request>  
+
+
+
+<!--         <div class="helpme-body panel-body">
+                <div class="col-sm-3" style="background-color: red;"> 
+                    <div class="panel no-border panel-default">
+                        <div class="helpme-body panel-body">
+                            <div class="form-group">
+                                <img src="http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg" class="thumbnail  pull-left home-imgs">
+                            </div>
+                        </div>
                     </div>
                 </div>
-        </div>   
-    </div>
-    <helpme-help-request></helpme-help-request>  
+                <div class="col-sm-4">
+                    <div class="col-sm-6"> 
+                        <h4><strong>{{vm.userInfo.name}}</strong></h4>
+                    </div>                
+                    <div class="col-sm-6"> 
+                        <h5>feedbak reting:</h5>
+                        <span ng-repeat="i in vm.ratingAvg(vm.rating) track by $index"><i class="fa fa-star __blue star"></i></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    test
+                </div>
+        </div>    -->
 
-</div>
+        <!-- <div class="container">
+  <div class="panel no-border panel-default">
+      <div class="helpme-body panel-body">
+          <div class="form-group">
+          </div>
+      </div>
+  </div>
+</div> -->

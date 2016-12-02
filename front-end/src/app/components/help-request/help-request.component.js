@@ -14,29 +14,87 @@ function HelpmeHelpRequestController($auth, $http, DataModels) {
     vm.DataModels = DataModels;
     vm.postHelpRequest = postHelpRequest;
     vm.getHelpRequest = getHelpRequest;
-    //vm.user = user;
+    vm.user = user;
 
   function getHelpRequest(){
-    //var vm = this;
+    var vm = this;
     this.$http.get('http://localhost:5000/api/helprequests').then(function (result) {
-      // vm.sasa = result.data;
-      console.log(result.data);
+      //var user_id = vm.$auth.getPayload();
+      console.log(result);
     }); 
   }
 
   function postHelpRequest() {
-		this.$http.post('http://localhost:5000/api/helprequests', {helprequest: this.helprequest});
+    var vm = this;
+    // this.$http.post('http://localhost:5000/api/helprequests', {helprequest: this.helprequest})
+    //   .then(function () {
+    //           // vm.$auth.setToken(token);
+    //           //state here
+    //       }, (error, status) => console.log(error));
 
-    //this is general post but now you need another one to send the token through it via headers 
+    vm.token = vm.$auth.getToken()
+    console.log(vm.token)
+    console.log(this.helprequest)
+    this.$http({
+      method: "POST",
+      url: "http://localhost:5000/api/helprequests",
+      headers: {
+        Authorization: vm.token
+      },
+      data: {
+        helprequest: this.helprequest
+      }
+    })
+    .then(function(response) {
+        // success!
+        // redirect
+        // response = { data { question: { question_id: 5, title: '', question: ''}}}
+
+        //$state.go('questions.question',{questionId: response.data.question.question_id})
+        //x = response
+        console.log("post", response);
+    })
+    .catch(function(error, status) {
+     // display error
+        console.log(error);
+    });
+    console.log("post");
 	}
 
-  // function user() {
-  //     var vm = this;
-  //     var user_id = vm.$auth.getPayload().sub;
-  //     console.log(user_id);
-  //     this.$http.get('http://localhost:5000/api/helpRequest/'+ user_id).then(function (result) {
-  //     // vm.sasa = result.data;
-  //     console.log(result);
-  //   }); 
-  // }
+  function user() {
+    //   var vm = this;
+    //   var user_id = vm.$auth.getPayload();
+    //   console.log(vm.$auth);
+    //   this.$http.get('http://localhost:5000/api/user/').then(function (result) {
+    //   vm.sasa = result.data;
+    //   console.log(result);
+    // });
+    // var vm = this;
+    // vm.token = vm.$auth.getToken();      // user token
+    // vm.user_id = $auth.getPayload().sub; //user ID
+    // console.log(vm.user_id)
+    // this.$http({
+    //   method: "GET",
+    //   url: "http://localhost:5000/api/user/",
+    //   headers: {
+    //     Authorization: vm.token
+    //   }
+    // })
+    // .then(function(response) {
+    //     // success!
+    //     // redirect
+    //     // response = { data { question: { question_id: 5, title: '', question: ''}}}
+
+    //     //$state.go('questions.question',{questionId: response.data.question.question_id})
+    //     //x = response
+    //     console.log("post", response);
+    // })
+    // .catch(function(error, status) {
+    //  // display error
+    //     console.log(error);
+    // });
+    console.log("post"); 
+  }
+
+  
 }
