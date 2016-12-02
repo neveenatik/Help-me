@@ -1,65 +1,49 @@
-
 export var helpmeHelpRequest = {
   controller: HelpmeHelpRequestController,
   controllerAs: 'vm',
   templateUrl: 'app/components/help-request/help-request.html'
 };
 
-function HelpmeHelpRequestController($auth, $http, DataModels) {
-	'ngInject';
+function HelpmeHelpRequestController($auth, $http, DataModels, $log) {
+  'ngInject';
 
-	var vm = this;
-    vm.$auth = $auth;
-    vm.$http = $http;
-    vm.DataModels = DataModels;
-    vm.postHelpRequest = postHelpRequest;
-    vm.getHelpRequest = getHelpRequest;
-    vm.user = user;
+  var vm = this;
+  vm.$log = $log;
+  vm.$auth = $auth;
+  vm.$http = $http;
+  vm.DataModels = DataModels;
+  vm.postHelpRequest = postHelpRequest;
+  vm.getHelpRequest = getHelpRequest;
+  vm.user = user;
 
-  function getHelpRequest(){
+  function getHelpRequest() {
     var vm = this;
-    this.$http.get('http://localhost:5000/api/helprequests').then(function (result) {
+    vm.$http.get('http://localhost:5000/api/helprequests').then(function(result) {
       //var user_id = vm.$auth.getPayload();
       console.log(result);
-    }); 
+    });
   }
 
   function postHelpRequest() {
-    var vm = this;
-    // this.$http.post('http://localhost:5000/api/helprequests', {helprequest: this.helprequest})
-    //   .then(function () {
-    //           // vm.$auth.setToken(token);
-    //           //state here
-    //       }, (error, status) => console.log(error));
 
     vm.token = vm.$auth.getToken()
-    console.log(vm.token)
-    console.log(this.helprequest)
-    this.$http({
-      method: "POST",
-      url: "http://localhost:5000/api/helprequests",
-      headers: {
-        Authorization: vm.token
-      },
-      data: {
-        helprequest: this.helprequest
-      }
-    })
-    .then(function(response) {
-        // success!
-        // redirect
-        // response = { data { question: { question_id: 5, title: '', question: ''}}}
-
-        //$state.go('questions.question',{questionId: response.data.question.question_id})
-        //x = response
-        console.log("post", response);
-    })
-    .catch(function(error, status) {
-     // display error
-        console.log(error);
-    });
-    console.log("post");
-	}
+    $http({
+        method: 'POST',
+        url: 'http://localhost:5000/api/helprequests',
+        headers: {
+          'Authorization': vm.token
+        },
+        data: {
+          'helprequest': vm.helprequest
+        }
+    }).then(function successCallback(response) {
+              $log.log(response.data);
+            }, function errorCallback(response) {
+                  if (response.status = 401) { // If you have set 401
+                    $log.log("Some thing wrong!")
+                  }
+      });
+  }
 
   function user() {
     //   var vm = this;
@@ -93,8 +77,8 @@ function HelpmeHelpRequestController($auth, $http, DataModels) {
     //  // display error
     //     console.log(error);
     // });
-    console.log("post"); 
+    console.log("post");
   }
 
-  
+
 }

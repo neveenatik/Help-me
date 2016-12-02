@@ -13,7 +13,6 @@ var mongoose = require('mongoose'),
 exports.create = function (req, res) {
   var helpRequest = new HelpRequest(req.body.helprequest);
   helpRequest.user = req.user;
-
   helpRequest.save(function (err) {
     if (err) {
       return res.status(400).send({
@@ -23,7 +22,6 @@ exports.create = function (req, res) {
       res.jsonp(helpRequest);
     }
   });
-  console.log(req.user);
 };
 
 /**
