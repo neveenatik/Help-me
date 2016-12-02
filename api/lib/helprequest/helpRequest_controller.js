@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * Module dependencies.
  */
@@ -12,7 +11,8 @@ var mongoose = require('mongoose'),
  */
 exports.create = function (req, res) {
   var helpRequest = new HelpRequest(req.body.helprequest);
-  helpRequest.user = req.user;
+  helpRequest.user = req.userId;
+
   helpRequest.save(function (err) {
     if (err) {
       return res.status(400).send({
@@ -33,7 +33,7 @@ exports.read = function (req, res) {
 
   // Add a custom field to the helpRequest, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the helpRequest model.
-  helpRequest.isCurrentUserOwner = req.user && helpRequest.user && helpRequest.user._id.toString() === req.user._id.toString();
+  helpRequest.isCurrentUserOwner = req.userId && helpRequest.user && helpRequest.user._id.toString() === req.userId._id.toString();
 
   res.jsonp(helpRequest);
 };
@@ -45,11 +45,6 @@ exports.update = function (req, res) {
   var helpRequest = req.helpRequest;
 
   helpRequest = _.extend(helpRequest, req.body.helprequest);
-  /*
-  helpRequest.category = req.body.category;
-  helpRequest.title = req.body.title;
-  helpRequest.description = req.body.description;
-*/
   helpRequest.save(function (err) {
     if (err) {
       return res.status(400).send({
@@ -102,8 +97,8 @@ exports.helpRequestByID = function (req, res, next, id) {
       message: 'HelpRequest is invalid'
     });
   }
-  console.log(id);
-  HelpRequest.findById(id).exec(function (err, helpRequest) {
+
+  HelpRequest.findById(id).populate('user', 'displayName').exec(function (err, helpRequest) {
     if (err) {
       return next(err);
     } else if (!helpRequest) {

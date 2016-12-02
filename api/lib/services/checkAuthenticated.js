@@ -12,7 +12,6 @@ module.exports = function checkAuthenticated(req, res, next) {
         return res.status(401).send({message: 'Token has expired'});
     }
     
-    req.user = payload.sub;
-    
+    req.userId = payload.sub;
     next();
 }

@@ -13,19 +13,20 @@ var router = express.Router();
 
 //========= authentication ====
 
-router.post('/auth/signup', auth.register);
-router.post('/auth/login', auth.login);
+router.post('/auth/signup', auth.register);//register new user and later he can update his profile.
+router.post('/auth/login', auth.login);// logingin and getting token
 router.get('/auth/signout', auth.signout);
 
 //======== Users ========
 
-router.get('/api/user/:userId', checkAuthenticated, users.list); //display his profile and the others profile
-router.put('/api/user/:userId', checkAuthenticated, users.update); // update his profile
-/*
-router.get('/api/auth/signout', auth.signout);*/
+router.get('/api/users', checkAuthenticated, users.list)//user can see other users
+	.get('/api/users/:userId', users.read) //display one user to see his profile
+	.put('/api/users/:userId', checkAuthenticated, users.update)//update user profile
+	.delete('/api/users/:userId', checkAuthenticated, users.delete);//user can delete his account for now /later can change that.
+router.param('userId', users.userByID);
 
 //========= Messages =======
-router.get('/api/messages', messages.list)
+router.get('/api/messages', messages.list) 
 	.post('/api/messages', checkAuthenticated, messages.create)
 	.get('/api/messages/:messageId', messages.read)
 	.put('/api/messages/:messageId', checkAuthenticated, messages.update)

@@ -3,16 +3,17 @@
 /**
  * Module dependencies.
  */
-var path = require('path'),
-  mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
   Message = require('./message'),
-  errorHandler = require(path.resolve('./lib/errors.server.controller'));
+  errorHandler = require('../errors.server.controller'),
+  _ = require('lodash');
 /**
  * Create a message
  */
 exports.create = function (req, res) {
-  var message = new Message(req.body);
-  message.user = req.user;
+  var message = new Message(req.body.message);
+  message.user = req.userId;
+  message.helpRequest = (req.body.helpRequest);
 
   message.save(function (err) {
     if (err) {
@@ -20,7 +21,7 @@ exports.create = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(message);
+      res.jsonp(message);
     }
   });
 };
@@ -29,7 +30,14 @@ exports.create = function (req, res) {
  * Show the current message
  */
 exports.read = function (req, res) {
-  res.json(req.message);
+  // convert mongoose document to JSON
+  var message = req.message ? req.message.toJSON() : {};
+
+  // Add a custom field to the message, for determining if the current User is the "owner".
+  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the message model.
+  message.isCurrentUserOwner = req.userId && message.user && message.user._id.toString() === req.userId._id.toString();
+
+  res.jsonp(message);
 };
 
 /**
@@ -38,7 +46,7 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var message = req.message;
 
-  message.content = req.body.content;
+  message = _.extend(message, req.body.message);
 
   message.save(function (err) {
     if (err) {
@@ -46,7 +54,7 @@ exports.update = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(message);
+      res.jsonp(message);
     }
   });
 };
@@ -63,7 +71,7 @@ exports.delete = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(message);
+      res.jsonp(message);
     }
   });
 };
