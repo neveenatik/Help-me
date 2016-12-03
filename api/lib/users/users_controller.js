@@ -3,9 +3,10 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var path = require('path'),
+  errorHandler = require(path.resolve('./lib/core/controllers/errors.server.controller')), 
+  mongoose = require('mongoose'),
   User = require('./user'),
-  errorHandler = require('../errors.server.controller'),
   _ = require('lodash');
 /**
  * Show the current user

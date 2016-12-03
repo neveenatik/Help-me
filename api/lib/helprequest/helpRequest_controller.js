@@ -2,9 +2,10 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var path = require('path'),
+  errorHandler = require(path.resolve('./lib/core/controllers/errors.server.controller')),
+  mongoose = require('mongoose'),
   HelpRequest = require('./helpRequest'),
-  errorHandler = require('../errors.server.controller'),
   _ = require('lodash');
 /**
  * Create a helpRequest

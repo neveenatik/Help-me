@@ -32,7 +32,8 @@ var HelpRequestSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
-  }
+  },
+  done: Boolean
 });
 
 module.exports = mongoose.model('HelpRequest', HelpRequestSchema);

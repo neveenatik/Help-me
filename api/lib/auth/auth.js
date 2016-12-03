@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path'),
-    errorHandler = require(path.resolve('./lib/errors.server.controller')),
+    errorHandler = require(path.resolve('./lib/core/controllers/errors.server.controller')),
     User = require('../users/user'),
     jwt = require('jwt-simple'),
     moment = require('moment');
