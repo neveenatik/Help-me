@@ -5,7 +5,7 @@ export var helpmeProfile = {
   templateUrl: 'app/components/profile/profile.html'
 };
 
-function HelpmeProfile($auth, $http) {
+function HelpmeProfile($auth, $http, $state) {
 	'ngInject';
 
 	var vm = this;

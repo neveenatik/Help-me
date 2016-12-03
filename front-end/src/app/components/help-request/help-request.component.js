@@ -4,7 +4,7 @@ export var helpmeHelpRequest = {
   templateUrl: 'app/components/help-request/help-request.html'
 };
 
-function HelpmeHelpRequestController($auth, $http, DataModels, $log) {
+function HelpmeHelpRequestController($auth, $http, DataModels, $log, $state) {
   'ngInject';
 
   var vm = this;
@@ -43,6 +43,7 @@ function HelpmeHelpRequestController($auth, $http, DataModels, $log) {
         //$state.go('questions.question',{questionId: response.data.question.question_id})
         //x = response
         console.log("post", response);
+        $state.go('home');//redirect
     })
     .catch(function(error, status) {
      // display error

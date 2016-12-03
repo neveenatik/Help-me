@@ -16,7 +16,7 @@ export function NavbarDirective() {
 }
 
 class NavbarController {
-  constructor (moment, $auth) {
+  constructor (moment, $auth, $state) {
     'ngInject';
 
     var vm = this;
