@@ -3,39 +3,77 @@
     <div class="row">
         <div class="col-md-3 col-sm-3">
             <div class="user-wrapper">
-                <img src="http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg" class="img-responsive" /> 
-                <div class="description">
-                    <hr>
-                    <h4><strong>{{vm.firstName + " " + vm.lastName}}</strong></h4>
-                    <!-- <a href="#" class="btn btn-danger btn-sm"> <i class="fa fa-user-plus" ></i> &nbsp;Profile + </a> --> 
-            </div>
+                <img src="http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg" class="img-responsive"> 
+                <div class="description-img">
+                    <div class="text-center">
+                    <span ng-repeat="i in vm.ratingAvg(vm.rating) track by $index"><i class="fa fa-star fa-2x star"></i></span>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-9 col-sm-9  user-wrapper">
             <div class="description">
-                <h3><strong>{{vm.firstName}}'s Profile :</strong></h3>
-                <div class="table-responsive">          
-                    <table class="table">
-                        <!-- <thead></thead> -->
-                        <tbody>
-                            <tr>
-                                <td>First:</td>
-                                <td>{{vm.firstName}}</td>
-                                <td>City:</td>
-                                <td>{{vm.userInfo.city}}</td>
-                            </tr>
-                            <tr>
-                                <td>Last:</td>
-                                <td>{{vm.lastName}}</td>
-                                <td>Gender:</td>
-                                <td>{{vm.userInfo.gender}}</td>
-                                <td>Birth:</td>
-                                <td>{{vm.dateOfBirth}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>  
-                <hr>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4 style="margin-top: 0px;"><strong>{{vm.userInfo.firstName + " " + vm.userInfo.lastName}}'s Profile :</strong></h4>
+                </div>
+                <div class="col-sm-6">
+                    <div class="pull-right"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></div>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="table-responsive">          
+                            <table class="table table-font">
+                                <tbod>
+                                    <tr>
+                                        <td><strong>First:</strong></td>
+                                        <td ng-model="editName" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
+                                            <span ng-if="editName" class="name">{{vm.userInfo.firstName}}</span>
+                                            <span ng-if="editName"><input type="" name=""></span>
+                                                <!-- <pre>{{editName}}</pre> -->
+                                            <span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Last:</strong></td>
+                                        <td>{{vm.userInfo.lastName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>City:</strong></td>
+                                        <td>{{vm.userInfo.city}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Gender:</strong></td>
+                                        <td>{{vm.userInfo.gender}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Birth:</strong></td>
+                                        <td>{{vm.userInfo.birth}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>  
+                    </div>                    
+                    <div class="col-md-6 col-sm-6">
+                        <div class="table-responsive">          
+                            <table class="table table-font">
+                                <tbody>
+
+                                    <tr>
+                                        <td><strong>Email</strong></td>
+                                        <td>{{vm.userInfo.email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Feedback Avg:</strong></td>
+                                        <td>arr.length</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>  
+                    </div>
+                </div>
+<!--                 <hr>
                 <h4> Social Links: </h4>              
                 <a href="#" class="btn btn-social btn-facebook">
                 <i class="fa fa-facebook"></i>&nbsp; Facebook </a>
@@ -45,44 +83,9 @@
                 <i class="fa fa-twitter"></i>&nbsp; Twitter </a>
                 <a href="#" class="btn btn-social btn-linkedin">
                 <i class="fa fa-linkedin"></i>&nbsp; Linkedin </a>
-                <hr>
+                <hr> -->
             </div>
         </div>
     </div>
 </div>
 <helpme-help-request></helpme-help-request>  
-
-
-
-<!--         <div class="helpme-body panel-body">
-                <div class="col-sm-3" style="background-color: red;"> 
-                    <div class="panel no-border panel-default">
-                        <div class="helpme-body panel-body">
-                            <div class="form-group">
-                                <img src="http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg" class="thumbnail  pull-left home-imgs">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="col-sm-6"> 
-                        <h4><strong>{{vm.userInfo.name}}</strong></h4>
-                    </div>                
-                    <div class="col-sm-6"> 
-                        <h5>feedbak reting:</h5>
-                        <span ng-repeat="i in vm.ratingAvg(vm.rating) track by $index"><i class="fa fa-star __blue star"></i></span>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    test
-                </div>
-        </div>    -->
-
-        <!-- <div class="container">
-  <div class="panel no-border panel-default">
-      <div class="helpme-body panel-body">
-          <div class="form-group">
-          </div>
-      </div>
-  </div>
-</div> -->

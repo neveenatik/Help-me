@@ -30,8 +30,8 @@ body {
 }
 
 .col-centered {
-    float: none;
-    margin: 0 auto;
+    float: none !important;
+    margin: 0 auto !important;
 }
 
 .btn,
