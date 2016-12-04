@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-  HelpRequest = require('./helpRequest'),
+  HelpRequest = require('./helprequest'),
   _ = require('lodash');
 /**
  * Create a helpRequest
@@ -90,8 +90,8 @@ exports.list = function (req, res) {
 /**
  * List of HelpRequests for one user
  */
-exports.listOneUser = function (req, res, id) {
-  HelpRequest.find({'user': id}).sort('-created').populate('user', 'displayName').exec(function (err, helpRequests) {
+exports.listOneUser = function (req, res) {
+  HelpRequest.find({'user': req.user._id}).sort('-created').populate('user', 'displayName').exec(function (err, helpRequests) {
     if (err) {
       return res.status(400).send({
         message: 'Faild to get help rquests for this user'

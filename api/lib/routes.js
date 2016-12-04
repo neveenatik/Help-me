@@ -6,7 +6,7 @@ var express = require('express'),
 	checkAuthenticated = require('./services/checkAuthenticated'),
 	users = require('./users/users_controller'),
 	comments = require('./comments/comments_controller'),
-	helpRequests = require('./helprequest/helpRequest_controller');
+	helpRequests = require('./helprequest/helprequest_controller');
 
 //====== Start routing ========
 var router = express.Router();

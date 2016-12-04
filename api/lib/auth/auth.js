@@ -16,6 +16,7 @@ module.exports = {
                     message:'Email is already registered'
                 });
             var user = new User(req.body.user);
+            user.password = jwt.encode(req.body.user.password, '_o0OMd9#ud');
             user.displayName = user.firstName + ' ' + user.lastName;
 
             user.save(function(err, result) {
