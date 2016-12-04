@@ -52,13 +52,13 @@ function HelpmeHelpRequestController($auth, $http, DataModels, $log, $state) {
   }
 
   function user() {
-    var token = $auth.getToken();      // user token
-    var user_id = $auth.getPayload().sub; //user ID
-    console.log(user_id)
-    console.log(token)
+    // var token = $auth.getToken();      // user token
+    // var user_id = $auth.getPayload().sub; //user ID
+    // console.log(user_id)
+    // console.log(token)
     $http({
       method: "GET",
-      url: "http://localhost:5000/api/users/" + user_id,
+      url: "http://localhost:5000/api/helprequests",
       // headers: {
       //   'Authorization': vm.token
       // }

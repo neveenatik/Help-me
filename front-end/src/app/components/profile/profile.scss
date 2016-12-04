@@ -2,11 +2,11 @@
 	font-size: 13px;
 }
 
-.user-wrapper .btn {
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    margin: 5px;
+.user-wrapper {
+    //border-radius: 0px;
+    //-webkit-border-radius: 0px;
+    //-moz-border-radius: 0px;
+    //margin: 5px;
 }
 
 .user-wrapper .description {
@@ -33,6 +33,32 @@
 
 .name:hover + .edit {
 	display: inline;
+}
+
+.date{
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+.select-date {
+    padding-left: 2px ;
+}
+
+.btn-position {
+    //bottom: 5px;
+}
+
+.btn-cancel {
+    width: 32px;
+    &:hover,  &:focus {
+    background-color: #FF6969;
+    }    
+}
+
+.btn-submit {
+    &:hover,  &:focus {
+    background-color: #56CF56;
+    }
 }
 
 @media (max-width: 992px) {

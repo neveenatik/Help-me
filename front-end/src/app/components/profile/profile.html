@@ -6,56 +6,116 @@
                 <img src="http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg" class="img-responsive"> 
                 <div class="description-img">
                     <div class="text-center">
-                    <span ng-repeat="i in vm.ratingAvg(vm.rating) track by $index"><i class="fa fa-star fa-2x star"></i></span>
+                        <span ng-repeat="i in vm.ratingAvg(vm.rating) track by $index"><i class="fa fa-star fa-2x star"></i></span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-9 col-sm-9  user-wrapper">
             <div class="description">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h4 style="margin-top: 0px;"><strong>{{vm.userInfo.firstName + " " + vm.userInfo.lastName}}'s Profile :</strong></h4>
-                </div>
-                <div class="col-sm-6">
-                    <div class="pull-right"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></div>
-                </div>
-            </div>
                 <div class="row">
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-sm-6">
+                        <h4 style="margin-top: 0px;"><strong>{{vm.userInfo.firstName + " " + vm.userInfo.lastName}}'s Profile :</strong></h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="pull-right"><i class="fa fa-pencil fa-1x" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7 col-sm-7">
                         <div class="table-responsive">          
                             <table class="table table-font">
-                                <tbod>
+                                <tbody> 
                                     <tr>
                                         <td><strong>First:</strong></td>
-                                        <td ng-model="editName" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
-                                            <span ng-if="editName" class="name">{{vm.userInfo.firstName}}</span>
-                                            <span ng-if="editName"><input type="" name=""></span>
-                                                <!-- <pre>{{editName}}</pre> -->
-                                            <span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                        <td ng-model="firstNameBoolean">
+                                            <div ng-hide="firstNameBoolean" ng-click="firstNameBoolean = true">
+                                                <span class="name">{{vm.userInfo.firstName}}</span>
+                                                <span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div ng-show="firstNameBoolean" class="input-group">
+                                                <input type="text" ng-model="vm.userInfo.firstName" class="form-control input-sm">
+                                                <span class="input-group-btn btn-position" >
+                                                <button type="button" class="btn btn-sm btn-cancel" ng-click="firstNameBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="firstNameBoolean = false; vm.editUesr()"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                </span>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Last:</strong></td>
-                                        <td>{{vm.userInfo.lastName}}</td>
+                                        <td ng-model="lastNameBoolean">
+                                            <div ng-hide="lastNameBoolean" ng-click="lastNameBoolean = true">
+                                                <span class="name">{{vm.userInfo.lastName}}</span>
+                                                <span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div ng-show="lastNameBoolean" class="input-group">
+                                                <input type="text" ng-model="vm.userInfo.lastName" class="form-control input-sm">
+                                                <span class="input-group-btn btn-position">
+                                                <button type="button" class="btn btn-sm btn-cancel" ng-click="lastNameBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="lastNameBoolean = false; vm.editUesr()"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                </span>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td><strong>City:</strong></td>
-                                        <td>{{vm.userInfo.city}}</td>
+                                        <td ng-model="cityBoolean">
+                                            <div ng-hide="cityBoolean" ng-click="cityBoolean = true">
+                                                <span class="name">{{vm.userInfo.city}}</span>
+                                                <span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div ng-show="cityBoolean" class="input-group">                          
+                                                <input type="text" ng-model="vm.userInfo.city" class="form-control input-sm" uib-typeahead="city for city in vm.DataModels.netherlandsCity | filter:$viewValue | limitTo:6" >
+                                                <span class="input-group-btn btn-position">
+                                                <button type="button" class="btn btn-sm btn-cancel" ng-click="cityBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="cityBoolean = false; vm.editUesr()"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                </span>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Gender:</strong></td>
-                                        <td>{{vm.userInfo.gender}}</td>
+                                        <td ng-model="genderBoolean">
+                                            <div ng-hide="genderBoolean" ng-click="genderBoolean = true">
+                                                <span class="name">{{vm.userInfo.gender}}</span>
+                                                <span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div ng-show="genderBoolean" class="input-group">
+                                                <select class="form-control input-sm" ng-model="vm.userInfo.gender" ng-options="gender for gender in vm.DataModels.gender"></select>
+                                                <span class="input-group-btn btn-position">
+                                                <button type="button" class="btn btn-sm btn-cancel" ng-click="genderBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="genderBoolean = false; vm.editUesr()"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                </span>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td><strong>Birth:</strong></td>
-                                        <td>{{vm.userInfo.birth}}</td>
+                                        <td ng-model="birthBoolean">
+                                            <div ng-hide="birthBoolean" ng-click="birthBoolean = true">
+                                                <span class="name">{{vm.userInfo.birth}}</span>
+                                                <span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div ng-show="birthBoolean" class="input-group">
+                                                <div class="row"> 
+                                                    <div class="col-xs-3 date">
+                                                        <select class="form-control select-date" ng-model="vm.newDate.month" ng-options="month.value-1 as month.name for month in vm.DataModels.months"></select>
+                                                    </div>
+                                                    <div class="col-xs-3 date">
+                                                        <select class="form-control select-date" ng-model="vm.newDate.day" ng-options="day for day in vm.getDayNumber(vm.user.date.month)"></select>
+                                                    </div>                          
+                                                    <div class="col-xs-3 date">
+                                                        <select class="form-control select-date" ng-model="vm.newDate.year" ng-options="year for year in vm.getYears()"></select>
+                                                    </div>
+                                                    <div class="col-xs-3 date input-group-btn btn-position">
+                                                        <button type="button" class="btn btn-sm btn-cancel" ng-click="birthBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="birthBoolean = false; vm.newBirth()"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>  
                     </div>                    
-                    <div class="col-md-6 col-sm-6">
+                    <div class="col-md-5 col-sm-5">
                         <div class="table-responsive">          
                             <table class="table table-font">
                                 <tbody>
@@ -65,7 +125,7 @@
                                         <td>{{vm.userInfo.email}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Feedback Avg:</strong></td>
+                                        <td><strong>Feedback:</strong></td>
                                         <td>arr.length</td>
                                     </tr>
                                 </tbody>
@@ -88,4 +148,6 @@
         </div>
     </div>
 </div>
+
 <helpme-help-request></helpme-help-request>  
+
