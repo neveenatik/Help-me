@@ -1,0 +1,60 @@
+<html>
+
+<head lang="en">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+    <script>
+        document.write('<base href="' + document.location + '" />');
+    </script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/css/bootstrap-combined.min.css" rel="stylesheet"> </head>
+<script>
+    var app = angular.module('appp', []);
+    app.controller('commmentCtrl', function ($scope) {
+        $scope.CurrentDate = Date.now();
+ 
+        $scope.visible = false;
+        $scope.comments = [];
+        $scope.newComment = function () {
+            $scope.comments.push({
+                comment: $scope.comment,
+                name:'Marwa',
+            });
+            $scope.comment = '';
+        };
+        $scope.removeComment = function (index) {
+            $scope.comments.splice(index, 1);
+        };
+    });
+</script>
+<style>
+    #commentSpan:hover{
+    cursor: pointer;
+}
+    </style>
+<body ng-app="appp" ng-controller="commmentCtrl">
+    <div id="wrap" class="col-md-5">
+        <!-- Begin page content -->
+        <div class="container">
+            <div class="page-header">
+                <h1>Add a Comment</h1> </div>
+            <ul ng-repeat="(i,c) in comments">
+                <li> 
+                    <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" width="20" height="20"> <span class="badge pull-right">{{CurrentDate  | date:'medium'}}</span> <span ng-model="c.name"><b>{{c.name}}</b></span>: 
+                    <span id="commentSpan"ng-hide="editing" ng-click="editing = true">{{c.comment}}</span>
+                    <br>
+                    
+                    <form name="edtForm" ng-show="editing" ng-submit="editing = false">
+                        <br>
+                        <input type="text" name="edt" ng-model="c.comment" placeholder="Name" required/>
+                        <button class="btn btn-info" type="submit" ng-disabled="edtForm.edt.$invalid">save</button>
+                        <button class="btn btn-danger" type="submit" ng-click="removeComment(i)">Del</button>
+                    </form>
+                </li>
+            </ul>
+            <form name="addcomment" ng-submit="newComment()"> <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" width="50" height="50">
+                <input type="text" name="addcmnt" ng-model="comment" placeholder="your comment here" required/>
+                <button class="btn btn-default" type="submit" ng-disabled="addcomment.addcmnt.$invalid"><i class="icon-plus"></i></button>
+            </form>
+        </div>
+    </div>
+   
+</body>

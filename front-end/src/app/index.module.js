@@ -14,7 +14,8 @@ import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive
 import helpmeHome from './components/home';
 import helpmeProfile from './components/profile';
 import helpmeHelpRequest from './components/help-request';
-
+import helpmeComment from './components/comment';
+import helpmeContact from './components/contact';
 angular.module('helpFront', [
     'ngAnimate',
     'ngCookies',
@@ -29,6 +30,8 @@ angular.module('helpFront', [
     helpmeHome,
     helpmeProfile,
     helpmeHelpRequest,
+    helpmeComment,
+    helpmeContact,
     ])
   .constant('API_URL', 'http://localhost:5000/')
   .constant('malarkey', malarkey)

@@ -83,11 +83,13 @@
         <div class="col-md-6">
             <div class="panel-group">
                 <div class="panel no-border panel-default">
-                    <div class="panel-heading helpme-heading no-border">{{name}}<span class="badge pull-right">{{type}}</span></div>
+                    <div class="panel-heading helpme-heading no-border">{{h.title}}<span class="badge pull-right">{{h.category}}</span></div>
                     <div class="helpme-body panel-body">
                         <div class="row">
-                            <div class="col-md-3"> <img ng-src="{{img}}"> </div>
-                            <div class="col-md-9">{{description}}<a href="#">readmore</a> </div>
+                            <div class="col-md-3"> 
+                                <img ng-src="{{h.img}}">
+                                </div>
+                            <div class="col-md-9">{{h.description}}<a href="#">readmore</a> </div>
                         </div>
                     </div>
                 </div>
@@ -119,3 +121,4 @@ angular.module('myApp', []).controller('DataListHomePage', function($scope)
            ]; 
     });
 </script>-->
+
