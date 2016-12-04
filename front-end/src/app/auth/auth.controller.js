@@ -5,6 +5,7 @@ export class AuthController {
 
 		this.$http = $http
 		this.$auth = $auth;
+		this.$state = $state;
 		this.DataModels = DataModels;
 		this.user = {};
 		this.date = {
@@ -20,7 +21,7 @@ export class AuthController {
 		this.user.dateOfbirth = new Date(this.date.year, this.date.month, this.date.day);
         this.$http.post('http://localhost:5000/auth/signup', {user: this.user}).then(function (token) {
             vm.$auth.setToken(token);
-            //state here
+            vm.$state.go('home');
         }, (error, status) => console.log(error));
         console.log("post", this.user);
     }
@@ -31,7 +32,7 @@ export class AuthController {
         this.$http.post('http://localhost:5000/auth/login', {login: this.login.user})
         .then(function (token) {
             vm.$auth.setToken(token);
-            //state here
+            $state.go('home');
         }).catch(
         // Log the rejection error
         function(error) {

@@ -1,10 +1,11 @@
 'use strict';
 
+var path = require('path')
 /**
  * Render the main application page
  */
 exports.renderIndex = function (req, res) {
-  res.render('modules/core/server/views/index', {
+  res.render(path.resolve('./lib/core/views/index'), {
     user: req.user || null
   });
 };
@@ -13,7 +14,7 @@ exports.renderIndex = function (req, res) {
  * Render the server error page
  */
 exports.renderServerError = function (req, res) {
-  res.status(500).render('modules/core/server/views/500', {
+  res.status(500).render(path.resolve('./lib/core/views/500'), {
     error: 'Oops! Something went wrong...'
   });
 };
@@ -26,7 +27,7 @@ exports.renderNotFound = function (req, res) {
 
   res.status(404).format({
     'text/html': function () {
-      res.render('modules/core/server/views/404', {
+      res.render(path.resolve('./lib/core/views/404'), {
         url: req.originalUrl
       });
     },

@@ -7,6 +7,7 @@ var express = require('express'),
 	users = require('./users/users_controller'),
 	messages = require('./messages/messages_controller'),
 	helpRequests = require('./helprequest/helpRequest_controller');
+	//core = require('./core/controllers/core.server.controller');
 
 //====== Start routing ========
 var router = express.Router();
@@ -41,7 +42,11 @@ router.get('/api/helprequests', helpRequests.list)
 	.delete('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.delete);
 router.param('helpRequestId', helpRequests.helpRequestByID);
 
+//========= Root routing ======
 
+/*router.get('/server-error', core.renderServerError)
+	.get('/:url(api|modules|lib)/*', core.renderNotFound)
+	.get('/*', core.renderIndex);*/
 
 
 
