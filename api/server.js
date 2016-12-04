@@ -14,7 +14,7 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-//var path = require('path');
+var path = require('path');
 
 
 var app = express();
@@ -27,13 +27,9 @@ app.use(cors);
 
 app.use(routes);
 
-/*app.engine('html', require('ejs').renderFile);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');*/
-
 
 //Connection
-mongoose.connect("mongodb://127.0.0.1:27017/test", function(err, db) {
+mongoose.connect("mongodb://127.0.0.1:27017/helpmeDB", function(err, db) {
 	if (!err) {
 		console.log("we are connected to mongo");
 	} else {

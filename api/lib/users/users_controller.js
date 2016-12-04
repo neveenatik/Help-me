@@ -3,9 +3,7 @@
 /**
  * Module dependencies.
  */
-var path = require('path'),
-  errorHandler = require(path.resolve('./lib/core/controllers/errors.server.controller')), 
-  mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
   User = require('./user'),
   _ = require('lodash');
 /**
@@ -33,7 +31,7 @@ exports.update = function (req, res) {
   user.save(function (err) {
     if (err) {
       return res.status(400).send({
-        user: errorHandler.getErrorUser(err)
+        message: 'User could not be updated'
       });
     } else {
       res.jsonp(user);
@@ -50,7 +48,7 @@ exports.delete = function (req, res) {
   user.remove(function (err) {
     if (err) {
       return res.status(400).send({
-        user: errorHandler.getErrorUser(err)
+        message: 'User could not be deleted'
       });
     } else {
       res.jsonp(user);
@@ -65,7 +63,7 @@ exports.list = function (req, res) {
   User.find().sort('-created').populate('user', 'displayName').exec(function (err, users) {
     if (err) {
       return res.status(400).send({
-        user: errorHandler.getErrorUser(err)
+        message: "Cann't list users"
       });
     } else {
       res.json(users);
@@ -80,7 +78,7 @@ exports.userByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      user: 'User is invalid'
+      message: 'User is invalid'
     });
   }
 
@@ -89,7 +87,7 @@ exports.userByID = function (req, res, next, id) {
       return next(err);
     } else if (!user) {
       return res.status(404).send({
-        user: 'No user with that identifier has been found'
+        message: 'No user with that identifier has been found'
       });
     }
     req.user = user;

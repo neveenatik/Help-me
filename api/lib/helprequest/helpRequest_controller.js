@@ -2,9 +2,7 @@
 /**
  * Module dependencies.
  */
-var path = require('path'),
-  errorHandler = require(path.resolve('./lib/core/controllers/errors.server.controller')),
-  mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
   HelpRequest = require('./helpRequest'),
   _ = require('lodash');
 /**
@@ -12,12 +10,12 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   var helpRequest = new HelpRequest(req.body.helprequest);
-  helpRequest.user = req.userId;
-
+  helpRequest.user.id = req.userId;
+  helpRequest.user.name = req.userName;
   helpRequest.save(function (err) {
     if (err) {
       return res.status(400).send({
-        message: errorHandler.getErrorHelpRequest(err)
+        message: 'Could not save this help request'
       });
     } else {
       res.jsonp(helpRequest);
@@ -49,7 +47,7 @@ exports.update = function (req, res) {
   helpRequest.save(function (err) {
     if (err) {
       return res.status(400).send({
-        message: errorHandler.getErrorHelpRequest(err)
+        message: 'Could not update the help request'
       });
     } else {
       res.jsonp(helpRequest);
@@ -66,7 +64,7 @@ exports.delete = function (req, res) {
   helpRequest.remove(function (err) {
     if (err) {
       return res.status(400).send({
-        message: errorHandler.getErrorHelpRequest(err)
+        message: 'Could not delete the help request'
       });
     } else {
       res.jsonp(helpRequest);
@@ -78,10 +76,10 @@ exports.delete = function (req, res) {
  * List of HelpRequests
  */
 exports.list = function (req, res) {
-  HelpRequest.find().sort('-created').populate('user', 'displayName').exec(function (err, helpRequests) {
+  HelpRequest.find({'done': false}).sort('-created').populate('user', 'displayName').exec(function (err, helpRequests) {
     if (err) {
       return res.status(400).send({
-        message: errorHandler.getErrorHelpRequest(err)
+        message: 'Faild to get help rquests list'
       });
     } else {
       res.json(helpRequests);
@@ -90,13 +88,28 @@ exports.list = function (req, res) {
 };
 
 /**
- * List of HelpRequests
+ * List of HelpRequests for one user
+ */
+exports.listOneUser = function (req, res, id) {
+  HelpRequest.find({'user': id}).sort('-created').populate('user', 'displayName').exec(function (err, helpRequests) {
+    if (err) {
+      return res.status(400).send({
+        message: 'Faild to get help rquests for this user'
+      });
+    } else {
+      res.json(helpRequests);
+    }
+  });
+};
+
+/**
+ * List of Done HelpRequests
  */
 exports.listDone = function (req, res) {
   HelpRequest.find({'done':true}).sort('-created').populate('user', 'displayName').exec(function (err, helpRequests) {
     if (err) {
       return res.status(400).send({
-        message: errorHandler.getErrorHelpRequest(err)
+        message: 'Faild to get the finished help rquests'
       });
     } else {
       res.json(helpRequests);

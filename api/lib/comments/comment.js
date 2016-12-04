@@ -7,9 +7,9 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
- * Message Schema
+ * Comment Schema
  */
-var MessageSchema = new Schema({
+var CommentSchema = new Schema({
   created: {
     type: Date,
     default: Date.now
@@ -29,4 +29,4 @@ var MessageSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Message', MessageSchema);
+module.exports = mongoose.model('Comment', CommentSchema);

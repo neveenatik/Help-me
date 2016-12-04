@@ -29,11 +29,18 @@ var HelpRequestSchema = new Schema({
     default: '',
     trim: true
   },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
+  done: {
+    type: Boolean,
+    default: false
   },
-  done: Boolean
+  user: {
+      id: {
+        type: Schema.ObjectId
+      },
+      name: {
+        type: String
+      }
+  }
 });
 
 module.exports = mongoose.model('HelpRequest', HelpRequestSchema);
