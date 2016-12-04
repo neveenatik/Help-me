@@ -36,6 +36,7 @@ router.param('messageId', messages.messageByID);
 
 //========= HelpRequest =======
 router.get('/api/helprequests', helpRequests.list)
+	.get('/api/helprequests/done', helpRequests.listDone)
 	.post('/api/helprequests', checkAuthenticated, helpRequests.create)
 	.get('/api/helprequests/:helpRequestId', helpRequests.read)
 	.put('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.update)

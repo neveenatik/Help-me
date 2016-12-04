@@ -90,6 +90,21 @@ exports.list = function (req, res) {
 };
 
 /**
+ * List of HelpRequests
+ */
+exports.listDone = function (req, res) {
+  HelpRequest.find({'done':true}).sort('-created').populate('user', 'displayName').exec(function (err, helpRequests) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorHelpRequest(err)
+      });
+    } else {
+      res.json(helpRequests);
+    }
+  });
+};
+
+/**
  * HelpRequest middleware
  */
 exports.helpRequestByID = function (req, res, next, id) {
