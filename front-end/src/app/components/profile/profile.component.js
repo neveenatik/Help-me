@@ -5,11 +5,7 @@ export var helpmeProfile = {
   templateUrl: 'app/components/profile/profile.html'
 };
 
-<<<<<<< Updated upstream
-function HelpmeProfile($auth, $http, $state) {
-=======
-function HelpmeProfile($auth, $http, DataModels) {
->>>>>>> Stashed changes
+function HelpmeProfile($auth, $http, $state, DataModels) {
 	'ngInject';
 
 	var vm = this;
