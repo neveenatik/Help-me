@@ -35,6 +35,7 @@ router.param('commentId', comments.commentByID);
 //========= HelpRequest =======
 router.get('/api/helprequests', helpRequests.list)
 	.get('/api/helprequests/done', checkAuthenticated, helpRequests.listDone)
+	.get('/api/helprequests/user', checkAuthenticated, helpRequests.listOneUser)
 	.post('/api/helprequests', checkAuthenticated, helpRequests.create)
 	.get('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.read)
 	.put('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.update)

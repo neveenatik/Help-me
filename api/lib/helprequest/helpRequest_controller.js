@@ -76,7 +76,7 @@ exports.delete = function (req, res) {
  * List of HelpRequests
  */
 exports.list = function (req, res) {
-  HelpRequest.find({'done': false}).sort('-created').populate('user', 'displayName').exec(function (err, helpRequests) {
+  HelpRequest.find().sort('-created').exec(function (err, helpRequests) {
     if (err) {
       return res.status(400).send({
         message: 'Faild to get help rquests list'
@@ -91,7 +91,7 @@ exports.list = function (req, res) {
  * List of HelpRequests for one user
  */
 exports.listOneUser = function (req, res) {
-  HelpRequest.find({'user': req.user._id}).sort('-created').populate('user', 'displayName').exec(function (err, helpRequests) {
+  HelpRequest.find({'user': req.userId}).sort('-created').exec(function (err, helpRequests) {
     if (err) {
       return res.status(400).send({
         message: 'Faild to get help rquests for this user'
@@ -106,7 +106,7 @@ exports.listOneUser = function (req, res) {
  * List of Done HelpRequests
  */
 exports.listDone = function (req, res) {
-  HelpRequest.find({'done':true}).sort('-created').populate('user', 'displayName').exec(function (err, helpRequests) {
+  HelpRequest.find({'done':true}).sort('-created').exec(function (err, helpRequests) {
     if (err) {
       return res.status(400).send({
         message: 'Faild to get the finished help rquests'
@@ -127,7 +127,7 @@ exports.helpRequestByID = function (req, res, next, id) {
     });
   }
 
-  HelpRequest.findById(id).populate('user', 'displayName').exec(function (err, helpRequest) {
+  HelpRequest.findById(id).exec(function (err, helpRequest) {
     if (err) {
       return next(err);
     } else if (!helpRequest) {
