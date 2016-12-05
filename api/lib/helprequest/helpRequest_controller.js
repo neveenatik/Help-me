@@ -4,29 +4,45 @@
  */
 var mongoose = require('mongoose'),
   HelpRequest = require('./helprequest'),
+  User = require('../users/user'),
   _ = require('lodash');
 /**
  * Create a helpRequest
  */
-exports.create = function (req, res) {
+exports.create = function(req, res) {
   var helpRequest = new HelpRequest(req.body.helprequest);
+
+  if (!mongoose.Types.ObjectId.isValid(req.userId)) {
+    return res.status(400).send({
+      message: 'User ID is invalid'
+    });
+  }
   helpRequest.user.id = req.userId;
-  helpRequest.user.name = req.userName;
-  helpRequest.save(function (err) {
+  User.findById(req.userId).then(function(user, err) {
     if (err) {
-      return res.status(400).send({
-        message: 'Could not save this help request'
+      return res.status(404).send({
+        message: 'Could not get user information'
       });
-    } else {
-      res.jsonp(helpRequest);
     }
+    helpRequest.user.displayName = user.displayName;
+    helpRequest.user.dateOfbirth = user.dateOfbirth;
+    helpRequest.user.city = user.city;
+    helpRequest.save(function(err) {
+      if (err) {
+        return res.status(400).send({
+          message: 'Could not save this help request'
+        });
+      } else {
+        res.jsonp(helpRequest);
+      }
+    });
   });
 };
 
 /**
  * Show the current helpRequest
  */
-exports.read = function (req, res) {
+exports.read = function(req, res) {
   // convert mongoose document to JSON
   var helpRequest = req.helpRequest ? req.helpRequest.toJSON() : {};
 
@@ -40,11 +56,11 @@ exports.read = function (req, res) {
 /**
  * Update a helpRequest
  */
-exports.update = function (req, res) {
+exports.update = function(req, res) {
   var helpRequest = req.helpRequest;
 
   helpRequest = _.extend(helpRequest, req.body.helprequest);
-  helpRequest.save(function (err) {
+  helpRequest.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: 'Could not update the help request'
@@ -58,10 +74,10 @@ exports.update = function (req, res) {
 /**
  * Delete an helpRequest
  */
-exports.delete = function (req, res) {
+exports.delete = function(req, res) {
   var helpRequest = req.helpRequest;
 
-  helpRequest.remove(function (err) {
+  helpRequest.remove(function(err) {
     if (err) {
       return res.status(400).send({
         message: 'Could not delete the help request'
@@ -75,8 +91,8 @@ exports.delete = function (req, res) {
 /**
  * List of HelpRequests
  */
-exports.list = function (req, res) {
-  HelpRequest.find({'done':false}).sort('-created').exec(function (err, helpRequests) {
+exports.list = function(req, res) {
+  HelpRequest.find({ 'done': false }).sort('-created').exec(function(err, helpRequests) {
     if (err) {
       return res.status(400).send({
         message: 'Faild to get help rquests list'
@@ -90,8 +106,8 @@ exports.list = function (req, res) {
 /**
  * List of HelpRequests for one user
  */
-exports.listOneUser = function (req, res) {
-  HelpRequest.find({'user': req.userId}).sort('-created').exec(function (err, helpRequests) {
+exports.listOneUser = function(req, res) {
+  HelpRequest.find({ 'user': req.userId }).sort('-created').exec(function(err, helpRequests) {
     if (err) {
       return res.status(400).send({
         message: 'Faild to get help rquests for this user'
@@ -105,8 +121,8 @@ exports.listOneUser = function (req, res) {
 /**
  * List of Done HelpRequests
  */
-exports.listDone = function (req, res) {
-  HelpRequest.find({'done':true}).sort('-created').exec(function (err, helpRequests) {
+exports.listDone = function(req, res) {
+  HelpRequest.find({ 'done': true }).sort('-created').exec(function(err, helpRequests) {
     if (err) {
       return res.status(400).send({
         message: 'Faild to get the finished help rquests'
@@ -120,14 +136,14 @@ exports.listDone = function (req, res) {
 /**
  * HelpRequest middleware
  */
-exports.helpRequestByID = function (req, res, next, id) {
+exports.helpRequestByID = function(req, res, next, id) {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
       message: 'HelpRequest is invalid'
     });
   }
 
-  HelpRequest.findById(id).exec(function (err, helpRequest) {
+  HelpRequest.findById(id).exec(function(err, helpRequest) {
     if (err) {
       return next(err);
     } else if (!helpRequest) {

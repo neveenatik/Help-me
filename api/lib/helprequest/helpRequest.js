@@ -34,12 +34,18 @@ var HelpRequestSchema = new Schema({
     default: false
   },
   user: {
-      id: {
-        type: Schema.ObjectId
-      },
-      name: {
-        type: String
-      }
+    id: {
+      type: Schema.ObjectId
+    },
+    displayName: {
+      type: String
+    },
+    city: {
+      type: String
+    },
+    dateOfbirth: {
+      type: Date
+    }
   }
 });
 
