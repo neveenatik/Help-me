@@ -18,6 +18,7 @@ exports.create = function(req, res) {
     });
   }
   helpRequest.user.id = req.userId;
+  helpRequest.user.displayName = req.userName;
   User.findById(req.userId).then(function(user, err) {
     if (err) {
       return res.status(404).send({

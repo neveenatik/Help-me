@@ -57,6 +57,7 @@ module.exports = {
 function createToken(user) {
     var payload = {
         sub: user._id,
+        name: user.displayName,
         iat: moment().unix(),
         exp: moment().add(2, 'hours').unix()
     };
