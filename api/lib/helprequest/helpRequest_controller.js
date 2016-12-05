@@ -76,7 +76,7 @@ exports.delete = function (req, res) {
  * List of HelpRequests
  */
 exports.list = function (req, res) {
-  HelpRequest.find().sort('-created').exec(function (err, helpRequests) {
+  HelpRequest.find({'done':false}).sort('-created').exec(function (err, helpRequests) {
     if (err) {
       return res.status(400).send({
         message: 'Faild to get help rquests list'
