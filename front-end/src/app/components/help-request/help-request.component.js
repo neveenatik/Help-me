@@ -26,6 +26,11 @@ function HelpmeHelpRequestController($auth, $http, DataModels, $log, $state) {
 
   function postHelpRequest() {
     var token = $auth.getToken();
+    // validation fucntino on vm.helprequest 
+    var categoryToCheck = vm.helprequest.category;
+    if (categoryToCheck == undefined) {
+      return alert("Please choose a category!");
+    };
     $http({
         method: 'POST',
         url: 'http://localhost:5000/api/helprequests',
