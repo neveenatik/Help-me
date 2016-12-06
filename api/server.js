@@ -6,7 +6,8 @@ var express = require('express');
 
 var bodyParser = require('body-parser');
 
-var cors = require('./lib/services/cors');
+//var cors = require('./lib/services/cors');
+var cors = require('cors');
 
 var routes = require('./lib/routes');
 
@@ -23,7 +24,8 @@ var app = express();
 
 app.use(bodyParser.json());
 
-app.use(cors);
+//app.use(cors);
+app.use(cors());
 
 app.use(routes);
 
