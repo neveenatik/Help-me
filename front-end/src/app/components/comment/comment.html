@@ -1,94 +1,27 @@
-
-
-<!--
-<head lang="en">
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
-    <script>
-        document.write('<base href="' + document.location + '" />');
-    </script>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/css/bootstrap-combined.min.css" rel="stylesheet"> </head>
-<script>
-    var app = angular.module('appp', []);
-    app.controller('commmentCtrl', function ($scope) {
-        $scope.CurrentDate = Date.now();
- 
-        $scope.visible = false;
-        $scope.comments = [];
-        $scope.newComment = function () {
-            $scope.comments.push({
-                comment: $scope.comment,
-                name:'Marwa',
-            });
-            $scope.comment = '';
-        };
-        $scope.removeComment = function (index) {
-            $scope.comments.splice(index, 1);
-        };
-    });
-</script>
--->
-<!--
-<style>
-    #commentSpan:hover{
-    cursor: pointer;
-}
-    </style>
--->
-    <div id="wrap" class="col-md-5">
-        <div class="container">
-            <div class="panel panel-default"class="page-header">
-                <h1>Add a Comment</h1> 
+<div id="wrap" class="col-md-5">
+    <div class="container">
+        <div class="panel panel-default" class="page-header">
+            <h1>Add a Comment</h1>
             <div class="panel-body">
-            <ul ng-repeat="(i,c) in vm.comments">
-                <li> 
-                    <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" width="20" height="20"> <span class="badge pull-right">{{vm.currentDate  | date:'medium'}}</span>
-                    <span id="commentSpan"ng-hide="editing" ng-click="editing = true">{{c.content}}</span>
-                    <br>
-                    
-                    <form name="edtForm" ng-show="editing" ng-submit="editing = false;">
+                <ul ng-repeat="(i,c) in vm.comments">
+                    <li>
+                        <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" width="20" height="20"> <span class="badge pull-right">{{vm.currentDate  | date:'medium'}}</span>
+                        <span id="commentSpan" ng-hide="editing" ng-click="editing = true">{{c.content}}</span>
                         <br>
-                        <input type="text" name="edt" ng-model="c.content" placeholder="Name" required/>
-                        <button class="btn btn-info" type="submit" ng-disabled="edtForm.edt.$invalid">save</button>
-                        <button class="btn btn-danger" type="submit" ng-click="vm.deleteComment(i)">Del</button>
-                    </form>
-                </li>
-            </ul>
-               
-            <form name="comment" ng-submit="vm.postComment()"> 
-                <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" width="50" height="50">
-                
-                <input class="form-control"   name="addcmnt" ng-model="vm.comment.content" placeholder="your comment here" required/>
-                <button class="btn btn-default" type="submit" ng-disabled="comment.addcmnt.$invalid">Comment</button>
-            </form>
-                 </div>
+                        <form name="edtForm" ng-show="editing" ng-submit="editing = false;">
+                            <br>
+                            <input type="text" name="edt" ng-model="c.content" placeholder="Name" required/>
+                            <button class="btn btn-info" type="submit" ng-disabled="edtForm.edt.$invalid">save</button>
+                            <button class="btn btn-danger" type="submit" ng-click="vm.deleteComment(i)">Del</button>
+                        </form>
+                    </li>
+                </ul>
+                <form name="comment" ng-submit="vm.postComment()">
+                    <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" width="50" height="50">
+                    <input class="form-control" name="addcmnt" ng-model="vm.comment.content" placeholder="your comment here" required/>
+                    <button class="btn btn-default" type="submit" ng-disabled="comment.addcmnt.$invalid">Comment</button>
+                </form>
             </div>
         </div>
     </div>
-   
-<!------------------------------------------------------------->
-
-<!--
-<div class="container">
-  <div class="panel panel-default">
-      <div class="panel-heading">
-        Add Comment here
-      </div>
-      <div class="panel-body">
-        <div class="input-group">
-          <textarea class="form-control custom-control" rows="3" style="resize: none;" ng-model="vm.comments"></textarea>
-          <span class="input-group-addon btn btn-primary" ng-click="vm.postComment()">Comment</span>
-        </div>
-      </div>
-  </div>
-  <div class="panel panel-default">
-      <div class="panel-heading">comments</div>
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="cmt in vm.comment">
-            {{cmt.content}} 
-          </li>
-        </ul>
-      </div>
-  </div>
 </div>
--->
