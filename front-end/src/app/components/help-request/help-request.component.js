@@ -25,7 +25,7 @@ function HelpmeHelpRequestController($auth, $http, DataModels, $log, $state) {
   }
 
   function postHelpRequest() {
-    var token = $auth.getToken()
+    var token = $auth.getToken();
     $http({
         method: 'POST',
         url: 'http://localhost:5000/api/helprequests',
@@ -37,11 +37,6 @@ function HelpmeHelpRequestController($auth, $http, DataModels, $log, $state) {
         }
     })
     .then(function(response) {
-        // success!
-        // redirect
-        // response = { data { question: { question_id: 5, title: '', question: ''}}}
-        //$state.go('questions.question',{questionId: response.data.question.question_id})
-        //x = response
         console.log("post", response);
         $state.go('home');//redirect
     })

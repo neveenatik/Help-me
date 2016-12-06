@@ -1,6 +1,6 @@
 export const DataModels = {
 
-	helpCategory:['General Cleaning', 'General Handyman', 'Moving Help', 'Delivery Service'],
+	helpCategory:['General Cleaning', 'General Handyman', 'Moving Help', 'Delivery Service', 'Dog Walker', 'Other'],
 
 	gender :['Male', 'Female'],
 
