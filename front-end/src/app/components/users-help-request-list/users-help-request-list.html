@@ -1,56 +1,5 @@
-<!-- 
 
-	<div class="panel no-border panel-default" ng-repeat="list in vm.list">
-        <div class="panel-heading helpme-heading no-border">{{list.user.name}}<span class="badge pull-right">{{list.category}}</span></div>
-        <div class="helpme-body panel-body">
-            <div class="row">
-                <div class="col-md-3"> <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="thumbnail pull-left home-imgs"></div>
-                <div class="col-md-9">
-                	<strong>{{list.title}}</strong>
-                	<br>
-                	{{list.description}}
-                	<br>
-                	{{list.created}}
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-
-<!-- <div ng-repeat="list in vm.list">
-    <div class="row">
-        <div class="col-md-3 col-sm-3"  style="background-color: #000;">
-            <div class="user-info">
-                <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="image-user"> 
-                <div class="description-img text-center image-user"  style="background-color: #0f0;">
-                        <h5><strong>{{list.user.displayName}}{{list.user.name}}</strong></h5>
-                        <h6>{{list.user.city}}</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-9 col-sm-9  user-wrapper" style="background-color: #00f;">  
-            <h4 style="margin-top: 0px;"><span class="badge pull-right">{{list.category}}</span></h4>
-            <div class="table-responsive" style="background-color: #0ff;">          
-                <table class="table table-font">
-                    <tr>
-                        <td><strong>{{list.title}}</strong></td>
-                        <td>
-                            <div>
-                                <span class="name">{{vm.userInfo.firstName}}</span>
-                                <span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                            </div>
-                            <div class="">
-                            	{{list.description}}
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>  
-        </div>
-    </div>
-</div> -->
-
-<div class="parent" ng-repeat="list in vm.list">
+<div class="parent" ng-repeat="list in vm.responseList">
     <div class="item item-image">
         <div class="image-user col-centered">
              <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="image-user">
@@ -69,5 +18,4 @@
             <h5 class="text-center description">{{list.description}}</h5>
         </div>
     </div>
-    
 </div>
