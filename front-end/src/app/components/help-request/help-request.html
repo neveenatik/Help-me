@@ -11,6 +11,10 @@
                 <span><strong>Choose a category</strong></span>
                 <select class="form-control" ng-model="vm.helprequest.category" ng-options="category for category in vm.DataModels.helpCategory"></select>
               </div>
+              <div class="form-group">
+                <span><strong>Title</strong></span>
+                <input type="text" class="form-control register-form" ng-model="vm.helprequest.title">
+              </div>
               <textarea class="form-control" rows="10" style="resize: none;" ng-model="vm.helprequest.description"  placeholder="Write the details about the help (max. 1500 characters)."></textarea>
           </div>
           <br>
@@ -21,9 +25,11 @@
           <div class="col-md-6">
               <button type="submit" class="btn btn-primary btn-block input-lg">Send</button>
               <button class="btn btn-default btn-block input-lg" ui-sref="home">Cancel</button>
-              <button class="btn btn-default btn-block input-lg" ng-click="vm.getHelpRequest()">log</button>
+              
           </div>
         </form>
+        <br>
+        <button class="btn btn-default btn-block input-lg" ng-click="vm.user()">log</button>
       </div>
   </div>
 </div>

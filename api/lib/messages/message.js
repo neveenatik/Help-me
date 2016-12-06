@@ -22,6 +22,10 @@ var MessageSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
+  },
+  helpRequest: {
+    type: Schema.ObjectId,
+    ref: 'helpRequest'
   }
 });
 

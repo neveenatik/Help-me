@@ -1,25 +1,38 @@
 export class AuthController {
 
-	constructor($auth, $state, DataModels) {
+	constructor($auth, $state, DataModels, $http) {
 		'ngInject';
 
+		this.$http = $http
 		this.$auth = $auth;
+		this.$state = $state;
 		this.DataModels = DataModels;
+		this.user = {};
+		this.date = {
+			year: '',
+			month: '',
+			day: ''
+		};
+
 	}
 
     register() {
-        var vm = this;
-        this.$auth.signup(this.user).then(function (token) {
+		var vm = this;
+		this.user.dateOfbirth = new Date(this.date.year, this.date.month, this.date.day);
+        this.$http.post('http://localhost:5000/auth/signup', {user: this.user}).then(function (token) {
             vm.$auth.setToken(token);
-            //state here
-        }, (error, status) => console.log(error.data.message));
+            vm.$state.go('home');
+        }, (error, status) => console.log(error));
+        console.log("post", this.user);
     }
     
     login() {
         var vm = this;
-        this.$auth.login(this.login.user).then(function (token) {
+        console.log(this.login.user);
+        this.$http.post('http://localhost:5000/auth/login', {login: this.login.user})
+        .then(function (token) {
             vm.$auth.setToken(token);
-            //state here
+            $state.go('home');
         }).catch(
         // Log the rejection error
         function(error) {

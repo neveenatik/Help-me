@@ -1,49 +1,46 @@
-
 'use strict';
 
 //packages
-var express = require('express');
-
-var auth = require('./auth/auth');
-var checkAuthenticated = require('./services/checkAuthenticated');
-var users = require('./users/users_controller');
-var messages = require('./messages/messages_controller');
-var helpRequest = require('./helprequest/helpRequest_controller');
+var express = require('express'),
+	auth = require('./auth/auth'),
+	checkAuthenticated = require('./services/checkAuthenticated'),
+	users = require('./users/users_controller'),
+	comments = require('./comments/comments_controller'),
+	helpRequests = require('./helprequest/helprequest_controller');
 
 //====== Start routing ========
 var router = express.Router();
 
 //========= authentication ====
 
-router.post('/api/auth/signup', auth.register);
-router.post('/api/auth/login', auth.login);
-router.get('/api/auth/signout', auth.signout);
+router.post('/auth/signup', auth.register);//register new user and later he can update his profile.
+router.post('/auth/login', auth.login);// logingin and getting token
 
 //======== Users ========
 
-router.get('/api/user/:userId', checkAuthenticated, users.list);//display his profile and the others profile
-router.put('/api/profile', checkAuthenticated, users.update);// update his profile
-/*
-router.get('/api/auth/signout', auth.signout);*/
+router.get('/api/users', checkAuthenticated, users.list)//user can see other users
+	.get('/api/users/:userId', checkAuthenticated, users.read) //display one user to see his profile
+	.put('/api/users/:userId', checkAuthenticated, users.update)//update user profile
+	.delete('/api/users/:userId', checkAuthenticated, users.delete);//user can delete his account for now /later can change that.
+router.param('userId', users.userByID);
 
 //========= Messages =======
-router.get('/api/messages', messages.list)
-	.post('/api/messages', checkAuthenticated, messages.create)
-	.get('/api/messages/:messageId', messages.read)
-	.put('/api/messages/:messageId', checkAuthenticated, messages.update)
-	.delete('/api/messages/:messageId', checkAuthenticated, messages.delete);
-router.param('messageId', messages.messageByID);
+router.get('/api/comments',checkAuthenticated, comments.list) 
+	.post('/api/comments', checkAuthenticated, comments.create)
+	.get('/api/comments/:commentId', checkAuthenticated, comments.read)
+	.put('/api/comments/:commentId', checkAuthenticated, comments.update)
+	.delete('/api/comments/:commentId', checkAuthenticated, comments.delete);
+router.param('commentId', comments.commentByID);
 
 //========= HelpRequest =======
-router.get('/api/helpRequest', helpRequest.list)
-	.post('/api/helpRequest', checkAuthenticated, helpRequest.create)
-	.get('/api/helpRequest/:helpRequestId', helpRequest.read)
-	.put('/api/helpRequest/:helpRequestId', checkAuthenticated, helpRequest.update)
-	.delete('/api/helpRequest/:helpRequestId', checkAuthenticated, helpRequest.delete);
-//router.param('messageId', helpRequest.messageByID);
-
-
-
+router.get('/api/helprequests', helpRequests.list)
+	.get('/api/helprequests/done', checkAuthenticated, helpRequests.listDone)
+	.get('/api/helprequests/user', checkAuthenticated, helpRequests.listOneUser)
+	.post('/api/helprequests', checkAuthenticated, helpRequests.create)
+	.get('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.read)
+	.put('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.update)
+	.delete('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.delete);
+router.param('helpRequestId', helpRequests.helpRequestByID);
 
 
 module.exports = router;

@@ -3,16 +3,21 @@
 /**
  * Module dependencies.
  */
-var path = require('path'),
-  mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
   User = require('./user'),
-  errorHandler = require(path.resolve('./lib/errors.server.controller'));
-
+  _ = require('lodash');
 /**
  * Show the current user
  */
 exports.read = function (req, res) {
-  res.json(req.user);
+   // convert mongoose document to JSON
+  var user = req.user ? req.user.toJSON() : {};
+
+  // Add a custom field to the user, for determining if the current User is the "owner".
+  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the user model.
+  user.isCurrentUserOwner = req.userId && user.user && user.user._id.toString() === req.userId._id.toString();
+
+  res.jsonp(user);
 };
 
 /**
@@ -20,19 +25,16 @@ exports.read = function (req, res) {
  */
 exports.update = function (req, res) {
   var user = req.user;
-
-  user.firstName = req.body.firstName;
-  user.lastName = req.body.lastName;
+  user = _.extend(user, req.body.user);
   user.displayName = user.firstName + ' ' + user.lastName;
-  user.helpCategory = req.body.helpCategory;
-
+  
   user.save(function (err) {
     if (err) {
       return res.status(400).send({
-        user: errorHandler.getErrorUser(err)
+        message: 'User could not be updated'
       });
     } else {
-      res.json(user);
+      res.jsonp(user);
     }
   });
 };
@@ -46,10 +48,10 @@ exports.delete = function (req, res) {
   user.remove(function (err) {
     if (err) {
       return res.status(400).send({
-        user: errorHandler.getErrorUser(err)
+        message: 'User could not be deleted'
       });
     } else {
-      res.json(user);
+      res.jsonp(user);
     }
   });
 };
@@ -61,7 +63,7 @@ exports.list = function (req, res) {
   User.find().sort('-created').populate('user', 'displayName').exec(function (err, users) {
     if (err) {
       return res.status(400).send({
-        user: errorHandler.getErrorUser(err)
+        message: "Cann't list users"
       });
     } else {
       res.json(users);
@@ -76,7 +78,7 @@ exports.userByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
-      user: 'User is invalid'
+      message: 'User is invalid'
     });
   }
 
@@ -85,7 +87,7 @@ exports.userByID = function (req, res, next, id) {
       return next(err);
     } else if (!user) {
       return res.status(404).send({
-        user: 'No user with that identifier has been found'
+        message: 'No user with that identifier has been found'
       });
     }
     req.user = user;

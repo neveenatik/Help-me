@@ -29,9 +29,23 @@ var HelpRequestSchema = new Schema({
     default: '',
     trim: true
   },
+  done: {
+    type: Boolean,
+    default: false
+  },
   user: {
-    type: Schema.ObjectId,
-    ref: 'User'
+    id: {
+      type: Schema.ObjectId
+    },
+    displayName: {
+      type: String
+    },
+    city: {
+      type: String
+    },
+    dateOfbirth: {
+      type: Date
+    }
   }
 });
 

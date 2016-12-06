@@ -16,7 +16,7 @@ export function NavbarDirective() {
 }
 
 class NavbarController {
-  constructor (moment, $auth) {
+  constructor (moment, $auth, $state) {
     'ngInject';
 
     var vm = this;
@@ -33,7 +33,8 @@ class NavbarController {
 
   login() {
       var vm = this;
-      this.$auth.login(this.login.user).then(function (token) {
+      console.log(this.login.user);
+      this.$auth.login({login: this.login.user}).then(function (token) {
           vm.$auth.setToken(token);
           vm.validation.message = "";
       }).catch(
