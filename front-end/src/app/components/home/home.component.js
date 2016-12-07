@@ -12,5 +12,5 @@ function HelpmeHome($auth) {
 	vm.$auth = $auth;
     vm.isAuthenticated = $auth.isAuthenticated;
 
-
+    console.log(vm.isAuthenticated, "auth")
 }

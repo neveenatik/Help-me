@@ -12,9 +12,10 @@
 .user-wrapper .description {
     padding: 25px;
     background-color: $bgInput;
+    width:100% !important;
 }
 
-.user-wrapper img {
+img {
     width:100%;
 }
 
