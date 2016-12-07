@@ -16,7 +16,7 @@ var FeedBackSchema = new Schema({
     trim: true
   },
   rating: {
-    type: Integer
+    type: Number
   },
   user: {
     type: Schema.ObjectId,

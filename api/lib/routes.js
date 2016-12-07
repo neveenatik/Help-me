@@ -6,10 +6,17 @@ var express = require('express'),
 	checkAuthenticated = require('./services/checkAuthenticated'),
 	users = require('./users/users_controller'),
 	comments = require('./comments/comments_controller'),
-	helpRequests = require('./helprequest/helprequest_controller');
+	helpRequests = require('./helprequest/helprequest_controller'),
+	feedback = require('./feedback/feedback_controller');
 
 //====== Start routing ========
 var router = express.Router();
+
+// Route Params
+router.param('userId', users.userByID);
+router.param('commentId', comments.commentByID);
+router.param('helpRequestId', helpRequests.helpRequestByID);
+router.param('feedbackId', feedback.feedbackByID);
 
 //========= authentication ====
 
@@ -22,25 +29,28 @@ router.get('/api/users', checkAuthenticated, users.list)//user can see other use
 	.get('/api/users/:userId', checkAuthenticated, users.read) //display one user to see his profile
 	.put('/api/users/:userId', checkAuthenticated, users.update)//update user profile
 	.delete('/api/users/:userId', checkAuthenticated, users.delete);//user can delete his account for now /later can change that.
-router.param('userId', users.userByID);
 
-//========= Messages =======
+//========= Comments =======
 router.get('/api/comments',checkAuthenticated, comments.list) 
 	.post('/api/comments', checkAuthenticated, comments.create)
 	.get('/api/comments/:commentId', checkAuthenticated, comments.read)
 	.put('/api/comments/:commentId', checkAuthenticated, comments.update)
 	.delete('/api/comments/:commentId', checkAuthenticated, comments.delete);
-router.param('commentId', comments.commentByID);
 
 //========= HelpRequest =======
 router.get('/api/helprequests', helpRequests.list)
 	.get('/api/helprequests/done', checkAuthenticated, helpRequests.listDone)
-	.get('/api/helprequests/user', checkAuthenticated, helpRequests.listOneUser)
+	.get('/api/helprequests/user/:userId', checkAuthenticated, helpRequests.listOneUser)
 	.post('/api/helprequests', checkAuthenticated, helpRequests.create)
 	.get('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.read)
 	.put('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.update)
 	.delete('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.delete);
-router.param('helpRequestId', helpRequests.helpRequestByID);
 
+//========= feedback =======
+router.post('/api/feedback', checkAuthenticated, feedback.create)
+	.get('/api/feedback', checkAuthenticated, feedback.readAll)
+	.get('/api/feedback/user', checkAuthenticated, feedback.read)
+	.put('/api/feedback/:feedbackId', checkAuthenticated, feedback.update)
+	.delete('/api/feedback/:feedbackId', checkAuthenticated, feedback.delete);
 
 module.exports = router;

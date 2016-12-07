@@ -34,7 +34,7 @@ var HelpRequestSchema = new Schema({
     default: false
   },
   user: {
-    id: {
+    _id: {
       type: Schema.ObjectId
     },
     displayName: {

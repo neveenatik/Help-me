@@ -8,10 +8,10 @@ var mongoose = require('mongoose'),
 /**
  * Create a feedback
  */
-exports.create = function (req, res) {
+exports.create = function(req, res) {
   var feedback = new FeedBack(req.body.feedback);
-  feedback.user.id = req.userId;
-  feedback.save(function (err) {
+  feedback.user = req.user._id;
+  feedback.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: 'Could not save this feedback'
@@ -23,27 +23,49 @@ exports.create = function (req, res) {
 };
 
 /**
- * Show the current feedback
+ * Show the all feedback
  */
-exports.read = function (req, res) {
-  // convert mongoose document to JSON
-  var feedback = req.feedback ? req.feedback.toJSON() : {};
-
-  // Add a custom field to the feedback, for determining if the current User is the "owner".
-  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the feedback model.
-  feedback.isCurrentUserOwner = req.userId && feedback.user && feedback.user._id.toString() === req.userId._id.toString();
-
-  res.jsonp(feedback);
+exports.readAll = function(req, res) {
+  FeedBack.find({ 'user._id': req.body.user._id }).exec(function(err, feedback) {
+    if (err) {
+      return res.status(400).send({
+        message: 'Faild to get the feedback for this user'
+      });
+    } else {
+      res.json(feedback);
+    }
+  });
 };
+
+/**
+ * Show the mean feedback
+ */
+exports.read = function(req, res) {
+  FeedBack.find({ 'user._id': req.user._id }).exec(function(err, feedback) {
+    if (err) {
+      return res.status(400).send({
+        message: 'Faild to get the feedback for this user'
+      });
+    } else {
+      var mean = 0;
+      for (var rate in feedback) {
+        mean += rate.rating;
+      }
+      mean = mean / (feedback.length -1);
+      res.json({'rate': mean});
+    }
+  });
+};
+
 
 /**
  * Update a feedback
  */
-exports.update = function (req, res) {
+exports.update = function(req, res) {
   var feedback = req.feedback;
 
   feedback = _.extend(feedback, req.body.feedback);
-  feedback.save(function (err) {
+  feedback.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: 'Could not update the feedback'
@@ -57,10 +79,10 @@ exports.update = function (req, res) {
 /**
  * Delete an feedback
  */
-exports.delete = function (req, res) {
+exports.delete = function(req, res) {
   var feedback = req.feedback;
 
-  feedback.remove(function (err) {
+  feedback.remove(function(err) {
     if (err) {
       return res.status(400).send({
         message: 'Could not delete the feedback'
@@ -72,31 +94,16 @@ exports.delete = function (req, res) {
 };
 
 /**
- * List of FeedBacks for one user
- */
-exports.listOneUser = function (req, res) {
-  FeedBack.find({'user': req.user._id}).sort('-created').populate('user', 'displayName').exec(function (err, feedbacks) {
-    if (err) {
-      return res.status(400).send({
-        message: 'Faild to get feedbacks for this user'
-      });
-    } else {
-      res.json(feedbacks);
-    }
-  });
-};
-
-/**
  * FeedBack middleware
  */
-exports.feedbackByID = function (req, res, next, id) {
+exports.feedbackByID = function(req, res, next, id) {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
       message: 'FeedBack is invalid'
     });
   }
 
-  FeedBack.findById(id).populate('user', 'displayName').exec(function (err, feedback) {
+  FeedBack.findById(id).populate('user', 'displayName').exec(function(err, feedback) {
     if (err) {
       return next(err);
     } else if (!feedback) {

@@ -11,8 +11,8 @@ var mongoose = require('mongoose'),
  */
 exports.create = function (req, res) {
   var comment = new Comment(req.body.comment);
-  comment.user.id = req.userId;
-  comment.user.displayName = req.userName;
+  comment.user._id = req.user._id;
+  comment.user.displayName = req.user.displayName;
   comment.helpRequest = (req.body.helpRequest);
 
   comment.save(function (err) {
@@ -35,7 +35,7 @@ exports.read = function (req, res) {
 
   // Add a custom field to the comment, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the comment model.
-  comment.isCurrentUserOwner = req.userId && comment.user && comment.user._id.toString() === req.userId._id.toString();
+  comment.isCurrentUserOwner = req.user && comment.user && comment.user._id.toString() === req.user._id.toString();
 
   res.jsonp(comment);
 };

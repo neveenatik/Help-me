@@ -11,11 +11,11 @@ var mongoose = require('mongoose'),
  */
 exports.read = function (req, res) {
    // convert mongoose document to JSON
-  var user = req.user ? req.user.toJSON() : {};
+  var user = req.userById ? req.userById.toJSON() : {};
 
   // Add a custom field to the user, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the user model.
-  user.isCurrentUserOwner = req.userId && user.user && user.user._id.toString() === req.userId._id.toString();
+  user.isCurrentUserOwner = req.user && user && user._id.toString() === req.user._id.toString();
 
   res.jsonp(user);
 };
@@ -24,7 +24,7 @@ exports.read = function (req, res) {
  * Update a User
  */
 exports.update = function (req, res) {
-  var user = req.user;
+  var user = req.userById;
   user = _.extend(user, req.body.user);
   user.displayName = user.firstName + ' ' + user.lastName;
   
@@ -43,7 +43,7 @@ exports.update = function (req, res) {
  * Delete an user
  */
 exports.delete = function (req, res) {
-  var user = req.user;
+  var user = req.userById;
 
   user.remove(function (err) {
     if (err) {

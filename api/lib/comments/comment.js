@@ -20,7 +20,7 @@ var CommentSchema = new Schema({
     trim: true
   },
   user: {
-    id: {
+    _id: {
       type: Schema.ObjectId
     },
     displayName: {
