@@ -60,7 +60,7 @@ exports.delete = function(req, res) {
  * List of Users
  */
 exports.list = function(req, res) {
-  User.find().sort('-created').populate('user', 'displayName').exec(function(err, users) {
+  User.find().sort('-created').exec(function(err, users) {
     if (err) {
       return res.status(400).send({
         message: "Cann't list users"

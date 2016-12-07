@@ -10,7 +10,8 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
   var feedback = new FeedBack(req.body.feedback);
-  feedback.user = req.userId;
+  feedback.user = req.body.user;
+  feedback.helpRequest = req.body.helpRequest;
   feedback.save(function(err) {
     if (err) {
       return res.status(400).send({
@@ -23,36 +24,36 @@ exports.create = function(req, res) {
 };
 
 /**
- * Show the all feedback
- */
-/*exports.readAll = function(req, res) {
-  FeedBack.find({ 'user': req.userId }).exec(function(err, feedback) {
-    if (err) {
-      return res.status(400).send({
-        message: 'Faild to get the feedback for this user'
-      });
-    } else {
-      res.json(feedback);
-    }
-  });
-};*/
-
-/**
  * Show the mean feedback
  */
-exports.read = function(req, res) {
-  FeedBack.find({ 'user._id': req.user._id }).exec(function(err, feedback) {
+exports.readByUser = function(req, res) {
+  FeedBack.find({ 'user': req.user._id }).exec(function(err, feedback) {
     if (err) {
       return res.status(400).send({
         message: 'Faild to get the feedback for this user'
       });
     } else {
       var mean = 0;
-      for (var rate in feedback) {
-        mean += rate.rating;
+      for (var i = 0; i < feedback.length; i++) {
+        mean += feedback[i].rating;
       }
-      mean = mean / (feedback.length -1);
-      res.json({'rate': mean});
+      mean = mean / (feedback.length - 1);
+      res.json({ 'rate': mean, 'feedback': feedback});
+    }
+  });
+};
+
+/**
+ * Show the feedback over helpRequest
+ */
+exports.readByHelpRequest = function(req, res) {
+  FeedBack.find({ 'helpRequest': req.helpRequest._id }).exec(function(err, feedback) {
+    if (err) {
+      return res.status(400).send({
+        message: 'Faild to get the feedback for this user'
+      });
+    } else {
+      res.json(feedback);
     }
   });
 };
