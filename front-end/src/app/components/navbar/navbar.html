@@ -22,8 +22,10 @@
               <input type="password" class="form-control input-sm" placeholder="Password" ng-model="vm.login.user.password">
               <button type="submit" class="btn btn-sm"><strong>Login</strong></button>
         </form>
+      <li ng-show="vm.isAuthenticated()"><a ng-click="vm.userProfileLoad()" ui-sref="user-profile" style="cursor:pointer"><strong>Profile</strong></a></li>
       </li>
       <li ng-show="vm.isAuthenticated()"><a ng-click="vm.logout()" ui-sref="home" style="cursor:pointer"><strong>Logout</strong></a></li>
+      </li>
     </ul>
   </div>
 </nav> 
