@@ -4,12 +4,13 @@ export var helpmeUserHelpRequestList = {
   templateUrl: 'app/components/user-help-request-list/user-help-request-list.html'
 };
 
-function HelpmeUserHelpRequestListController($auth, $http, $log, $state) {
+function HelpmeUserHelpRequestListController($auth, $http, $log, $state, DataModels) {
   'ngInject';
 
   var vm = this;
   vm.$onInit = init;
   vm.$log = $log;
+  vm.DataModels = DataModels;
   vm.editHelpRequest = editHelpRequest;
 
   vm.list = [];

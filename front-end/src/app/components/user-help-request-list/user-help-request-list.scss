@@ -47,6 +47,19 @@
     padding-left: 25px;
 }
 
+.span-position{
+	bottom: 10px;
+}
+.span-textarea-position{
+	top: 70px;
+	bottom: auto;
+	right: 32px;
+	color: #333;
+}
+.textarea-position{
+	left: 30px;
+}
+
 @media (max-width: 766px) {
     .image-user {
         width: 50px !important;

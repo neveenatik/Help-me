@@ -10,38 +10,40 @@
     </div>
     <div class="item item-description">
         <div class="row">
-            <div class="col-sm-6 title pull-left" ng-model="titleBoolean">
+            <div class="col-sm-6" ng-model="titleBoolean">
                 <div ng-hide="titleBoolean" ng-click="titleBoolean = true">
-                    <h5><strong>{{list.title}}</strong></h5>
+                    <h5 class="title pull-left"><strong>{{list.title}}</strong></h5>
                 </div>
                 <div ng-show="titleBoolean" class="input-group">
                     <input type="text" ng-model="vm.list[$index].title" class="form-control input-sm">
-                    <span class="input-group-btn btn-position">
+                    <span class="input-group-btn span-position">
                     <button type="button" class="btn btn-sm btn-cancel" ng-click="titleBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="titleBoolean = false; vm.editHelpRequest($index)"><i class="fa fa-check" aria-hidden="true"></i></button>
                     </span>
                 </div>
             </div>
-            <div class="col-sm-6"><span class="badge pull-right">{{list.category}}</span></div>
+            <div class="col-sm-6" ng-model="categoryBoolean">
+                <div ng-hide="categoryBoolean" ng-click="categoryBoolean = true">
+                    <span class="badge pull-right">{{list.category}}</span>
+                </div>
+                <div ng-show="categoryBoolean" class="input-group">
+                    <select class="form-control input-sm" ng-model="vm.list[$index].category" ng-options="category for category in vm.DataModels.helpCategory"></select>
+                    <span class="input-group-btn span-position" >
+                    <button type="button" class="btn btn-sm btn-cancel" ng-click="categoryBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="categoryBoolean = false; vm.editHelpRequest($index)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                    </span>
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <h5 class="text-center description">{{list.description}}</h5>
+        <div class="row" ng-model="descriptionBoolean">
+            <div ng-hide="descriptionBoolean" ng-click="descriptionBoolean = true">
+                <h5 class="text-center description">{{list.description}}</h5>
+            </div>
+            <div ng-show="descriptionBoolean" class="input-group">
+                <textarea class="form-control textarea-position" rows="5" cols="100" style="resize: none;" ng-model="vm.list[$index].description" maxlength="1000" minlength="10" required oninvalid="this.setCustomValidity('Required between 10 and 1000 characters.')" oninput="setCustomValidity('')"></textarea>
+                <span class="input-group-btn span-textarea-position" >
+                <button type="button" class="btn btn-sm btn-cancel" ng-click="descriptionBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="descriptionBoolean = false; vm.editHelpRequest($index)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                </span>
+            </div>
         </div>
     </div>
 </div>
-<div class="pull-left" ng-model="titleBoolean">
-    <div ng-hide="titleBoolean" ng-click="titleBoolean = true">
-        <h5><strong>{{list.title}}</strong></h5>
-    </div>
-    <div ng-show="titleBoolean" class="input-group">
-        <input type="text" ng-model="vm.list[$index].title" class="form-control input-sm">
-        <span class="input-group-btn btn-position">
-        <button type="button" class="btn btn-sm btn-cancel" ng-click="titleBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="titleBoolean = false; vm.editHelpRequest($index)"><i class="fa fa-check" aria-hidden="true"></i></button>
-        </span>
-    </div>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+

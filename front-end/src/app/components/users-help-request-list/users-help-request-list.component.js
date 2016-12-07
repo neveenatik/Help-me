@@ -55,6 +55,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log, $state) {
             }
           }
         }
+        console.log(vm.list)
       })
       .catch(function(error, status) {
         console.log(error);
@@ -118,11 +119,11 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log, $state) {
   function init() {
     usersList();
     getUserCity();
-    if ($auth.isAuthenticated()) {
-      setTimeout(getDistanceMatrix, 700);
-    } else {
-      vm.list = vm.responseList;
-    }
+    // if($auth.isAuthenticated()) {
+    setTimeout(getDistanceMatrix, 700);
+    // } else {
+    //   vm.list = vm.responseList;
+    // } 
   }
 
 
