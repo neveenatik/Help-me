@@ -16,7 +16,7 @@ var router = express.Router();
 router.param('userId', users.userByID);
 router.param('commentId', comments.commentByID);
 router.param('helpRequestId', helpRequests.helpRequestByID);
-router.param('feedbackId', feedback.feedbackByID);
+//router.param('feedbackId', feedback.feedbackByID);
 
 //========= authentication ====
 
@@ -47,10 +47,10 @@ router.get('/api/helprequests', helpRequests.list)
 	.delete('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.delete);
 
 //========= feedback =======
-router.post('/api/feedback', checkAuthenticated, feedback.create)
-	.get('/api/feedback', checkAuthenticated, feedback.readAll)
+/*router.post('/api/feedback', checkAuthenticated, feedback.create)
+	//.get('/api/feedback', checkAuthenticated, feedback.readAll)
 	.get('/api/feedback/user', checkAuthenticated, feedback.read)
 	.put('/api/feedback/:feedbackId', checkAuthenticated, feedback.update)
-	.delete('/api/feedback/:feedbackId', checkAuthenticated, feedback.delete);
+	.delete('/api/feedback/:feedbackId', checkAuthenticated, feedback.delete);*/
 
 module.exports = router;

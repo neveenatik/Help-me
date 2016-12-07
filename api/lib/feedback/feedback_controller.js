@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
   var feedback = new FeedBack(req.body.feedback);
-  feedback.user = req.user._id;
+  feedback.user = req.userId;
   feedback.save(function(err) {
     if (err) {
       return res.status(400).send({
@@ -25,8 +25,8 @@ exports.create = function(req, res) {
 /**
  * Show the all feedback
  */
-exports.readAll = function(req, res) {
-  FeedBack.find({ 'user._id': req.body.user._id }).exec(function(err, feedback) {
+/*exports.readAll = function(req, res) {
+  FeedBack.find({ 'user': req.userId }).exec(function(err, feedback) {
     if (err) {
       return res.status(400).send({
         message: 'Faild to get the feedback for this user'
@@ -35,7 +35,7 @@ exports.readAll = function(req, res) {
       res.json(feedback);
     }
   });
-};
+};*/
 
 /**
  * Show the mean feedback

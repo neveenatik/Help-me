@@ -12,8 +12,7 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
   var helpRequest = new HelpRequest(req.body.helprequest);
 
-  helpRequest.user._id = req.user._id;
-  //helpRequest.user.displayName = req.user.displayName;
+  helpRequest.user._id = req.userId;
   User.findById(req.userId).then(function(user, err) {
     if (err) {
       return res.status(404).send({
@@ -44,8 +43,9 @@ exports.read = function(req, res) {
 
   // Add a custom field to the helpRequest, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the helpRequest model.
-  helpRequest.isCurrentUserOwner = req.user && helpRequest.user && helpRequest.user._id.toString() === req.user._id.toString();
-
+  if (req.userId && helpRequest.user && helpRequest.user._id) {
+    helpRequest.isCurrentUserOwner = req.userId && helpRequest.user && helpRequest.user._id.toString() === req.userId.toString();
+  }
   res.jsonp(helpRequest);
 };
 
@@ -103,7 +103,7 @@ exports.list = function(req, res) {
  * List of HelpRequests for one user
  */
 exports.listOneUser = function(req, res) {
-  HelpRequest.find({ 'user._id': req.user._Id }).sort('-created').exec(function(err, helpRequests) {
+  HelpRequest.find({ 'user._id': req.userId }).sort('-created').exec(function(err, helpRequests) {
     if (err) {
       return res.status(400).send({
         message: 'Faild to get help rquests for this user'

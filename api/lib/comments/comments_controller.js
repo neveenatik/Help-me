@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function (req, res) {
   var comment = new Comment(req.body.comment);
-  comment.user._id = req.user._id;
+  comment.user._id = req.userId;
   comment.user.displayName = req.user.displayName;
   comment.helpRequest = (req.body.helpRequest);
 

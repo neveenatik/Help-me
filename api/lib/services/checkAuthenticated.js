@@ -16,8 +16,6 @@ module.exports = function checkAuthenticated(req, res, next) {
         });
     }
     console.log(payload);
-    req.user = {};
-    req.user._id = payload.sub;
-    req.user.displayName = payload.name;
+    req.userId = payload.sub;
     next();
 }
