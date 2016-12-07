@@ -16,7 +16,7 @@ var router = express.Router();
 router.param('userId', users.userByID);
 router.param('commentId', comments.commentByID);
 router.param('helpRequestId', helpRequests.helpRequestByID);
-router.param('feedbackId', feedback.feedbackByID);
+//router.param('feedbackId', feedback.feedbackByID);
 
 //========= authentication ====
 
@@ -31,7 +31,8 @@ router.get('/api/users', checkAuthenticated, users.list)//user can see other use
 	.delete('/api/users/:userId', checkAuthenticated, users.delete);//user can delete his account for now /later can change that.
 
 //========= Comments =======
-router.get('/api/comments',checkAuthenticated, comments.list) 
+router.get('/api/comments',checkAuthenticated, comments.list)
+	.get('/api/comments/helprequest/:helpRequestId',checkAuthenticated, comments.listOneHelpRequest) 
 	.post('/api/comments', checkAuthenticated, comments.create)
 	.get('/api/comments/:commentId', checkAuthenticated, comments.read)
 	.put('/api/comments/:commentId', checkAuthenticated, comments.update)
@@ -47,10 +48,10 @@ router.get('/api/helprequests', helpRequests.list)
 	.delete('/api/helprequests/:helpRequestId', checkAuthenticated, helpRequests.delete);
 
 //========= feedback =======
-router.post('/api/feedback', checkAuthenticated, feedback.create)
-	.get('/api/feedback', checkAuthenticated, feedback.readAll)
+/*router.post('/api/feedback', checkAuthenticated, feedback.create)
+	//.get('/api/feedback', checkAuthenticated, feedback.readAll)
 	.get('/api/feedback/user', checkAuthenticated, feedback.read)
 	.put('/api/feedback/:feedbackId', checkAuthenticated, feedback.update)
-	.delete('/api/feedback/:feedbackId', checkAuthenticated, feedback.delete);
+	.delete('/api/feedback/:feedbackId', checkAuthenticated, feedback.delete);*/
 
 module.exports = router;

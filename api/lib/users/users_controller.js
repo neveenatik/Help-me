@@ -9,26 +9,26 @@ var mongoose = require('mongoose'),
 /**
  * Show the current user
  */
-exports.read = function (req, res) {
-   // convert mongoose document to JSON
-  var user = req.userById ? req.userById.toJSON() : {};
-
+exports.read = function(req, res) {
+  // convert mongoose document to JSON
+  var user = req.user ? req.user.toJSON() : {};
   // Add a custom field to the user, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the user model.
-  user.isCurrentUserOwner = req.user && user && user._id.toString() === req.user._id.toString();
-
+  if (req.userId && user) {
+    user.isCurrentUserOwner = user._id.toString() === req.userId.toString();
+  }
   res.jsonp(user);
 };
 
 /**
  * Update a User
  */
-exports.update = function (req, res) {
-  var user = req.userById;
+exports.update = function(req, res) {
+  var user = req.user;
   user = _.extend(user, req.body.user);
   user.displayName = user.firstName + ' ' + user.lastName;
-  
-  user.save(function (err) {
+
+  user.save(function(err) {
     if (err) {
       return res.status(400).send({
         message: 'User could not be updated'
@@ -42,10 +42,10 @@ exports.update = function (req, res) {
 /**
  * Delete an user
  */
-exports.delete = function (req, res) {
-  var user = req.userById;
+exports.delete = function(req, res) {
+  var user = req.user;
 
-  user.remove(function (err) {
+  user.remove(function(err) {
     if (err) {
       return res.status(400).send({
         message: 'User could not be deleted'
@@ -59,8 +59,8 @@ exports.delete = function (req, res) {
 /**
  * List of Users
  */
-exports.list = function (req, res) {
-  User.find().sort('-created').populate('user', 'displayName').exec(function (err, users) {
+exports.list = function(req, res) {
+  User.find().sort('-created').populate('user', 'displayName').exec(function(err, users) {
     if (err) {
       return res.status(400).send({
         message: "Cann't list users"
@@ -74,7 +74,7 @@ exports.list = function (req, res) {
 /**
  * User middleware
  */
-exports.userByID = function (req, res, next, id) {
+exports.userByID = function(req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
@@ -82,7 +82,7 @@ exports.userByID = function (req, res, next, id) {
     });
   }
 
-  User.findById(id).populate('user', 'displayName').exec(function (err, user) {
+  User.findById(id).populate('user', 'displayName').exec(function(err, user) {
     if (err) {
       return next(err);
     } else if (!user) {
