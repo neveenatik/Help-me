@@ -31,7 +31,8 @@ router.get('/api/users', checkAuthenticated, users.list)//user can see other use
 	.delete('/api/users/:userId', checkAuthenticated, users.delete);//user can delete his account for now /later can change that.
 
 //========= Comments =======
-router.get('/api/comments',checkAuthenticated, comments.list) 
+router.get('/api/comments',checkAuthenticated, comments.list)
+	.get('/api/comments/helprequest/:helpRequestId',checkAuthenticated, comments.listOneHelpRequest) 
 	.post('/api/comments', checkAuthenticated, comments.create)
 	.get('/api/comments/:commentId', checkAuthenticated, comments.read)
 	.put('/api/comments/:commentId', checkAuthenticated, comments.update)

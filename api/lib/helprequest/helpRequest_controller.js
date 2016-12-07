@@ -44,7 +44,7 @@ exports.read = function(req, res) {
   // Add a custom field to the helpRequest, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the helpRequest model.
   if (req.userId && helpRequest.user && helpRequest.user._id) {
-    helpRequest.isCurrentUserOwner = req.userId && helpRequest.user && helpRequest.user._id.toString() === req.userId.toString();
+    helpRequest.isCurrentUserOwner = helpRequest.user._id.toString() === req.userId.toString();
   }
   res.jsonp(helpRequest);
 };
