@@ -3,16 +3,16 @@
         <div class="panel panel-default" class="page-header">
             <h1>Add a Comment</h1>
             <div class="panel-body">
-                <ul ng-repeat="(i,c) in vm.comments">
+                <ul ng-repeat="c in vm.comments">
                     <li>
                         <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" width="20" height="20"> <span class="badge pull-right">{{vm.currentDate  | date:'medium'}}</span>
-                        <span id="commentSpan" ng-hide="editing" ng-click="editing = true">{{c.content}}</span>
+                        <span id="commentSpan" ng-hide="editing" ng-click="editing = true">User:{{c.content}}</span>
                         <br>
-                        <form name="edtForm" ng-show="editing" ng-submit="editing = false;">
+                        <form name="edtForm" ng-show="editing" ng-submit="editing = false">
                             <br>
                             <input type="text" name="edt" ng-model="c.content" placeholder="Name" required/>
-                            <button class="btn btn-info" type="submit" ng-disabled="edtForm.edt.$invalid">save</button>
-                            <button class="btn btn-danger" type="submit" ng-click="vm.deleteComment(i)">Del</button>
+                            <button class="btn btn-info" type="submit" ng-disabled="edtForm.edt.$invalid"ng-click="vm.editComment()">save</button>
+                            <button class="btn btn-danger" type="submit" ng-click="vm.deleteComment(c._id)">Del</button>
                         </form>
                     </li>
                 </ul>
@@ -23,5 +23,6 @@
                 </form>
             </div>
         </div>
+        
     </div>
 </div>
