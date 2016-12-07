@@ -44,6 +44,9 @@ function HelpmeProfile($auth, $http, $state, DataModels) {
         $http({
             method: 'GET',
             url: 'http://localhost:5000/api/users/' + user_id,
+            headers: {
+                'Authorization': token
+            }
         })
         .then(function(response) {
             vm.userInfo = response.data;

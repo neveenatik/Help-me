@@ -10,8 +10,9 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state) {
   var vm = this;
   vm.$onInit = init;
   vm.$log = $log;
+  vm.test = test;
 
-  vm.responseList = [];
+  vm.list = [];
 
   
   function userList() {
@@ -25,9 +26,9 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state) {
       }
     })
     .then(function(response) {
-        vm.responseList = response.data;
+        vm.list = response.data;
         //modifyList();
-        console.log(vm.responseList)
+        console.log(vm.list)
     })
     .catch(function(error, status) {
         console.log(error);
@@ -35,15 +36,40 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state) {
   }
 
   function modifyList() {
-    for(var i = 0; i < vm.responseList.length; i++) {
-      vm.responseList[i].created = new Date(vm.responseList[i].created);
-      vm.responseList[i].created = vm.responseList[i].created.toLocaleDateString();
+    for(var i = 0; i < vm.list.length; i++) {
+      vm.list[i].created = new Date(vm.list[i].created);
+      vm.list[i].created = vm.list[i].created.toLocaleDateString();
 
-      vm.responseList[i].user.dateOfbirth = new Date(vm.responseList[i].user.dateOfbirth);
-      vm.responseList[i].user.dateOfbirth = vm.responseList[i].user.dateOfbirth.toLocaleDateString();
+      vm.list[i].user.dateOfbirth = new Date(vm.list[i].user.dateOfbirth);
+      vm.list[i].user.dateOfbirth = vm.list[i].user.dateOfbirth.toLocaleDateString();
     } 
   }
 
+  function editHelpRequest(index) {
+    var token = $auth.getToken();      // user token
+    //var user_id = $auth.getPayload().sub; //user ID
+    var helpRequestId = vm.list[index]._id;
+    $http({
+        method: 'PUT',
+        url: '/api/helprequests/' + ":helpRequestId",
+        headers: {
+            'Authorization': token
+        },
+        data: {
+            'helprequests': vm.userInfo
+        }
+    })
+    .then(function(response) {
+      console.log("post", response);
+    })
+    .catch(function(error, status) {
+      console.log(error);
+    });
+  }
+
+  function test(index) {
+    console.log(vm.list[index])
+  }
 
   function init() {
     userList();
