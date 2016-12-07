@@ -10,7 +10,8 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state) {
   var vm = this;
   vm.$onInit = init;
   vm.$log = $log;
-  vm.test = test;
+  vm.editHelpRequest = editHelpRequest;
+
 
   vm.list = [];
 
@@ -27,7 +28,7 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state) {
     })
     .then(function(response) {
         vm.list = response.data;
-        //modifyList();
+        modifyList();
         console.log(vm.list)
     })
     .catch(function(error, status) {
@@ -51,12 +52,12 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state) {
     var helpRequestId = vm.list[index]._id;
     $http({
         method: 'PUT',
-        url: '/api/helprequests/' + ":helpRequestId",
+        url: 'http://localhost:5000/api/helprequests/' + helpRequestId,
         headers: {
             'Authorization': token
         },
         data: {
-            'helprequests': vm.userInfo
+            'helprequests': vm.list[index]
         }
     })
     .then(function(response) {
@@ -67,9 +68,6 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state) {
     });
   }
 
-  function test(index) {
-    console.log(vm.list[index])
-  }
 
   function init() {
     userList();
