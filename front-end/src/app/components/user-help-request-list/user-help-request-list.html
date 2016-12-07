@@ -1,8 +1,7 @@
-
 <div class="parent" ng-repeat="list in vm.list">
     <div class="item item-image">
         <div class="image-user col-centered">
-             <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="image-user">
+            <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="image-user">
         </div>
         <div>
             <h5><strong>{{list.user.displayName}}{{list.user.name}}</strong></h5>
@@ -17,7 +16,7 @@
                 </div>
                 <div ng-show="titleBoolean" class="input-group">
                     <input type="text" ng-model="vm.list[$index].title" class="form-control input-sm">
-                    <span class="input-group-btn btn-position" >
+                    <span class="input-group-btn btn-position">
                     <button type="button" class="btn btn-sm btn-cancel" ng-click="titleBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="titleBoolean = false; vm.editHelpRequest($index)"><i class="fa fa-check" aria-hidden="true"></i></button>
                     </span>
                 </div>
@@ -29,19 +28,20 @@
         </div>
     </div>
 </div>
-
-
-
 <div class="pull-left" ng-model="titleBoolean">
     <div ng-hide="titleBoolean" ng-click="titleBoolean = true">
         <h5><strong>{{list.title}}</strong></h5>
     </div>
     <div ng-show="titleBoolean" class="input-group">
         <input type="text" ng-model="vm.list[$index].title" class="form-control input-sm">
-        <span class="input-group-btn btn-position" >
+        <span class="input-group-btn btn-position">
         <button type="button" class="btn btn-sm btn-cancel" ng-click="titleBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="titleBoolean = false; vm.editHelpRequest($index)"><i class="fa fa-check" aria-hidden="true"></i></button>
         </span>
     </div>
 </div>
-
-<br><br><br><br><br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

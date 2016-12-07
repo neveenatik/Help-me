@@ -1,31 +1,30 @@
-
 <nav class="navbar navbar-default" role="navigation">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand logo" href="#">Help Me Out</a>
-  </div>
-  <div class="collapse navbar-collapse" uib-collapse="!isNavCollapsed">
-    <ul class="nav navbar-nav">
-      <li><a href="#"><strong>Home</strong></a></li>
-      <li ng-hide="vm.isAuthenticated()"><a ui-sref="auth"><strong>Signup</strong></a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li style="padding-top: 2px;" ng-hide="vm.isAuthenticated()">
-        <form class="navbar-form" id="hide" ng-submit="vm.login()">
-              <span style="color: red"><small>{{vm.validation.message}}</small></span>
-              <input type="email" class="form-control input-sm" placeholder="Email" ng-model="vm.login.user.email">
-              <input type="password" class="form-control input-sm" placeholder="Password" ng-model="vm.login.user.password">
-              <button type="submit" class="btn btn-sm"><strong>Login</strong></button>
-        </form>
-      <li ng-show="vm.isAuthenticated()"><a ng-click="vm.userProfileLoad()" ui-sref="profile" style="cursor:pointer"><strong>Profile</strong></a></li>
-      </li>
-      <li ng-show="vm.isAuthenticated()"><a ng-click="vm.logout()" ui-sref="home" style="cursor:pointer"><strong>Logout</strong></a></li>
-      </li>
-    </ul>
-  </div>
-</nav> 
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand logo" href="#">Help Me Out</a>
+    </div>
+    <div class="collapse navbar-collapse" uib-collapse="!isNavCollapsed">
+        <ul class="nav navbar-nav">
+            <li><a href="#"><strong>Home</strong></a></li>
+            <li ng-hide="vm.isAuthenticated()"><a ui-sref="auth"><strong>Signup</strong></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li style="padding-top: 2px;" ng-hide="vm.isAuthenticated()">
+                <form class="navbar-form" id="hide" ng-submit="vm.login()">
+                    <span style="color: red"><small>{{vm.validation.message}}</small></span>
+                    <input type="email" class="form-control input-sm" placeholder="Email" ng-model="vm.login.user.email">
+                    <input type="password" class="form-control input-sm" placeholder="Password" ng-model="vm.login.user.password">
+                    <button type="submit" class="btn btn-sm"><strong>Login</strong></button>
+                </form>
+                <li ng-show="vm.isAuthenticated()"><a ng-click="vm.userProfileLoad()" ui-sref="profile" style="cursor:pointer"><strong>Profile</strong></a></li>
+            </li>
+            <li ng-show="vm.isAuthenticated()"><a ng-click="vm.logout()" ui-sref="home" style="cursor:pointer"><strong>Logout</strong></a></li>
+            </li>
+        </ul>
+    </div>
+</nav>

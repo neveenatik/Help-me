@@ -38,7 +38,7 @@ exports.readByUser = function(req, res) {
         mean += feedback[i].rating;
       }
       mean = mean / (feedback.length - 1);
-      res.json({ 'rate': mean, 'feedback': feedback});
+      res.json({ 'rate': mean, 'feedback': feedback });
     }
   });
 };

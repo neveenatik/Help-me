@@ -4,7 +4,7 @@ export function MalarkeyDirective(malarkey) {
   let directive = {
     restrict: 'E',
     scope: {
-        extraValues: '='
+      extraValues: '='
     },
     template: '&nbsp;',
     link: linkFunc,
@@ -44,7 +44,7 @@ export function MalarkeyDirective(malarkey) {
 }
 
 class MalarkeyController {
-  constructor ($log, githubContributor) {
+  constructor($log, githubContributor) {
     'ngInject';
 
     this.$log = $log;

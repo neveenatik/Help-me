@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Message Schema
  */
 var UserSchema = new Schema({
-	firstName: {
+  firstName: {
     type: String,
     trim: true,
     default: ''

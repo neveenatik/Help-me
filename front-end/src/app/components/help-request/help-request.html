@@ -1,51 +1,33 @@
-
 <div class="container">
-  <div class="panel no-border panel-default">
-      <div class="panel-heading helpme-heading no-border">
-        What do you need help with?
-      </div>
-      <div class="helpme-body panel-body">
-        <form style="font-size: 12px" name="helprequest" ng-submit="vm.postHelpRequest()">
-          <div class="col-md-5">
-              <div class="form-group" style="font-size: 12px">
-                <span><strong>Choose a category</strong></span>
-                <select class="form-control" ng-model="vm.helprequest.category" ng-options="category for category in vm.DataModels.helpCategory"></select>
-              </div>
-              <div class="form-group">
-                <span><strong>Title</strong></span>
-                <input 
-                  type="text" 
-                  class="form-control register-form" 
-                  ng-model="vm.helprequest.title"
-                  required 
-                  placeholder="required"  
-                  oninvalid="this.setCustomValidity('Title is required')"
-                  oninput="setCustomValidity('')"
-                />
-              </div>
-              <textarea 
-                class="form-control" 
-                rows="10" 
-                style="resize: none;" 
-                ng-model="vm.helprequest.description"  
-                placeholder="Write the details about the help (max. 1000 characters)."
-                maxlength="1000"
-                minlength="10"
-                required 
-                oninvalid="this.setCustomValidity('Required between 10 and 1000 characters.')"
-                oninput="setCustomValidity('')"
-              ></textarea>
-          </div>
-          <br>
-          <div id="hide">
-            <br><br><br>
-          </div>
-          <div class="col-md-1"></div>
-          <div class="col-md-6">
-              <button type="submit" class="btn btn-primary btn-block input-lg">Send</button>
-              <button class="btn btn-default btn-block input-lg" ui-sref="home">Cancel</button>
-          </div>
-        </form>
-      </div>
-  </div>
+    <div class="panel no-border panel-default">
+        <div class="panel-heading helpme-heading no-border">
+            What do you need help with?
+        </div>
+        <div class="helpme-body panel-body">
+            <form style="font-size: 12px" name="helprequest" ng-submit="vm.postHelpRequest()">
+                <div class="col-md-5">
+                    <div class="form-group" style="font-size: 12px">
+                        <span><strong>Choose a category</strong></span>
+                        <select class="form-control" ng-model="vm.helprequest.category" ng-options="category for category in vm.DataModels.helpCategory"></select>
+                    </div>
+                    <div class="form-group">
+                        <span><strong>Title</strong></span>
+                        <input type="text" class="form-control register-form" ng-model="vm.helprequest.title" required placeholder="required" oninvalid="this.setCustomValidity('Title is required')" oninput="setCustomValidity('')" />
+                    </div>
+                    <textarea class="form-control" rows="10" style="resize: none;" ng-model="vm.helprequest.description" placeholder="Write the details about the help (max. 1000 characters)." maxlength="1000" minlength="10" required oninvalid="this.setCustomValidity('Required between 10 and 1000 characters.')" oninput="setCustomValidity('')"></textarea>
+                </div>
+                <br>
+                <div id="hide">
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary btn-block input-lg">Send</button>
+                    <button class="btn btn-default btn-block input-lg" ui-sref="home">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

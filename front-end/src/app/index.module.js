@@ -33,7 +33,7 @@ angular.module('helpFront', [
     helpmeHelpRequest,
     helpmeUsersHelpRequestList,
     helpmeUserHelpRequestList
-    ])
+  ])
   .constant('API_URL', 'http://localhost:5000/')
   .constant('malarkey', malarkey)
   .constant('moment', moment)

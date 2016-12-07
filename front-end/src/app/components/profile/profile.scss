@@ -1,5 +1,5 @@
 .table-font {
-	font-size: 13px;
+    font-size: 13px;
 }
 
 .user-wrapper {
@@ -12,20 +12,20 @@
 .user-wrapper .description {
     padding: 25px;
     background-color: $bgInput;
-    width:100% !important;
+    width: 100% !important;
 }
 
 img {
-    width:100%;
+    width: 100%;
 }
 
 .star {
-	color: #EEE100;
+    color: #EEE100;
 }
 
 .description-img {
-	background-color: $bgInput;
-	padding: 10px ;
+    background-color: $bgInput;
+    padding: 10px;
 }
 
 .edit {
@@ -33,16 +33,16 @@ img {
 }
 
 .name:hover + .edit {
-	display: inline;
+    display: inline;
 }
 
-.date{
+.date {
     padding-right: 5px;
     padding-left: 10px;
 }
 
 .select-date {
-    padding-left: 2px ;
+    padding-left: 2px;
 }
 
 .btn-position {
@@ -51,20 +51,22 @@ img {
 
 .btn-cancel {
     width: 32px;
-    &:hover,  &:focus {
-    background-color: #FF6969;
-    }    
+    &:hover,
+    &:focus {
+        background-color: #FF6969;
+    }
 }
 
 .btn-submit {
-    &:hover,  &:focus {
-    background-color: #56CF56;
+    &:hover,
+    &:focus {
+        background-color: #56CF56;
     }
 }
 
 @media (max-width: 992px) {
-  .description {
-	padding-bottom: 0 !important;
-	padding-top: 10px !important;
-  }
+    .description {
+        padding-bottom: 0 !important;
+        padding-top: 10px !important;
+    }
 }

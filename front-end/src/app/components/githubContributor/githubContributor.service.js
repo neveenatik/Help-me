@@ -1,5 +1,5 @@
 export class GithubContributorService {
-  constructor ($log, $http) {
+  constructor($log, $http) {
     'ngInject';
 
     this.$log = $log;
@@ -7,7 +7,7 @@ export class GithubContributorService {
     this.apiHost = 'https://api.github.com/repos/Swiip/generator-gulp-angular';
   }
 
-  getContributors(limit=30) {
+  getContributors(limit = 30) {
     return this.$http.get(this.apiHost + '/contributors?per_page=' + limit)
       .then((response) => {
         return response.data;

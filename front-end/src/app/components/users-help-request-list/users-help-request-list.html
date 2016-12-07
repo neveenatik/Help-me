@@ -1,8 +1,7 @@
-
 <div class="parent" ng-repeat="list in vm.responseList">
     <div class="item item-image">
         <div class="image-user col-centered">
-             <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="image-user">
+            <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="image-user">
         </div>
         <div>
             <h5><strong>{{list.user.displayName}}{{list.user.name}}</strong></h5>
@@ -11,7 +10,8 @@
     </div>
     <div class="item item-description">
         <div class="row">
-            <div class="col-sm-6 title"><h5 class="pull-left"><strong>{{list.title}}</strong></h5></div>
+            <div class="col-sm-6 title">
+                <h5 class="pull-left"><strong>{{list.title}}</strong></h5></div>
             <div class="col-sm-6"><span class="badge pull-right">{{list.category}}</span></div>
         </div>
         <div class="row">

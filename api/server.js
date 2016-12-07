@@ -17,7 +17,6 @@ mongoose.Promise = global.Promise;
 
 var path = require('path');
 
-
 var app = express();
 
 //Middlewares

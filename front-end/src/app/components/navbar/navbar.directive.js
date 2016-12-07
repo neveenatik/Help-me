@@ -5,18 +5,17 @@ export function NavbarDirective() {
     restrict: 'E',
     templateUrl: 'app/components/navbar/navbar.html',
     scope: {
-        creationDate: '='
+      creationDate: '='
     },
     controller: NavbarController,
     controllerAs: 'vm',
     bindToController: true
   };
-
   return directive;
 }
 
 class NavbarController {
-  constructor (moment, $auth, $state) {
+  constructor(moment, $auth, $state) {
     'ngInject';
 
     var vm = this;
@@ -33,16 +32,16 @@ class NavbarController {
   }
 
   login() {
-      var vm = this;
-      console.log(this.login.user);
-      this.$auth.login({login: this.login.user}).then(function (token) {
-          vm.$auth.setToken(token);
-          vm.validation.message = "";
-          vm.$state.go('home');
-      }).catch(
+    var vm = this;
+    console.log(this.login.user);
+    this.$auth.login({ login: this.login.user }).then(function(token) {
+      vm.$auth.setToken(token);
+      vm.validation.message = "";
+      vm.$state.go('home');
+    }).catch(
       // Log the rejection reason
       function(error) {
-          vm.validation.message = error.data.message;
+        vm.validation.message = error.data.message;
       });
   }
 
@@ -58,5 +57,3 @@ class NavbarController {
     // $state.href("./profile/index.html")
   }
 }
-
-

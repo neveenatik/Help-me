@@ -9,24 +9,23 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
  *  Do not remove the comments below. It's the markers used by wiredep to inject
  *  sass dependencies when defined in the bower.json of your dependencies
  */
+
 // bower:scss
 // endbower
-
-$bgDefault      : #232323;
-$bgHighlight    : #363636;
-$bgBlock        : #B0B3B0;
-$bgInput        : #F2F2F2;
-$colDefault     : #e5e5e5;
-$colHighlight   : #3689A5;
-
+$bgDefault: #232323;
+$bgHighlight: #363636;
+$bgBlock: #B0B3B0;
+$bgInput: #F2F2F2;
+$colDefault: #e5e5e5;
+$colHighlight: #3689A5;
 body {
     background-color: #444;
     font-family: "Open Sans", sans-serif;
 }
 
 .logo {
-	font-family: 'Oleo Script', cursive;
-  color: #D88E09 !important;
+    font-family: 'Oleo Script', cursive;
+    color: #D88E09 !important;
 }
 
 .col-centered {
@@ -36,16 +35,16 @@ body {
 
 .btn,
 .no-border {
-  border: 0px ;
+    border: 0px;
     border-radius: 1px;
 }
 
 .helpme-heading {
-  background: $colHighlight !important;
+    background: $colHighlight !important;
 }
 
 .helpme-body {
-  background: $bgBlock  !important;
+    background: $bgBlock !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -65,5 +64,6 @@ body {
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
  */
+
 // injector
 // endinjector

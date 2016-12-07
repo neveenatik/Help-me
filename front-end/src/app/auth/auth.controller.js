@@ -13,10 +13,9 @@ export class AuthController {
 			month: '',
 			day: ''
 		};
-
 	}
 
-    register() {
+	register() {
 		var vm = this;
 		this.user.dateOfbirth = new Date(this.date.year, this.date.month, this.date.day);
 		// console.log(this.user);
@@ -29,43 +28,43 @@ export class AuthController {
 		if (genderToCheck == undefined) {
 			return alert("Please choose a gender.")
 		};
-        this.$http.post('http://localhost:5000/auth/signup', {user: this.user}).then(function (token) {
-            vm.$auth.setToken(token);
-            vm.$state.go('home');
-        }, (error, status) => console.log(error));
-        console.log("post", this.user);
-    }
-    
-    login() {
-        var vm = this;
-        console.log(this.login.user);
-        this.$http.post('http://localhost:5000/auth/login', {login: this.login.user})
-        .then(function (token) {
-            vm.$auth.setToken(token);
-            $state.go('home');
-        }).catch(
-        // Log the rejection error
-        function(error) {
-            console.log('Handle rejected promise (', error.data.message ,') here.');
-        });
-    }
+		this.$http.post('http://localhost:5000/auth/signup', { user: this.user }).then(function(token) {
+			vm.$auth.setToken(token);
+			vm.$state.go('home');
+		}, (error, status) => console.log(error));
+		console.log("post", this.user);
+	}
+
+	login() {
+		var vm = this;
+		console.log(this.login.user);
+		this.$http.post('http://localhost:5000/auth/login', { login: this.login.user })
+			.then(function(token) {
+				vm.$auth.setToken(token);
+				$state.go('home');
+			}).catch(
+				// Log the rejection error
+				function(error) {
+					console.log('Handle rejected promise (', error.data.message, ') here.');
+				});
+	}
 
 	getDayNumber(value) {
-		if(['January', 'March', 'May', 'July', 'August', 'October', 'December'].includes(value)){
-			 return this.DataModels.month31;
+		if (['January', 'March', 'May', 'July', 'August', 'October', 'December'].includes(value)) {
+			return this.DataModels.month31;
 		}
-		if(['April', 'June', 'September', 'November'].includes(value)){
+		if (['April', 'June', 'September', 'November'].includes(value)) {
 			return this.DataModels.month30;
 		}
-		if('February'){
+		if ('February') {
 			return this.DataModels.month29;
 		}
 	}
 
-	getYears(){
+	getYears() {
 		var d = new Date().getFullYear();
 		var years = [];
-		for(var i = d-100; i < d-13; i++){
+		for (var i = d - 100; i < d - 13; i++) {
 			years.unshift(i);
 		}
 		return years;

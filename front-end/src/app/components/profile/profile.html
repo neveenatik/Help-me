@@ -1,9 +1,8 @@
-
 <div class="container" id="user-profile-only">
     <div class="row">
         <div class="col-md-3 col-sm-3">
             <div class="user-wrapper">
-                <img src="http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg" class="img-responsive"> 
+                <img src="http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg" class="img-responsive">
                 <div class="description-img">
                     <div class="text-center">
                         <span ng-repeat="i in vm.ratingAvg(vm.rating) track by $index"><i class="fa fa-star fa-2x star"></i></span>
@@ -23,9 +22,9 @@
                 </div>
                 <div class="row">
                     <div class="col-md-7 col-sm-7">
-                        <div class="table-responsive">          
+                        <div class="table-responsive">
                             <table class="table table-font">
-                                <tbody> 
+                                <tbody>
                                     <tr>
                                         <td><strong>First:</strong></td>
                                         <td ng-model="firstNameBoolean">
@@ -35,7 +34,7 @@
                                             </div>
                                             <div ng-show="firstNameBoolean" class="input-group">
                                                 <input type="text" ng-model="vm.userInfo.firstName" class="form-control input-sm">
-                                                <span class="input-group-btn btn-position" >
+                                                <span class="input-group-btn btn-position">
                                                 <button type="button" class="btn btn-sm btn-cancel" ng-click="firstNameBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="firstNameBoolean = false; vm.editUesr()"><i class="fa fa-check" aria-hidden="true"></i></button>
                                                 </span>
                                             </div>
@@ -63,8 +62,8 @@
                                                 <span class="name">{{vm.userInfo.city}}</span>
                                                 <span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
                                             </div>
-                                            <div ng-show="cityBoolean" class="input-group">                          
-                                                <input type="text" ng-model="vm.userInfo.city" class="form-control input-sm" uib-typeahead="city for city in vm.DataModels.netherlandsCity | filter:$viewValue | limitTo:6" >
+                                            <div ng-show="cityBoolean" class="input-group">
+                                                <input type="text" ng-model="vm.userInfo.city" class="form-control input-sm" uib-typeahead="city for city in vm.DataModels.netherlandsCity | filter:$viewValue | limitTo:6">
                                                 <span class="input-group-btn btn-position">
                                                 <button type="button" class="btn btn-sm btn-cancel" ng-click="cityBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="cityBoolean = false; vm.editUesr()"><i class="fa fa-check" aria-hidden="true"></i></button>
                                                 </span>
@@ -94,18 +93,19 @@
                                                 <span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
                                             </div>
                                             <div ng-show="birthBoolean" class="input-group">
-                                                <div class="row"> 
+                                                <div class="row">
                                                     <div class="col-xs-3 date">
                                                         <select class="form-control select-date" ng-model="vm.newDate.month" ng-options="month.value-1 as month.name for month in vm.DataModels.months"></select>
                                                     </div>
                                                     <div class="col-xs-3 date">
                                                         <select class="form-control select-date" ng-model="vm.newDate.day" ng-options="day for day in vm.getDayNumber(vm.user.date.month)"></select>
-                                                    </div>                          
+                                                    </div>
                                                     <div class="col-xs-3 date">
                                                         <select class="form-control select-date" ng-model="vm.newDate.year" ng-options="year for year in vm.getYears()"></select>
                                                     </div>
                                                     <div class="col-xs-3 date input-group-btn btn-position">
-                                                        <button type="button" class="btn btn-sm btn-cancel" ng-click="birthBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="birthBoolean = false; vm.newBirth()"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-cancel" ng-click="birthBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-submit" ng-click="birthBoolean = false; vm.newBirth()"><i class="fa fa-check" aria-hidden="true"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -113,13 +113,12 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>  
-                    </div>                    
+                        </div>
+                    </div>
                     <div class="col-md-5 col-sm-5">
-                        <div class="table-responsive">          
+                        <div class="table-responsive">
                             <table class="table table-font">
                                 <tbody>
-
                                     <tr>
                                         <td><strong>Email</strong></td>
                                         <td>{{vm.userInfo.email}}</td>
@@ -130,10 +129,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>  
+                        </div>
                     </div>
                 </div>
-<!--                 <hr>
+                <!--                 <hr>
                 <h4> Social Links: </h4>              
                 <a href="#" class="btn btn-social btn-facebook">
                 <i class="fa fa-facebook"></i>&nbsp; Facebook </a>
@@ -148,9 +147,6 @@
         </div>
     </div>
 </div>
-
 <div class="container">
     <helpme-user-help-request-list></helpme-user-help-request-list>
 </div>
-
-
