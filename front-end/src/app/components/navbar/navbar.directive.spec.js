@@ -3,6 +3,7 @@
  * This example is not perfect.
  * Test should check if MomentJS have been called
  */
+
 describe('directive navbar', function() {
   let vm;
   let element;

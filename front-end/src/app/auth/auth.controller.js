@@ -19,6 +19,16 @@ export class AuthController {
     register() {
 		var vm = this;
 		this.user.dateOfbirth = new Date(this.date.year, this.date.month, this.date.day);
+		// console.log(this.user);
+		var dateOfBirthToCheck = this.user.dateOfbirth.toString();
+		var genderToCheck = this.user.gender;
+		// console.log("gender to check ", this.user.gender);
+		if (dateOfBirthToCheck == "Sun Dec 31 1899 00:00:00 GMT+0100 (CET)") {
+			return alert("Please enter a birtdate.")
+		};
+		if (genderToCheck == undefined) {
+			return alert("Please choose a gender.")
+		};
         this.$http.post('http://localhost:5000/auth/signup', {user: this.user}).then(function (token) {
             vm.$auth.setToken(token);
             vm.$state.go('home');
