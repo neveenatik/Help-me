@@ -47,7 +47,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log, $state) {
         distanceMatrix.sort(function(a, b) {
           return (a.distance > b.distance) ? 1 : ((b.distance > a.distance) ? -1 : 0); //sort by value of distance
         });
-        pushListBySameCity(); // push all the users that have same name of city with current user to vm.list
+        //pushListBySameCity(); // push all the users that have same name of city with current user to vm.list
         for (var i = 0; i < distanceMatrix.length; i++) {
           for (var k = 0; k < vm.responseList.length; k++) {
             if (distanceMatrix[i].city == vm.responseList[k].user.city) {

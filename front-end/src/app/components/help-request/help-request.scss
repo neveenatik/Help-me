@@ -1,23 +1,94 @@
-.parent {
+.parent-request-form {
 	border: 4px solid $colHighlight;
 	width: 100%;
-	height: 200px;
+	height: 200px !important;
+	font-size: 12px;
 	/*flex stuff*/
-	display: inline-flex;
+	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	list-style: none;
 	//flex-grow: 1;
 }
 
-.item {
-	height: 50px;
+.item-request-form {
 	margin: 5px;
+	padding: 5px;
 	background: $bgHighlight;
 	color: white;
 	text-align: center;
-	line-height: 50px;
+	line-height: 20px;
 	font-weight: 600;
 	/*flex stuff*/
-	//width: 150px;
-	height: 180px;
+	flex-wrap: wrap;
+	-webkit-flex-wrap: nowrap;
+	width: 50%;
+	height: 170px;
+}
+
+.button-line {
+	line-height: 126px;
+}
+
+.btn-request-cancel {
+    width: 80px;
+    font-size: 12px;
+    color: $bgDefault;
+    font-weight: 600;
+    &:hover,
+    &:focus {
+        background-color: #FF6969;
+    }
+}
+
+.btn-request-send {
+    width: 80px;
+    font-size: 12px;
+    color: $bgDefault;
+    font-weight: 600;
+    &:hover,
+    &:focus {
+        background-color: #56CF56;
+    }
+}
+
+@media (max-width: 992px) {
+	.button-line {
+		line-height: 70px;
+	}
+}
+
+@media (max-width: 766px) {
+	.parent-help-form {
+		height: 360px !important;
+		-webkit-flex-wrap: wrap !important;
+	    flex-wrap: wrap !important;
+	}
+	.item-help-form {
+		margin: 0;
+		line-height: 25px;
+		width: 95%;
+		height: 150px;
+	}
+	.item-bottom {
+		height: 180px;
+	}
+	.button-line {
+		line-height: 62px;
+	}
+}
+
+@media (max-width: 421px) {
+	.btn-request-cancel{
+	    width: 60px;
+	    font-size: 11px;
+	    font-weight: 400;
+	    padding: 6px;
+    }
+    .btn-request-send{
+	    width: 50px;
+	    font-size: 11px;
+	    font-weight: 400;
+	    padding: 6px;
+    }
 }

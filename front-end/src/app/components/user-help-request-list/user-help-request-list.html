@@ -1,4 +1,4 @@
-<div class="parent" ng-repeat="list in vm.list">
+<div class="parent-user-list" ng-repeat="list in vm.list">
     <div class="item item-image">
         <div class="image-user col-centered">
             <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="image-user">
@@ -8,7 +8,7 @@
             <h6 ng-click="vm.test($index)">{{list.user.city}}</h6>
         </div>
     </div>
-    <div class="item item-description">
+    <div class="item-user-list item-description">
         <div class="row">
             <div class="col-sm-6" ng-model="titleBoolean">
                 <div ng-hide="titleBoolean" ng-click="titleBoolean = true">

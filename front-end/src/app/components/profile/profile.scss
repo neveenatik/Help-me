@@ -15,8 +15,8 @@
     width: 100% !important;
 }
 
-img {
-    width: 100%;
+.img-user {
+    width: 100% !important;
 }
 
 .star {
@@ -69,5 +69,15 @@ img {
     .description {
         padding-bottom: 0 !important;
         padding-top: 10px !important;
+    }
+}
+
+@media (max-width: 414px) {
+    .img-user {
+        width: 85% !important;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border: 3px solid $bgInput;
     }
 }
