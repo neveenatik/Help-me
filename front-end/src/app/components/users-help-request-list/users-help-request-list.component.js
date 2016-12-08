@@ -118,7 +118,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log, $state) {
 
   function init() {
     usersList();
-    getUserCity();
+    //getUserCity();
     // if($auth.isAuthenticated()) {
     setTimeout(getDistanceMatrix, 700);
     // } else {
