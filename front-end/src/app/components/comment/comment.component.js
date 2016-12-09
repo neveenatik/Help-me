@@ -16,7 +16,8 @@ vm.$onInit = init;
   vm.deleteComment = deleteComment;
   vm.editComment = editComment;
   vm.currentDate = Date.now();
-    vm.comments={};
+//    vm.comments={};
+    vm.comment=[];
   vm.user = user;
 
 function getComment() {
@@ -25,8 +26,8 @@ function getComment() {
       url: "http://localhost:5000/api/comments",
     })
     .then(function(response) {
-        vm.comments = response.data;
-        console.log(vm.comments);
+        vm.comment = response.data;
+        console.log(vm.comment);
     })
     .catch(function(error, status) {
         console.log(error);
@@ -68,28 +69,31 @@ function getComment() {
       })
       .then(function(response) {
         console.log(response.data);
-       vm.comments= response.data;
+       vm.comment= response.data;
         getComment();
       })
     
   }
 
 
-  function editComment(comment_id) {
+  function editComment(index) {
+//      console.log(comment_id);
+    var commentId = vm.comment[index]._id;
     var token = $auth.getToken()
     $http({
         method: 'PUT',
-        url: 'http://localhost:5000/api/comments/' + comment_id,
+        url: 'http://localhost:5000/api/comments/' + commentId,
         headers: {
           'Authorization': token
         },
         data: {
-          'comment': vm.comment
+          'comment': vm.comment[index]
         }
       })
       .then(function(response) {
+         
         console.log("post", response.data);
-         vm.comments= response.data;
+        vm.comment= response.data;
          getComment();
       })
       .catch(function(error, status) {

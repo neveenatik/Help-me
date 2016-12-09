@@ -2,13 +2,23 @@
     cursor: pointer;
 }
 .btnComment{
-    width: 5%;
+    width:auto;
     height: 50px;
 }
 .inputComment{
-    width: 80%;
+    width: 100%;
     height: 50px;
 }
 .imgComment{
     float: left;
+    width: 50px;
+    height: 50px;
+}
+.img2Comment{
+    float: left;
+    width: 30px;
+    height: 30px;
+}
+.ulComment{
+    list-style-type: none;
 }

@@ -9,15 +9,7 @@ var mongoose = require('mongoose'),
 /**
  * FeedBack Schema
  */
-var FeedBackSchema = new Schema({
-  comment: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  rating: {
-    type: Number
-  },
+var HelperSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
@@ -28,4 +20,4 @@ var FeedBackSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('FeedBack', FeedBackSchema);
+module.exports = mongoose.model('Helper', HelperSchema);

@@ -9,7 +9,6 @@ function HelpmeHelpRequestController($auth, $http, DataModels, $log, $state) {
 
   var vm = this;
   vm.$onInit = init;
-
   vm.$log = $log;
   vm.DataModels = DataModels;
   vm.postHelpRequest = postHelpRequest;
@@ -25,7 +24,12 @@ function HelpmeHelpRequestController($auth, $http, DataModels, $log, $state) {
   }
 
   function postHelpRequest() {
-    var token = $auth.getToken()
+    var token = $auth.getToken();
+    // validation fucntino on vm.helprequest 
+    var categoryToCheck = vm.helprequest.category;
+    if (categoryToCheck == undefined) {
+      return alert("Please choose a category!");
+    };
     $http({
         method: 'POST',
         url: 'http://localhost:5000/api/helprequests',
@@ -35,20 +39,15 @@ function HelpmeHelpRequestController($auth, $http, DataModels, $log, $state) {
         data: {
           'helprequest': vm.helprequest
         }
-    })
-    .then(function(response) {
-        // success!
-        // redirect
-        // response = { data { question: { question_id: 5, title: '', question: ''}}}
-        //$state.go('questions.question',{questionId: response.data.question.question_id})
-        //x = response
+      })
+      .then(function(response) {
         console.log("post", response);
-        $state.go('home');//redirect
-    })
-    .catch(function(error, status) {
-     // display error
+        $state.go('home'); //redirect
+      })
+      .catch(function(error, status) {
+        // display error
         console.log(error);
-    });
+      });
   }
 
   function user() {
@@ -57,13 +56,13 @@ function HelpmeHelpRequestController($auth, $http, DataModels, $log, $state) {
     // console.log(user_id)
     // console.log(token)
     $http({
-      method: "GET",
-      url: "http://localhost:5000/api/helprequests",
-      // headers: {
-      //   'Authorization': vm.token
-      // }
-    })
-    .then(function(response) {
+        method: "GET",
+        url: "http://localhost:5000/api/helprequests",
+        // headers: {
+        //   'Authorization': vm.token
+        // }
+      })
+      .then(function(response) {
         // success!
         // redirect
         // response = { data { question: { question_id: 5, title: '', question: ''}}}
@@ -71,16 +70,15 @@ function HelpmeHelpRequestController($auth, $http, DataModels, $log, $state) {
         //$state.go('questions.question',{questionId: response.data.question.question_id})
         //x = response
         console.log("post", response);
-    })
-    .catch(function(error, status) {
-     // display error
+      })
+      .catch(function(error, status) {
+        // display error
         console.log(error);
-    });
+      });
     //console.log("post");
   }
 
-  function init() {
-  }
+  function init() {}
 
 
 }

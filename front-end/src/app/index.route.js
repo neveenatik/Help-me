@@ -1,4 +1,4 @@
-export function routerConfig ($stateProvider, $urlRouterProvider) {
+export function routerConfig($stateProvider, $urlRouterProvider) {
   'ngInject';
   $stateProvider
     .state('home', {
@@ -12,7 +12,8 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       templateUrl: 'app/auth/auth.html',
       controller: 'AuthController',
       controllerAs: 'auth'
-    }).state('profile', {
+    })
+    .state('profile', {
       url: '/profile',
       template: '<helpme-profile></helpme-profile>',
     });

@@ -20,8 +20,12 @@ var CommentSchema = new Schema({
     trim: true
   },
   user: {
-    type: Schema.ObjectId,
-    ref: 'User'
+    _id: {
+      type: Schema.ObjectId
+    },
+    displayName: {
+      type: String
+    }
   },
   helpRequest: {
     type: Schema.ObjectId,

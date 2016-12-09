@@ -45,7 +45,8 @@
 				"e554f307-5b7b-c5ac-5510-2244de1edb02",
 				"956c401c-faf9-8112-c9e2-77c68561e196",
 				"3ffd682e-27ce-a5c8-a01e-eb8299b8b7ff",
-				"84eec004-02a7-5b7e-34aa-6a2130786514"
+				"84eec004-02a7-5b7e-34aa-6a2130786514",
+				"8609bef6-df38-86b2-1ac1-58dc21046898"
 			],
 			"collectionId": "bb4c75f6-273b-1dce-2d4f-1a25665d7127"
 		},
@@ -108,7 +109,7 @@
 		{
 			"id": "27c2968f-4013-912c-df94-2d93e60982cd",
 			"headers": "Content-Type: application/json\nAuthorization: {{token}}\n",
-			"url": "{{hostname}}/api/messages",
+			"url": "{{hostname}}/api/comments",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -117,16 +118,16 @@
 			"tests": "tests[\"Status should be 201 (created)\"] = responseCode.code === 201;\n\n",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1480720269363,
+			"time": 1480968665870,
 			"name": "create",
 			"description": "",
 			"collectionId": "56ae278a-5428-7bbb-e62d-8e1b45bc1745",
-			"rawModeData": "{\n\t\"message\":\n\t{\n  \t\t\"content\": \"painting my rooom\"\n\t},\n\t\"helpRequest\":\"5841d3a7f0e1075c10912c97\"\n}"
+			"rawModeData": "{\n\t\"comment\":\n\t{\n  \t\t\"content\": \"painting my rooom\"\n\t},\n\t\"helpRequest\":\"5841d3a7f0e1075c10912c97\"\n}"
 		},
 		{
 			"id": "3ffd682e-27ce-a5c8-a01e-eb8299b8b7ff",
 			"headers": "Authorization: {{token}}\nContent-Type: application/json\n",
-			"url": "{{hostname}}/api/helprequests/583f4c31446ae847aaaedc97",
+			"url": "{{hostname}}/api/helprequests/583ac6873372f80fda6bffe0",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "PUT",
@@ -135,11 +136,11 @@
 			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\ntests[\"Content is present\"] = responseBody.length !== 0;\nif (responseBody.length !== 0) {\n    var data = JSON.parse(responseBody);\n    tests['Meta is present'] = data['meta'] != null;\n}",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1480583101472,
+			"time": 1480851496809,
 			"name": "update",
 			"description": "",
 			"collectionId": "56ae278a-5428-7bbb-e62d-8e1b45bc1745",
-			"rawModeData": "{\n    \"helpRequest\":\n    {\n    \t\"title\":\"dancing\"\n    }\n}"
+			"rawModeData": "{\n    \"helprequest\":\n    {\n    \t\"title\":\"dancing\",\n    \t\"done\": true\n    }\n}"
 		},
 		{
 			"id": "403f4d0a-be64-d0f7-e2f3-8efb39ed6857",
@@ -229,6 +230,23 @@
 			"rawModeData": ""
 		},
 		{
+			"id": "8609bef6-df38-86b2-1ac1-58dc21046898",
+			"headers": "Authorization: {{token}}\n",
+			"url": "{{hostname}}/api/helprequests/done",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;\nvar data = JSON.parse(responseBody);\ntests[\"Response is an array\"] = Array.isArray(data);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480849960226,
+			"name": "list all done",
+			"description": "",
+			"collectionId": "56ae278a-5428-7bbb-e62d-8e1b45bc1745"
+		},
+		{
 			"id": "863e0012-1dcb-279b-3b4a-e346a749c990",
 			"headers": "Authorization: {{token}}\nContent-Type: application/json\n",
 			"url": "{{hostname}}/api/users/{{userId}}",
@@ -240,11 +258,11 @@
 			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1480718828441,
+			"time": 1480955425742,
 			"name": "Profile - Update",
 			"description": "",
 			"collectionId": "56ae278a-5428-7bbb-e62d-8e1b45bc1745",
-			"rawModeData": "{\n\t\"user\":\n\t{\n\t\t\"firstName\": \"noor\",\n\t\t\"lastName\": \"ahmed\",\n\t\t\"helpCategory\": \"painting\"\n\t}\n}"
+			"rawModeData": "{\n\t\"user\":\n\t{\n\t\t\"firstName\": \"noor\",\n\t\t\"lastName\": \"ahmed\",\n\t\t\"helpCategory\": \"painting\",\n\t\t\"city\":\"Haarlem\"\n\t}\n}"
 		},
 		{
 			"id": "87e4ea3b-d910-4752-4477-17d87e031946",
@@ -328,11 +346,11 @@
 			"tests": "var data = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"token\", data.token);\n\ntests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1480530137670,
+			"time": 1480955230074,
 			"name": "Login",
 			"description": "",
 			"collectionId": "56ae278a-5428-7bbb-e62d-8e1b45bc1745",
-			"rawModeData": "{ \n\t\"login\":\n\t{\n  \t\t\"email\": \"zaheralyousef@gmail.com\",\n    \t\"password\": \"helpMe2016\"\n\n\t}\n}"
+			"rawModeData": "{ \n\t\"login\":\n\t{\n  \t\t\"email\": \"zaher@gmail.com\",\n    \t\"password\": \"123456\"\n\n\t}\n}"
 		},
 		{
 			"id": "c60d18ee-7e4a-1f9f-a655-7200b4a5adbb",

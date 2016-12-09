@@ -6,71 +6,96 @@
                 <form class="form-font" ng-submit="auth.login()">
                     <div class="form-group">
                         <label>Email address</label>
-                        <input type="email" class="form-control" ng-model="auth.login.user.email">
+                        <input type="email" class="form-control" ng-model="auth.login.user.email" required>
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control" ng-model="auth.login.user.password">
+                        <input type="password" class="form-control" ng-model="auth.login.user.password" required ">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit " class="btn btn-default ">Submit</button>
                 </form>
             </div>
         </div>
     </div>
-	<div class="col-md-5 col-centered">
-		<div class="panel no-border panel-default">
-			<div class="panel-heading helpme-heading no-border"><strong>Register</strong></div>
-			<div class="helpme-body panel-body">
-				<form class="form-font" name="register" ng-submit="auth.register()">
-					<div class="form-group">
+	<div class="col-md-5 col-centered ">
+		<div class="panel no-border panel-default ">
+			<div class="panel-heading helpme-heading no-border "><strong>Register</strong></div>
+			<div class="helpme-body panel-body ">
+				<form class="form-font " name="register " ng-submit="auth.register() ">
+					<div class="form-group ">
 						<span><strong>First Name</strong></span>
-						<input type="text" class="form-control register-form" ng-model="auth.user.firstName">
+						<input type="text " class="form-control register-form " ng-model="auth.user.firstName " 
+						required 
+						placeholder="required "
+						oninvalid="this.setCustomValidity( 'First name is required') "
+						oninput="setCustomValidity( '') "
+						/>
 					</div>
-					<div class="form-group">
+					<div class="form-group ">
 						<span><strong>Last Name</strong></span>
-						<input type="text" class="form-control" ng-model="auth.user.lastName">
+						<input type="text " class="form-control " ng-model="auth.user.lastName "
+						required 
+						placeholder="required "
+						oninvalid="this.setCustomValidity( 'Last name is required') "
+						oninput="setCustomValidity( '') "
+						/>
 					</div>
-					<div class="form-group">
+					<div class="form-group ">
 						<span><strong>Email Adress</strong></span>
-						<input type="email" class="form-control" ng-model="auth.user.email">
+						<input type="email " class="form-control " ng-model="auth.user.email "
+						required placeholder="required "/>
 					</div>
-					<div class="form-group">
+					<div class="form-group ">
 						<span><strong>Password</strong></span>
-						<input type="password" class="form-control" name="pwd" ng-model="auth.user.password">
+						<input type="password " class="form-control " name="pwd " ng-model="auth.user.password "
+						pattern=".{6,} "
+						required 
+						title="6 characters minimum "
+						placeholder="minimum 6 characters "
+						oninvalid="this.setCustomValidity( 'Password is required. Minimum 6 characters ') "
+						oninput="setCustomValidity( '') "
+						/>
 					</div>
-<!-- 					<div class="form-group">
+<!-- 					<div class="form-group ">
 						<span><strong>Password Confirm</strong></span>
-						<span class="pull-right" style="color:red;" ng-show="register.pwdConfirm.$viewValue.length >= register.pwd.$viewValue.length && register.pwdConfirm.$dirty && register.pwdConfirm.$invalid">Not match</span>
-						<input type="password" class="form-control" compare-to="auth.user.pwd" name="pwdConfirm" ng-model="pwdConfirm">
-					</div> -->
-					<div class="form-group">
-						<span><strong>Gender</strong></span>
-						<select class="form-control" ng-model="auth.user.gender" ng-options="gender for gender in auth.DataModels.gender"></select>
-					</div>
-					<div class="form-group">
-						<span><strong>Date Of birth</strong></span>
-						<div class="row"> 
-						    <div class="col-xs-4">
-						        <small>Month:</small>
-						      <select class="form-control" ng-model="auth.date.month" ng-options="month.value-1 as month.name for month in auth.DataModels.months"></select>
-						    </div>
-						    <div class="col-xs-4">
-						        <small>Day:</small>
-						      <select class="form-control" ng-model="auth.date.day" ng-options="day for day in auth.getDayNumber(auth.user.date.month)"></select>
-						    </div>						    
-						    <div class="col-xs-4">
-						        <small>Year:</small>
-						      <select class="form-control" ng-model="auth.date.year" ng-options="year for year in auth.getYears()"></select>
-						    </div>
-						</div>
-					</div>
-					<div class="form-group">
-						<span><strong>City</strong></span>
-						<input type="text" ng-model="auth.user.city" uib-typeahead="city for city in auth.DataModels.netherlandsCity | filter:$viewValue | limitTo:6" class="form-control">
-					</div>
-					<button ng-disabled="register.pwdConfirm.$invalid" type="submit" class="btn btn-default">Submit</button>
-				</form>
-			</div>
-		</div>
-	</div>
+						<span class="pull-right " style="color:red; " ng-show="register.pwdConfirm.$viewValue.length>= register.pwd.$viewValue.length && register.pwdConfirm.$dirty && register.pwdConfirm.$invalid">Not match</span>
+                        <input type="password" class="form-control" compare-to="auth.user.pwd" name="pwdConfirm" ng-model="pwdConfirm">
+                    </div> -->
+                    <div class="form-group">
+                        <span><strong>Gender</strong></span>
+                        <select class="form-control" ng-model="auth.user.gender" ng-options="gender for gender in auth.DataModels.gender" required></select>
+                    </div>
+                    <div class="form-group">
+                        <span><strong>Date Of birth</strong></span>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <small>Month:</small>
+                                <select required name="auth-month-menu" class="form-control" ng-model="auth.date.month" ng-options="month.value-1 as month.name for month in auth.DataModels.months"></select>
+                                <!-- <span ng-show="myForm.auth-month-menu.$error.required">Select a month</span> -->
+                            </div>
+                            <div class="col-xs-4">
+                                <small>Day:</small>
+                                <select class="form-control" ng-model="auth.date.day" ng-options="day for day in auth.getDayNumber(auth.user.date.month)"></select>
+                            </div>
+                            <div class="col-xs-4">
+                                <small>Year:</small>
+                                <select class="form-control" ng-model="auth.date.year" ng-options="year for year in auth.getYears()"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <span><strong>City</strong></span>
+                        <input type="text" ng-model="auth.user.city" uib-typeahead="city for city in auth.DataModels.netherlandsCity | filter:$viewValue | limitTo:6" class="form-control" required placeholder="required" oninvalid="this.setCustomValidity('City is required')" oninput="setCustomValidity('')">
+                    </div>
+                    <!-- ==================== -->
+                    <div>
+                        <input type="file" id="files" />
+                        <img id="image" />
+                    </div>
+                    <!-- ======================= -->
+                    <button ng-disabled="register.pwdConfirm.$invalid" type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

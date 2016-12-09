@@ -13,7 +13,7 @@ module.exports = {
 
             if (existingUser)
                 return res.status(409).send({
-                    message:'Email is already registered'
+                    message: 'Email is already registered'
                 });
             var user = new User(req.body.user);
             user.password = jwt.encode(req.body.user.password, '_o0OMd9#ud');
