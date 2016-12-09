@@ -1,6 +1,6 @@
-.image-user {
-    width: 110px !important;
-    height: 110px !important;
+.image-user-profile {
+    width: 80px !important;
+    height: 80px !important;
 }
 
 .parent-user-list {
@@ -26,15 +26,15 @@
     height: 180px;
 }
 
-.item-image {
+.item-image-profile {
     background-color: $bgDefault;
-    width: 25%;
+    width: 15%;
 }
 
-.item-description {
+.item-description-profile {
     background-color: $bgHighlight;
     //flex-grow: 4;
-    width: 75%;
+    width: 85%;
 }
 
 .description {
@@ -42,8 +42,13 @@
     padding-left: 25px;
 }
 
-.title {
-    padding-left: 25px;
+.title-user {
+    padding-left: 30px;
+    padding-top: 5px;
+}
+
+.delete-help-user {
+    padding-right: 20px;
 }
 
 .span-position{
@@ -60,9 +65,9 @@
 }
 
 @media (max-width: 766px) {
-    .image-user {
-        width: 50px !important;
-        height: 50px !important;
+    .image-user-profile {
+        width: 40px !important;
+        height: 40px !important;
     }
     .parent-user-list {
     
