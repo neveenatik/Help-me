@@ -1,23 +1,22 @@
-
-<div class="parent" ng-repeat="list in vm.list track by $index">
-
-    <div class="item item-image">
-        <div class="image-user col-centered">
-            <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="image-user">
+<!-- <div class="parent" ng-repeat="list in vm.list track by $index"> -->
+<div class="parent" ng-repeat="list in vm.responseList" ">
+    <div class="item item-image ">
+        <div class="image-user col-centered ">
+            <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg " class="image-user ">
         </div>
         <div>
             <h5><strong>{{list.user.displayName}}{{list.user.name}}</strong></h5>
-            <h6 ng-click="vm.test($index)">{{list.user.city}}</h6>
+            <h6 ng-click="vm.test($index) ">{{list.user.city}}</h6>
         </div>
     </div>
-    <div class="item item-description">
-        <div class="row">
-            <div class="col-sm-6 title">
-                <h5 class="pull-left"><strong>{{list.title}}</strong></h5></div>
-            <div class="col-sm-6"><span class="badge pull-right">{{list.category}}</span></div>
+    <div class="item item-description ">
+        <div class="row ">
+            <div class="col-sm-6 title ">
+                <h5 class="pull-left "><strong>{{list.title}}</strong></h5></div>
+            <div class="col-sm-6 "><span class="badge pull-right ">{{list.category}}</span></div>
         </div>
-        <div class="row">
-            <h5 class="text-center description">{{list.description}}</h5>
+        <div class="row ">
+            <h5 class="text-center description-users-list ">{{list.description}}</h5>
         </div>
     </div>
 </div>

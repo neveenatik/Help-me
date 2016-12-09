@@ -12,6 +12,7 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state, DataMod
   vm.$log = $log;
   vm.DataModels = DataModels;
   vm.editHelpRequest = editHelpRequest;
+  vm.deleteHelpRequest = deleteHelpRequest;
 
   vm.list = [];
 
@@ -49,6 +50,7 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state, DataMod
     var token = $auth.getToken(); // user token
     //var user_id = $auth.getPayload().sub; //user ID
     var helpRequestId = vm.list[index]._id;
+    console.log(vm.list[index]._id)
     $http({
         method: 'PUT',
         url: 'http://localhost:5000/api/helprequests/' + helpRequestId,
@@ -60,7 +62,27 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state, DataMod
         }
       })
       .then(function(response) {
-        console.log("post", response);
+        console.log("edited", response);
+      })
+      .catch(function(error, status) {
+        console.log(error);
+      });
+  }
+
+  function deleteHelpRequest(index) {
+    var token = $auth.getToken(); // user token
+    //var user_id = $auth.getPayload().sub; //user ID
+    var helpRequestId = vm.list[index]._id;
+    console.log(helpRequestId)
+    $http({
+        method: 'DELETE',
+        url: 'http://localhost:5000/api/helprequests/' + helpRequestId,
+        headers: {
+          'Authorization': token
+        }
+      })
+      .then(function(response) {
+        console.log("deleted", response);
       })
       .catch(function(error, status) {
         console.log(error);

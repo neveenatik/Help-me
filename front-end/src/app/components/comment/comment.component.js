@@ -9,32 +9,31 @@ function HelpmeCommentController($auth, $http, DataModels) {
   'ngInject';
 
   var vm = this;
-vm.$onInit = init;
+  vm.$onInit = init;
   vm.DataModels = DataModels;
   vm.getComment = getComment;
   vm.postComment = postComment;
   vm.deleteComment = deleteComment;
   vm.editComment = editComment;
   vm.currentDate = Date.now();
-//    vm.comments={};
-    vm.comment=[];
   vm.user = user;
 
-function getComment() {
+  function getComment() {
     $http({
-      method: "GET",
-      url: "http://localhost:5000/api/comments",
-    })
-    .then(function(response) {
+        method: "GET",
+        url: "http://localhost:5000/api/comments",
+      })
+      .then(function(response) {
         vm.comment = response.data;
         console.log(vm.comment);
-    })
-    .catch(function(error, status) {
+      })
+      .catch(function(error, status) {
         console.log(error);
-    });
+      });
   }
+
   function postComment() {
-    console.log('posted');
+    console.log(vm.comment);
     var token = $auth.getToken()
     $http({
         method: 'POST',
@@ -56,7 +55,7 @@ function getComment() {
   }
 
   function deleteComment(comment_id) {
-       var token = $auth.getToken()
+    var token = $auth.getToken()
     $http({
         method: 'DELETE',
         url: 'http://localhost:5000/api/comments/' + comment_id,
@@ -69,15 +68,15 @@ function getComment() {
       })
       .then(function(response) {
         console.log(response.data);
-       vm.comment= response.data;
+        vm.comment = response.data;
         getComment();
       })
-    
+
   }
 
 
   function editComment(index) {
-//      console.log(comment_id);
+    //      console.log(comment_id);
     var commentId = vm.comment[index]._id;
     var token = $auth.getToken()
     $http({
@@ -91,10 +90,10 @@ function getComment() {
         }
       })
       .then(function(response) {
-         
+
         console.log("post", response.data);
-        vm.comment= response.data;
-         getComment();
+        vm.comment = response.data;
+        getComment();
       })
       .catch(function(error, status) {
         console.log(error);
@@ -118,7 +117,7 @@ function getComment() {
 
   function init() {
     user();
-       getComment();
+    getComment();
   }
 
 

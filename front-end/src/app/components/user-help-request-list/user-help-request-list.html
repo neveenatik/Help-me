@@ -1,16 +1,16 @@
-<div class="parent" ng-repeat="list in vm.list">
-    <div class="item item-image">
-        <div class="image-user col-centered">
-            <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="image-user">
+<div class="parent-user-list" ng-repeat="list in vm.list">
+    <div class="item item-image-profile">
+        <div class="col-centered">
+            <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="image-user-profile">
         </div>
         <div>
             <h5><strong>{{list.user.displayName}}{{list.user.name}}</strong></h5>
             <h6 ng-click="vm.test($index)">{{list.user.city}}</h6>
         </div>
     </div>
-    <div class="item item-description">
+    <div class="item-user-list item-description-profile">
         <div class="row">
-            <div class="col-sm-6" ng-model="titleBoolean">
+            <div class="col-sm-4" ng-model="titleBoolean">
                 <div ng-hide="titleBoolean" ng-click="titleBoolean = true">
                     <h5 class="title pull-left"><strong>{{list.title}}</strong></h5>
                 </div>
@@ -21,16 +21,19 @@
                     </span>
                 </div>
             </div>
-            <div class="col-sm-6" ng-model="categoryBoolean">
+            <div class="col-sm-4" ng-model="categoryBoolean">
                 <div ng-hide="categoryBoolean" ng-click="categoryBoolean = true">
-                    <span class="badge pull-right">{{list.category}}</span>
+                    <h5 class="text-center"><strong>{{list.category}}</strong></h5>
                 </div>
                 <div ng-show="categoryBoolean" class="input-group">
                     <select class="form-control input-sm" ng-model="vm.list[$index].category" ng-options="category for category in vm.DataModels.helpCategory"></select>
-                    <span class="input-group-btn span-position" >
+                    <span class="input-group-btn span-position">
                     <button type="button" class="btn btn-sm btn-cancel" ng-click="categoryBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="categoryBoolean = false; vm.editHelpRequest($index)"><i class="fa fa-check" aria-hidden="true"></i></button>
                     </span>
                 </div>
+            </div>
+            <div class="col-sm-4">
+                <span ng-click="vm.deleteHelpRequest($index); vm.$onInit()"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
             </div>
         </div>
         <div class="row" ng-model="descriptionBoolean">
@@ -39,11 +42,10 @@
             </div>
             <div ng-show="descriptionBoolean" class="input-group">
                 <textarea class="form-control textarea-position" rows="5" cols="100" style="resize: none;" ng-model="vm.list[$index].description" maxlength="1000" minlength="10" required oninvalid="this.setCustomValidity('Required between 10 and 1000 characters.')" oninput="setCustomValidity('')"></textarea>
-                <span class="input-group-btn span-textarea-position" >
+                <span class="input-group-btn span-textarea-position">
                 <button type="button" class="btn btn-sm btn-cancel" ng-click="descriptionBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="descriptionBoolean = false; vm.editHelpRequest($index)"><i class="fa fa-check" aria-hidden="true"></i></button>
                 </span>
             </div>
         </div>
     </div>
 </div>
-

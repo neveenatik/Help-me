@@ -48,12 +48,4 @@ class NavbarController {
   logout() {
     this.$auth.logout();
   }
-
-  userProfileLoad() {
-    console.log("profile is clicked");
-    // go("./profile/")
-    // document.getElementById("user-profile-only").innerHTML='<object type="type/html" data="./profile/index.html" ></object>';
-    // this.$auth.location = './profile/index.html';
-    // $state.href("./profile/index.html")
-  }
 }

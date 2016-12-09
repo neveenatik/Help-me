@@ -1,36 +1,33 @@
-
-    <div class="container">
-        <div class="panel panel-default page-header no-border">
-          <div class="helpme-heading panel-heading">Add comment</div>
-            <div class="helpme-body panel-body">
-                <ul class="ulComment"ng-repeat="(i,c) in vm.comment">
-                    <li>
-                        <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" class="img2Comment"> <span class="badge pull-right">{{vm.currentDate  | date:'medium'}}</span>
-                         <span id="commentSpan" ng-hide="editing" ng-click="editing = true"><b> &nbsp;{{vm.user.firstName+" "+vm.user.lastName}}:</b> {{c.content}}</span>
-                        <form name="edtForm" ng-show="editing" ng-submit="editing = false">
-                             <div class="input-group">
-                            <input class="inputComment"type="text" name="edt" ng-model="c.content" placeholder="Name" required/>
-                                   <span class="input-group-btn">
+<div class="container">
+    <div class="panel panel-default page-header no-border">
+        <div class="helpme-heading panel-heading">Add comment</div>
+        <div class="helpme-body panel-body">
+            <ul class="ulComment" ng-repeat="(i,c) in vm.comment">
+                <li>
+                    <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" class="img2Comment"> <span class="badge pull-right">{{vm.currentDate  | date:'medium'}}</span>
+                    <span id="commentSpan" ng-hide="editing" ng-click="editing = true"><b> &nbsp;{{vm.user.firstName+" "+vm.user.lastName}}:</b> {{c.content}}</span>
+                    <form name="edtForm" ng-show="editing" ng-submit="editing = false">
+                        <div class="input-group">
+                            <input class="inputComment" type="text" name="edt" ng-model="c.content" placeholder="Name" required/>
+                            <span class="input-group-btn">
                             <button class="btnComment btn btn-info" type="submit" ng-disabled="edtForm.edt.$invalid"ng-click="vm.editComment(i)">save</button>
                             <button class="btnComment btn btn-danger" type="submit" ng-click="vm.deleteComment(c._id)">Del</button>
                                  </span>
-                            </div>
-                        </form>
-                    </li>
-                    <hr>
-                </ul>
-<br>
-                <form name="comment" ng-submit="vm.postComment()">
-                    <img class="imgComment"ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" >
-                    <div class="input-group">
+                        </div>
+                    </form>
+                </li>
+                <hr>
+            </ul>
+            <br>
+            <form name="comment" ng-submit="vm.postComment()">
+                <img class="imgComment" ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png">
+                <div class="input-group">
                     <input class="inputComment form-control" name="addcmnt" ng-model="vm.comment.content" placeholder="your comment here" required/>
-                         <span class="input-group-btn">
+                    <span class="input-group-btn">
                     <button class="btnComment btn btn-default" type="submit" ng-disabled="comment.addcmnt.$invalid">Comment</button>
                          </span>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
-        
     </div>
-
+</div>

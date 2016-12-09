@@ -1,8 +1,8 @@
-<div class="container" id="user-profile-only">
+<div class="container">
     <div class="row">
         <div class="col-md-3 col-sm-3">
             <div class="user-wrapper">
-                <img src="http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg" class="img-responsive">
+                <img src="http://sim03.in.com/25/4060cd54ebb6cb5ac54cbda7eab8ec7c_m.jpg" class="img-user img-responsive">
                 <div class="description-img">
                     <div class="text-center">
                         <span ng-repeat="i in vm.ratingAvg(vm.rating) track by $index"><i class="fa fa-star fa-2x star"></i></span>
@@ -147,17 +147,14 @@
         </div>
     </div>
 </div>
-
-    <!-- <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse Vertically</button>
-    <hr>
-    <div uib-collapse="isCollapsed">
-        <div class="well well-lg">Some content</div>
-    </div> -->
-<helpme-help-request></helpme-help-request>
-
+<hr>
 <div class="container">
+    <button type="button" class="btn btn-block" ng-click="isCollapsed = !isCollapsed"><strong>What do you need help with?</strong></button>
+    <div uib-collapse="!isCollapsed">
+        <div class="">
+            <helpme-help-request></helpme-help-request>
+        </div>
+    </div>
+    <hr>
     <helpme-user-help-request-list></helpme-user-help-request-list>
 </div>
-
-
-    <helpme-comment></helpme-comment>

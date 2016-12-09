@@ -47,14 +47,7 @@
 					</div>
 					<div class="form-group ">
 						<span><strong>Password</strong></span>
-						<input type="password " class="form-control " name="pwd " ng-model="auth.user.password "
-						pattern=".{6,} "
-						required 
-						title="6 characters minimum "
-						placeholder="minimum 6 characters "
-						oninvalid="this.setCustomValidity( 'Password is required. Minimum 6 characters ') "
-						oninput="setCustomValidity( '') "
-						/>
+						<input type="password " class="form-control " name="pwd " ng-model="auth.user.password " required>
 					</div>
 <!-- 					<div class="form-group ">
 						<span><strong>Password Confirm</strong></span>
