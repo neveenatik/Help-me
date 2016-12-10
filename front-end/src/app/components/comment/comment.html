@@ -1,33 +1,27 @@
-<div class="container">
-    <div class="panel panel-default page-header no-border">
-        <div class="helpme-heading panel-heading">Add comment</div>
-        <div class="helpme-body panel-body">
-            <ul class="ulComment" ng-repeat="(i,c) in vm.comment">
-                <li>
-                    <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" class="img2Comment"> <span class="badge pull-right">{{vm.currentDate  | date:'medium'}}</span>
-                    <span id="commentSpan" ng-hide="editing" ng-click="editing = true"><b> &nbsp;{{vm.user.firstName+" "+vm.user.lastName}}:</b> {{c.content}}</span>
-                    <form name="edtForm" ng-show="editing" ng-submit="editing = false">
-                        <div class="input-group">
-                            <input class="inputComment" type="text" name="edt" ng-model="c.content" placeholder="Name" required/>
-                            <span class="input-group-btn">
-                            <button class="btnComment btn btn-info" type="submit" ng-disabled="edtForm.edt.$invalid"ng-click="vm.editComment(i)">save</button>
-                            <button class="btnComment btn btn-danger" type="submit" ng-click="vm.deleteComment(c._id)">Del</button>
-                                 </span>
-                        </div>
-                    </form>
-                </li>
-                <hr>
-            </ul>
-            <br>
-            <form name="comment" ng-submit="vm.postComment()">
-                <img class="imgComment" ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png">
-                <div class="input-group">
-                    <input class="inputComment form-control" name="addcmnt" ng-model="vm.comment.content" placeholder="your comment here" required/>
-                    <span class="input-group-btn">
-                    <button class="btnComment btn btn-default" type="submit" ng-disabled="comment.addcmnt.$invalid">Comment</button>
-                         </span>
-                </div>
-            </form>
-        </div>
+<div class="helpme-body">
+    <div ng-repeat="comment in vm.comments" class="comment-body">
+        <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" class="img2-comment"> <span class="badge pull-right">{{comment.created  | date:'medium'}}</span>
+        <span><strong>{{comment.user.displayName}}</strong></span><br><br>
+        <span id="comment-span" ng-hide="editing" ng-click="editing = true"> {{comment.content}}</span>
+        <form name="edtForm" ng-show="editing" ng-submit="editing = false">
+            <div class="input-group">
+                <input class="input-comment" type="text" name="edt" ng-model="vm.newComment.content" required/>
+                <span class="input-group-btn">
+                        <button class="btn-comment btn btn-info" type="submit" ng-disabled="edtForm.edt.$invalid" ng-click="vm.editComment(comment._id)"><i class="fa fa-save"></i></button>
+                        <button class="btn-comment btn btn-danger" type="submit" ng-click="vm.deleteComment(comment._id)"><i class="fa fa-trash"></i></button>
+                    </span>
+            </div>
+        </form>
+        <hr>
     </div>
+    <br>
+    <form name="comment" ng-submit="vm.postComment()" class="comment-body">
+        <img class="img-comment" ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png">
+        <div class="input-group">
+            <input class="input-comment form-control" name="addcmnt" ng-model="vm.comment.content" placeholder="your comment here" required/>
+            <span class="input-group-btn">
+                    <button class="btn-comment btn btn-default" type="submit" ng-disabled="comment.addcmnt.$invalid">Comment</button>
+            </span>
+        </div>
+    </form>
 </div>

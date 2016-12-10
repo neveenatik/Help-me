@@ -33,7 +33,7 @@ router.get('/api/users', checkAuthenticated, users.list) //list all users
 
 //========= Comments =======
 router.get('/api/comments/helprequest/:helpRequestId', checkAuthenticated, comments.listOneHelpRequest) //get comments for one helprequest
-	//.get('/api/comments',checkAuthenticated, comments.list)
+	.get('/api/comments',checkAuthenticated, comments.list)
 	.post('/api/comments', checkAuthenticated, comments.create) //create a comment on a helprequest
 	.get('/api/comments/:commentId', checkAuthenticated, comments.read) //get comment by ID
 	.put('/api/comments/:commentId', checkAuthenticated, comments.update) //update a comment 

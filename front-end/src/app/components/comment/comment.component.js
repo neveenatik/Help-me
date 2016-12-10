@@ -1,5 +1,7 @@
 export var helpmeComment = {
-
+  bindings: {
+    helpRequest: '<'
+  },
   controller: HelpmeCommentController,
   controllerAs: 'vm',
   templateUrl: 'app/components/comment/comment.html'
@@ -19,13 +21,18 @@ function HelpmeCommentController($auth, $http, DataModels) {
   vm.user = user;
 
   function getComment() {
+    console.log(vm.helpRequest);
+    var token = $auth.getToken();
     $http({
-        method: "GET",
-        url: "http://localhost:5000/api/comments",
+        method: 'GET',
+        url: 'http://localhost:5000/api/comments/helprequest/'+ vm.helpRequest,
+        headers: {
+          'Authorization': token
+        }
       })
       .then(function(response) {
-        vm.comment = response.data;
-        console.log(vm.comment);
+        vm.comments = response.data;
+        console.log(vm.comments);
       })
       .catch(function(error, status) {
         console.log(error);
@@ -42,7 +49,8 @@ function HelpmeCommentController($auth, $http, DataModels) {
           'Authorization': token
         },
         data: {
-          'comment': vm.comment
+          'comment': vm.comment,
+          'helpRequest': vm.helpRequest
         }
       })
       .then(function(response) {
@@ -54,16 +62,13 @@ function HelpmeCommentController($auth, $http, DataModels) {
       });
   }
 
-  function deleteComment(comment_id) {
+  function deleteComment(id) {
     var token = $auth.getToken()
     $http({
         method: 'DELETE',
-        url: 'http://localhost:5000/api/comments/' + comment_id,
+        url: 'http://localhost:5000/api/comments/' + id,
         headers: {
           'Authorization': token
-        },
-        data: {
-          'comment': vm.comment
         }
       })
       .then(function(response) {
@@ -75,24 +80,19 @@ function HelpmeCommentController($auth, $http, DataModels) {
   }
 
 
-  function editComment(index) {
-    //      console.log(comment_id);
-    var commentId = vm.comment[index]._id;
+  function editComment(id) {
     var token = $auth.getToken()
     $http({
         method: 'PUT',
-        url: 'http://localhost:5000/api/comments/' + commentId,
+        url: 'http://localhost:5000/api/comments/' + id,
         headers: {
           'Authorization': token
         },
         data: {
-          'comment': vm.comment[index]
+          'comment': vm.newComment
         }
       })
       .then(function(response) {
-
-        console.log("post", response.data);
-        vm.comment = response.data;
         getComment();
       })
       .catch(function(error, status) {

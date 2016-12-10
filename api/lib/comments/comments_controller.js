@@ -103,7 +103,7 @@ exports.list = function(req, res) {
  * List of Comments for one help request
  */
 exports.listOneHelpRequest = function(req, res) {
-  Comment.find({ 'helpRequest': req.helprequest_id }).sort('-created').populate('user', 'displayName').exec(function(err, comments) {
+  Comment.find({ 'helpRequest': req.helpRequest._id }).sort('-created').exec(function(err, comments) {
     if (err) {
       return res.status(400).send({
         message: 'Could not retrieve comments for this help request'

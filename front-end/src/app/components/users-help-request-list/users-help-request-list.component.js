@@ -10,9 +10,12 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log, $state) {
   var vm = this;
   vm.$onInit = init;
   vm.$log = $log;
+  vm.showOne = false;
   vm.responseList = [];
   vm.destinationsCityArr = [];
   vm.list = [];
+  vm.temp = {};
+  vm.show = show;
 
 
   function usersList() {
@@ -114,6 +117,11 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log, $state) {
       }
     }
     return destinationsCity;
+  }
+
+  function show(helpRequest) {
+    vm.showOne = true;
+    vm.temp = helpRequest;
   }
 
   function init() {
