@@ -21,7 +21,6 @@ function HelpmeCommentController($auth, $http, DataModels) {
   vm.user = user;
 
   function getComment() {
-    console.log(vm.helpRequest);
     var token = $auth.getToken();
     $http({
         method: 'GET',
@@ -32,7 +31,6 @@ function HelpmeCommentController($auth, $http, DataModels) {
       })
       .then(function(response) {
         vm.comments = response.data;
-        console.log(vm.comments);
       })
       .catch(function(error, status) {
         console.log(error);
@@ -40,7 +38,6 @@ function HelpmeCommentController($auth, $http, DataModels) {
   }
 
   function postComment() {
-    console.log(vm.comment);
     var token = $auth.getToken()
     $http({
         method: 'POST',
@@ -56,6 +53,7 @@ function HelpmeCommentController($auth, $http, DataModels) {
       .then(function(response) {
         console.log("post", response);
         getComment();
+        vm.comment = "";
       })
       .catch(function(error, status) {
         console.log(error);
@@ -73,7 +71,6 @@ function HelpmeCommentController($auth, $http, DataModels) {
       })
       .then(function(response) {
         console.log(response.data);
-        vm.comment = response.data;
         getComment();
       })
 
