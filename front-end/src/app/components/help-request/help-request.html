@@ -1,5 +1,5 @@
 <div class="">
-    <form name="helprequest" ng-submit="vm.postHelpRequest()">
+    <form name="helprequest" ng-submit="vm.postHelpRequest();showmsg=true">
         <div class="parent-request-form">
             <div class="item-request-form">
                 <strong>What do you need help with?</strong>
@@ -13,6 +13,9 @@
                 <div class="col-md-6">
                     <span><strong>Title</strong></span>
                     <input type="text" class="form-control input-sm" ng-model="vm.helprequest.title" required placeholder="required" oninvalid="setCustomValidity('Title is required')" oninput="setCustomValidity('')" />
+                </div>
+                <div ng-show="showmsg">
+                 <h5 class="confirmReq">Your request sent successfully</h5>
                 </div>
                 <div class="button-line">
                     <button class="btn btn-request-cancel" ui-sref="home"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;Cancel</button>

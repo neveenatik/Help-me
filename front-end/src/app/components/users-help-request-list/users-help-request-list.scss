@@ -12,10 +12,10 @@
     justify-content: space-around;
     align-items: center;
     //flex-grow: 1;
+    background-color: $bgHighlight;
 }
 
 .item {
-    height: 50px;
     margin: 5px;
     background: $bgHighlight;
     color: white;
@@ -48,11 +48,18 @@
 
 .title {
     padding-left: 25px;
+   
 }
-
+.firstTitle{
+     font-size: 30px;
+}
 @media (max-width: 766px) {
     .image-user {
         width: 50px !important;
         height: 50px !important;
     }
+}
+
+.showBtn{
+    width: 20%;
 }

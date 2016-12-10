@@ -12,15 +12,15 @@
         </div>
         <div class="item item-description ">
             <div class="row ">
-                <div class="col-sm-6 title ">
-                    <h5 class="pull-left "><strong>{{list.title}}</strong></h5></div>
-                <div class="col-sm-6 "><span class="badge pull-right ">{{list.category}}</span></div>
+                <div class="col-sm-12">
+                    <strong><span class="badge pull-right ">{{list.category}}</span></strong>
+                </div>
             </div>
             <div class="row ">
-                <h5 class="text-center description-users-list ">{{list.description}}</h5>
+                <h3 class="text-center description-users-list">{{list.title}}</h3>
             </div>
             <div class="row">
-                <button class="btn btn-default" ng-click="vm.show(list)">Show</button>
+                <button class="badge btn btn-default" ng-click="vm.show(list)"><i class="fa fa-external-link-square"></i> view</button>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
                 <h5 class="text-center description-users-list ">{{vm.temp.description}}</h5>
             </div>
             <div class="row">
-                <button class="btn btn-default" ng-click="vm.showOne = false">Back</button>
+                <button class="badge btn btn-default" ng-click="vm.showOne = false"><i class="fa fa-mail-reply"></i> Back</button>
             </div>
         </div>
     </div>
