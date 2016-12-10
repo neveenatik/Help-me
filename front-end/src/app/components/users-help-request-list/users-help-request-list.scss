@@ -27,6 +27,39 @@
     height: 180px;
 }
 
+.subparent-users-list {
+    border: 1px solid $colHighlight;
+    width: 100%;
+    height: 38px;
+    /*flex stuff*/
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.subitem-users-list {
+    margin: 5px;
+    background: $bgHighlight;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    /*flex stuff*/
+    //width:100%;
+    height: 35px;
+}
+
+.grow-small {
+    flex-grow: 1;
+}
+
+.grow-medium {
+    flex-grow: 1;
+}
+
+.grow-big {
+    flex-grow: 25;
+}
+
 .item-image {
     background-color: $bgDefault;
     width: 25%;
@@ -41,9 +74,44 @@
 .description-users-list {
     width: 90%;
     padding-left: 25px;
+    padding-bottom: 10px;
     //height: 180px;
     //width: 90%;
     //overflow: auto;
+}
+
+.btn-request-menu {
+    margin-bottom: 19px;
+    padding: 7px;
+    height: 32px;
+    background-color: #3689A5;
+}
+
+.btn-send-request {
+    margin-bottom: 19px;
+    background-color: #3689A5;
+}
+
+.btn-unsend-request {
+    background-color: #56CF56 !important; 
+}
+
+.request-menu-users {
+    border-radius: 0px;
+    width: 270px !important;
+    top: 35px;
+    left: 0px;
+    background-color: $colDefault;
+    color: $bgHighlight;
+    > li {
+        height: 28px;
+        margin: 5px;
+        line-height: 25px;
+        &:hover,
+        &:focus {
+            background-color: $colHighlight;
+        }
+    }
 }
 
 .title {
@@ -54,5 +122,11 @@
     .image-user {
         width: 50px !important;
         height: 50px !important;
+    }
+}
+
+@media (max-width: 448px) {
+    .h5-description {
+        margin-top: 2px;
     }
 }

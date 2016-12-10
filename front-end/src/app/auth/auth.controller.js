@@ -24,14 +24,14 @@ export class AuthController {
 		// console.log("gender to check ", this.user.gender);
 		if (dateOfBirthToCheck == "Sun Dec 31 1899 00:00:00 GMT+0100 (CET)") {
 			return alert("Please enter a birtdate.")
-		};
+		}
 		if (genderToCheck == undefined) {
 			return alert("Please choose a gender.")
-		};
+		}
 		this.$http.post('http://localhost:5000/auth/signup', { user: this.user }).then(function(token) {
 			vm.$auth.setToken(token);
 			vm.$state.go('home');
-		}, (error, status) => console.log(error));
+		}, (error, status) => console.log(error, status));
 		console.log("post", this.user);
 	}
 

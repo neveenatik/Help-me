@@ -15,7 +15,7 @@ export function routerConfig($stateProvider, $urlRouterProvider) {
     })
     .state('profile', {
       url: '/profile',
-      template: '<helpme-profile></helpme-profile>',
+      template: '<helpme-profile></helpme-profile>'
     });
 
   $urlRouterProvider.otherwise('/');

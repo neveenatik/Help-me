@@ -1,29 +1,50 @@
-<div class="helpme-body">
+<div class="comment-body">
+    <form name="comment" ng-submit="vm.postComment()" class="comment-body">
+        <img class="img-comment" ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png">
+        <div class="input-group">
+            <input class="form-control input-sm" name="addcmnt" ng-model="vm.comment.content" placeholder="your comment here" required/>
+            <span class="input-group-btn span-position">
+                <button class="btn-comment btn btn-sm" type="submit" ng-disabled="comment.addcmnt.$invalid">Comment</button>
+            </span>
+        </div>
+    </form>
     <div ng-repeat="item in vm.comments" class="comment-body">
-        <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" class="img2-comment">&nbsp; <span class="badge pull-right">{{item.created  | date:'medium'}}</span>
-        <span><strong>{{item.user.displayName}}</strong></span>
-        <br>
-        <br>
-        <span id="comment-span" ng-hide="editing && vm.user._id === item.user._id" ng-click="editing = true; vm.newComment.content = item.content"> {{item.content}}</span>
+        <div class="row">
+            <div class="col-xs-4">
+                <img ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png" class="img2-comment">
+                &nbsp;<span><small>{{item.user.displayName}}</small></span>
+            </div>
+            <div class="col-xs-8">
+                <span id="comment-span" ng-hide="editing && vm.user._id === item.user._id" ng-click="editing = true; vm.newComment.content = item.content"> {{item.content}}</span>
+                <span class="pull-right"><small>{{item.created  | date:"MM/dd/yyyy 'at' h:mma"}}</small></span>
+            </div>
+        </div>
         <form ng-if="vm.user._id === item.user._id" name="edtForm" ng-show="editing" ng-submit="editing = false">
             <div class="input-group">
                 <input class="input-comment" type="text" name="edt" ng-model="vm.newComment.content" required/>
                 <span class="input-group-btn">
-                        <button class="btn-comment btn btn-info" type="submit" ng-disabled="edtForm.edt.$invalid" ng-click="vm.editComment(item._id)"><i class="fa fa-save"></i></button>
-                        <button class="btn-comment btn btn-danger" type="submit" ng-click="vm.deleteComment(item._id)"><i class="fa fa-trash"></i></button>
-                    </span>
+                    <button class="btn-comment btn btn-sm" type="submit" ng-disabled="edtForm.edt.$invalid" ng-click="vm.editComment(item._id)"><i class="fa fa-save"></i></button>
+                    <button class="btn-comment btn btn-sm" type="submit" ng-click="vm.deleteComment(item._id)"><i class="fa fa-trash"></i></button>
+                </span>
             </div>
         </form>
-        <hr>
     </div>
-    <br>
-    <form name="comment" ng-submit="vm.postComment()" class="comment-body">
-        <img class="img-comment" ng-src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Color_icon_purple.svg/225px-Color_icon_purple.svg.png">
-        <div class="input-group">
-            <input class="input-comment form-control" name="addcmnt" ng-model="vm.comment.content" placeholder="your comment here" required/>
-            <span class="input-group-btn">
-                    <button class="btn-comment btn btn-default" type="submit" ng-disabled="comment.addcmnt.$invalid">Comment</button>
-            </span>
-        </div>
-    </form>
 </div>
+
+
+
+<!--             <div class="col-xs-8" ng-if="vm.user._id === item.user._id">
+                <span id="comment-span"> {{item.content}}</span>
+            </div>
+            <div class="col-xs-8" ng-if="vm.user._id === item.user._id" ng-model="contentBoolean">
+                <div ng-hide="contentBoolean" ng-click="contentBoolean = true">
+                    <h5 class="text-center"><strong>{{list.title}}</strong></h5>
+                </div>
+
+                <div ng-show="contentBoolean" class="input-group">
+                    <input type="text" ng-model="vm.responseList[$index].title" class="form-control input-sm">
+                    <span class="input-group-btn span-position">
+                    <button type="button" class="btn btn-sm btn-cancel" ng-click="contentBoolean = false; vm.$onInit()"><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click="contentBoolean = false; vm.editHelpRequest($index)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                    </span>
+                </div>
+            </div> -->

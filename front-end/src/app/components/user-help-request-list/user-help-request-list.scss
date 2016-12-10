@@ -37,32 +37,51 @@
     width: 85%;
 }
 
-.description {
+.description-user-list {
     width: 90%;
-    padding-left: 25px;
+    padding-left: 55px;
 }
 
-.title-user {
-    padding-left: 30px;
-    padding-top: 5px;
-}
-
-.delete-help-user {
+.delete-request-user {
     padding-right: 20px;
 }
 
-.span-position {
+.span-position{
     bottom: 10px;
 }
 
-.span-textarea-position {
+.request-menu-position {
+    height: 35px !important;
+    bottom: 5px;
+    padding-left: 20px;
+}
+
+.request-menu {
+    border-radius: 0px;
+    width: 270px !important;
+    top: 35px;
+    left: 20px;
+    background-color: $colDefault;
+    color: $bgHighlight;
+    > li {
+        height: 28px;
+        margin: 5px;
+        line-height: 25px;
+        &:hover,
+        &:focus {
+            background-color: $colHighlight;
+        }
+    }
+}
+
+.span-textarea-position{
     top: 70px;
     bottom: auto;
     right: 32px;
     color: #333;
 }
 
-.textarea-position {
+.textarea-position{
     left: 30px;
 }
 
@@ -71,6 +90,27 @@
         width: 40px !important;
         height: 40px !important;
     }
-    .parent-user-list {}
-    .item-user-list {}
+    .parent-user-list {
+    
+    }
+    .item-user-list {
+
+    }
+}
+
+@media (max-width: 412px) {
+    .request-menu-position {    
+        padding-left: 0px;
+    }
+    .req-menu-col{
+        padding-left: 20px;
+        padding-right: 5px;
+    }
+    .description-user-list {
+        padding-left: 25px;
+    }
+    .delete-request-user {
+        padding-right: 10px;
+    }
+
 }
