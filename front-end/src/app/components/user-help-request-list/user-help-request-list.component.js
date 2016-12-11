@@ -70,6 +70,7 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state, DataMod
   }
 
   function deleteHelpRequest(index) {
+    alert("Are You Sure!");
     var token = $auth.getToken(); // user token
     //var user_id = $auth.getPayload().sub; //user ID
     var helpRequestId = vm.list[index]._id;
@@ -83,6 +84,7 @@ function HelpmeUserHelpRequestListController($auth, $http, $log, $state, DataMod
       })
       .then(function(response) {
         console.log("deleted", response);
+        vm.$onInit();
       })
       .catch(function(error, status) {
         console.log(error);

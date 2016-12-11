@@ -17,6 +17,7 @@ import helpmeHelpRequest from './components/help-request';
 import helpmeUsersHelpRequestList from './components/users-help-request-list';
 import helpmeUserHelpRequestList from './components/user-help-request-list';
 import helpmeComment from './components/comment';
+import helpmeFooter from './components/footer';
 
 angular.module('helpFront', [
     'ngAnimate',
@@ -34,7 +35,8 @@ angular.module('helpFront', [
     helpmeHelpRequest,
     helpmeUsersHelpRequestList,
     helpmeUserHelpRequestList,
-    helpmeComment
+    helpmeComment,
+    helpmeFooter
   ])
   .constant('API_URL', 'http://localhost:5000/')
   .constant('malarkey', malarkey)

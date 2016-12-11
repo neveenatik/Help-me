@@ -158,6 +158,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
   }
 
   function deleteHelpRequest(index) {
+    alert("Are You Sure!");
     var helpRequestId = vm.responseList[index]._id;
     console.log(helpRequestId)
     $http({
@@ -169,6 +170,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
       })
       .then(function(response) {
         console.log("deleted", response);
+        vm.$onInit();
       })
       .catch(function(error, status) {
         console.log(error);

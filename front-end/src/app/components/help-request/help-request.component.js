@@ -31,7 +31,8 @@ function HelpmeHelpRequestController($auth, $http, DataModels, $log, $state) {
       })
       .then(function(response) {
         console.log("post", response);
-        //$state.go('home'); //redirect
+        alert("Your request has been added!");
+        $state.go('home'); //redirect
       })
       .catch(function(error, status) {
         // display error
