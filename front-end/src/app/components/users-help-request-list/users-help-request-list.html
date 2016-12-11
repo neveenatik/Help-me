@@ -1,8 +1,10 @@
 <!-- <div class="parent" ng-repeat="list in vm.list track by $index"> -->
-<div class="parent" ng-repeat="list in vm.responseList"">
+<label style="background-color: gray; padding: 3px;">Search: <input ng-model="searchText"></label>
+<div class="parent" ng-repeat="list in vm.responseList | filter:searchText">
     <div class="item item-image">
         <div class="image-user col-centered">
-            <img src="https://pbs.twimg.com/profile_images/518423745946345472/f3llRvFb.jpeg" class="image-user">
+            <img src="https://pbs.twimg.com/p
+            rofile_images/518423745946345472/f3llRvFb.jpeg" class="image-user">
         </div>
         <div>
             <h5><strong>{{list.user.displayName}}{{list.user.name}}</strong></h5>
