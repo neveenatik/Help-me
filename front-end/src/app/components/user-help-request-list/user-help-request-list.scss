@@ -5,6 +5,7 @@
 
 .parent-user-list {
     border: 4px solid $colHighlight;
+   //position: relative;
     width: 100%;
     height: 200px;
     /*flex stuff*/
@@ -15,6 +16,7 @@
 }
 
 .item-user-list {
+    position: relative;
     margin: 5px;
     background: $bgHighlight;
     color: white;

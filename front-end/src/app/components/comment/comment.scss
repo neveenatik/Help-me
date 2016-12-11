@@ -1,13 +1,17 @@
-#comment-span:hover{
+.cursor:hover{
     cursor: pointer;
 }
-.btn-comment{
-    width:auto;
-    height: 30px;
-}
-.input-comment{
-    width: 50%;
-    height: 30px;
+
+.comment-body {
+    top: 0px;
+    left: 0px;
+    z-index: 1 !important;
+    position: absolute;
+    padding: 3px;
+    margin: 0px !important;
+    //width: 100%;
+    //height: 100%;
+    background: $bgBlock;
 }
 .img-comment{
     float: left;
@@ -19,12 +23,38 @@
     width: 20px;
     height: 20px;
 }
-.ul-comment{
-    list-style-type: none;
+.row-comments-list {
+    width: 100%;
+    height: 35px;
+    background: #918A85;
+    margin-left: 0px;
 }
-.comment-body {
-    padding: 3px;
-    width: 90%;
-     background: $bgBlock;
-    //background-color:red;
+.col-comments-list {
+    height: 30px;
+    bottom: 10px;
+}
+
+.btn-comment {
+    background: $colHighlight;
+}
+.btn-cancel {
+    width: 32px;
+    &:hover,
+    &:focus {
+        background-color: #FF6969;
+    }
+}
+
+.btn-submit {
+    &:hover,
+    &:focus {
+        background-color: #56CF56;
+    }
+}
+
+.btn-delete {
+    &:hover,
+    &:focus {
+        background-color: #429F9F;
+    }
 }

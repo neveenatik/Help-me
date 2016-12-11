@@ -61,7 +61,7 @@
         </div>
         <div class="row" ng-if="vm.responseList[$index].user._id === vm.user_id" ng-model="descriptionBoolean">
             <div ng-hide="descriptionBoolean" ng-click="descriptionBoolean = true">
-                <h5 class="text-center description-user-list">{{list.description}}</h5>
+                <h5 class="text-center description-users-list">{{list.description}}</h5>
             </div>
             <div ng-show="descriptionBoolean" class="input-group">
                 <textarea class="form-control textarea-position" rows="5" style="resize: none;" ng-model="vm.responseList[$index].description" maxlength="700" minlength="10" required oninvalid="this.setCustomValidity('Required between 10 and 700 characters.')" oninput="setCustomValidity('')"></textarea>
@@ -70,6 +70,6 @@
                 </span>
             </div>
         </div>
-<!--         <div class="subparent-users-list"><helpme-comment help-request="list._id"></helpme-comment></div> -->
+        <div class="subparent-users-list" style="border: none;"><helpme-comment help-request="list._id"></helpme-comment></div>
     </div>
 </div>
