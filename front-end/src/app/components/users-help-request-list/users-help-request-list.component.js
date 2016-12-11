@@ -18,11 +18,14 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
   vm.responseList = [];
   vm.destinationsCityArr = [];
   vm.list = [];
+
   vm.helpers = []
   if ($auth.isAuthenticated()) {
     vm.user_id = $auth.getPayload().sub;
     vm.token = $auth.getToken();
   }
+
+  vm.helperList = []
 
   function usersList() {
     $http({
@@ -54,7 +57,6 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
           vm.helpers.push(response.data[i].user)
         }
         // vm.helpers = response.data
-        console.log(vm.helpers, "helpers")
       })
       .catch(function(error, status) {
         console.log(error);

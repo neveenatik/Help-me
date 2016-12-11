@@ -11,8 +11,12 @@ var mongoose = require('mongoose'),
  */
 var HelperSchema = new Schema({
   user: {
+  	displayName:{
+  		type: String
+  	},
+  	_id:{
     type: Schema.ObjectId,
-    ref: 'User'
+    }
   },
   helpRequest: {
     type: Schema.ObjectId,
