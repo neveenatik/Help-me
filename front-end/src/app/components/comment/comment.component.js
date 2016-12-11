@@ -19,15 +19,13 @@ function HelpmeCommentController($auth, $http, DataModels) {
   vm.editComment = editComment;
   vm.currentDate = Date.now();
   vm.user = user;
+  vm.$auth = $auth;
 
   function getComment() {
-    var token = $auth.getToken();
+    //var token = $auth.getToken();
     $http({
         method: 'GET',
-        url: 'http://localhost:5000/api/comments/helprequest/'+ vm.helpRequest,
-        headers: {
-          'Authorization': token
-        }
+        url: 'http://localhost:5000/api/comments/helprequest/' + vm.helpRequest,
       })
       .then(function(response) {
         vm.comments = response.data;
@@ -38,26 +36,31 @@ function HelpmeCommentController($auth, $http, DataModels) {
   }
 
   function postComment() {
-    var token = $auth.getToken()
-    $http({
-        method: 'POST',
-        url: 'http://localhost:5000/api/comments',
-        headers: {
-          'Authorization': token
-        },
-        data: {
-          'comment': vm.comment,
-          'helpRequest': vm.helpRequest
-        }
-      })
-      .then(function(response) {
-        console.log("post", response);
-        getComment();
-        vm.comment = "";
-      })
-      .catch(function(error, status) {
-        console.log(error);
-      });
+    if ($auth.isAuthenticated()) {
+      var token = $auth.getToken()
+      $http({
+          method: 'POST',
+          url: 'http://localhost:5000/api/comments',
+          headers: {
+            'Authorization': token
+          },
+          data: {
+            'comment': vm.comment,
+            'helpRequest': vm.helpRequest
+          }
+        })
+        .then(function(response) {
+          console.log("post", response);
+          getComment();
+          vm.comment = "";
+        })
+        .catch(function(error, status) {
+          console.log(error);
+        });
+    } else {
+      alert('you need to login first');
+    }
+
   }
 
   function deleteComment(id) {
@@ -113,7 +116,9 @@ function HelpmeCommentController($auth, $http, DataModels) {
   }
 
   function init() {
-    user();
+    if (vm.$auth.isAuthenticated()) {
+      user();
+    }
     getComment();
   }
 

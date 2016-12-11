@@ -32,7 +32,7 @@ router.get('/api/users', checkAuthenticated, users.list) //list all users
 	//.delete('/api/users/:userId', checkAuthenticated, users.delete);//user can delete his account for now /later can change that.
 
 //========= Comments =======
-router.get('/api/comments/helprequest/:helpRequestId', checkAuthenticated, comments.listOneHelpRequest) //get comments for one helprequest
+router.get('/api/comments/helprequest/:helpRequestId', comments.listOneHelpRequest) //get comments for one helprequest
 	.get('/api/comments',checkAuthenticated, comments.list)
 	.post('/api/comments', checkAuthenticated, comments.create) //create a comment on a helprequest
 	.get('/api/comments/:commentId', checkAuthenticated, comments.read) //get comment by ID

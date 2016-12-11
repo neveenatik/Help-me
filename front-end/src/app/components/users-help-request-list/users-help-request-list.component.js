@@ -15,15 +15,14 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
   vm.helperSwitch = helperSwitch;
   vm.getHelper = getHelper;
   //vm.helperSwitchBtn = ;
-
-  vm.user_id = $auth.getPayload().sub;
-  vm.token = $auth.getToken();
-
   vm.responseList = [];
   vm.destinationsCityArr = [];
   vm.list = [];
   vm.helpers = []
-
+  if ($auth.isAuthenticated()) {
+    vm.user_id = $auth.getPayload().sub;
+    vm.token = $auth.getToken();
+  }
 
   function usersList() {
     $http({
@@ -45,13 +44,13 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
     console.log(helpRequestId)
     $http({
         method: 'GET',
-        url: 'http://localhost:5000/api/helper/helprequest/'+helpRequestId,
+        url: 'http://localhost:5000/api/helper/helprequest/' + helpRequestId,
         headers: {
           'Authorization': vm.token
         }
       })
       .then(function(response) {
-        for(var i = 0; i < response.data.length; i++) {
+        for (var i = 0; i < response.data.length; i++) {
           vm.helpers.push(response.data[i].user)
         }
         // vm.helpers = response.data
@@ -67,7 +66,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
     console.log(helpRequestId)
     $http({
         method: 'GET',
-        url: 'http://localhost:5000/api/helper/helprequest/'+helpRequestId,
+        url: 'http://localhost:5000/api/helper/helprequest/' + helpRequestId,
         headers: {
           'Authorization': vm.token
         }
@@ -75,7 +74,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
       .then(function(response) {
         console.log("show", response);
         vm.helperList = response.data;
-        if(helperFounder(vm.helperList) === -1){
+        if (helperFounder(vm.helperList) === -1) {
           assignHelper(index);
           //vm.helperSwitchBtn = true; 
         } else {
@@ -89,10 +88,10 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
   }
 
   function helperFounder(arr) {
-    for(var i = 0; i < arr.length; i++) {
-        if (arr[i].user === vm.user_id) {
-            return i;
-        }
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].user === vm.user_id) {
+        return i;
+      }
     }
     return -1
   }
@@ -100,7 +99,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
   function unassignHelper(helperId) {
     $http({
         method: 'DELETE',
-        url: 'http://localhost:5000/api/unassignhelper/'+helperId,
+        url: 'http://localhost:5000/api/unassignhelper/' + helperId,
         headers: {
           'Authorization': vm.token
         }
@@ -140,7 +139,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
     console.log(helpRequestId)
     $http({
         method: 'PUT',
-        url: 'http://localhost:5000/api/helprequests/'+helpRequestId,
+        url: 'http://localhost:5000/api/helprequests/' + helpRequestId,
         headers: {
           'Authorization': vm.token
         },
@@ -161,7 +160,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
     console.log(helpRequestId)
     $http({
         method: 'DELETE',
-        url: 'http://localhost:5000/api/helprequests/'+helpRequestId,
+        url: 'http://localhost:5000/api/helprequests/' + helpRequestId,
         headers: {
           'Authorization': vm.token
         }
