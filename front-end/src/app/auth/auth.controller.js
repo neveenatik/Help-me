@@ -41,11 +41,11 @@ export class AuthController {
 		this.$http.post('http://localhost:5000/auth/login', { login: this.login.user })
 			.then(function(token) {
 				vm.$auth.setToken(token);
-				$state.go('home');
+				vm.$state.go('home');
 			}).catch(
 				// Log the rejection error
 				function(error) {
-					console.log('Handle rejected promise (', error.data.message, ') here.');
+					console.log( error);
 				});
 	}
 

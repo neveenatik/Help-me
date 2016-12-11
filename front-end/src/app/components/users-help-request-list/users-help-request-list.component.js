@@ -13,6 +13,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
   vm.deleteHelpRequest = deleteHelpRequest;
   vm.editHelpRequest = editHelpRequest;
   vm.helperSwitch = helperSwitch;
+  vm.getHelper = getHelper;
   //vm.helperSwitchBtn = ;
 
   vm.user_id = $auth.getPayload().sub;
@@ -21,6 +22,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
   vm.responseList = [];
   vm.destinationsCityArr = [];
   vm.list = [];
+  vm.helpers = []
 
 
   function usersList() {
@@ -32,6 +34,28 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
         vm.responseList = response.data;
         modifyList();
         console.log(vm.responseList)
+      })
+      .catch(function(error, status) {
+        console.log(error);
+      });
+  }
+
+  function getHelper(index) {
+    var helpRequestId = vm.responseList[index]._id;
+    console.log(helpRequestId)
+    $http({
+        method: 'GET',
+        url: 'http://localhost:5000/api/helper/helprequest/'+helpRequestId,
+        headers: {
+          'Authorization': vm.token
+        }
+      })
+      .then(function(response) {
+        for(var i = 0; i < response.data.length; i++) {
+          vm.helpers.push(response.data[i].user)
+        }
+        // vm.helpers = response.data
+        console.log(vm.helpers, "helpers")
       })
       .catch(function(error, status) {
         console.log(error);
@@ -53,10 +77,10 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
         vm.helperList = response.data;
         if(helperFounder(vm.helperList) === -1){
           assignHelper(index);
-          vm.helperSwitchBtn = true; 
+          //vm.helperSwitchBtn = true; 
         } else {
           unassignHelper(vm.helperList[helperFounder(vm.helperList)]._id);
-          vm.helperSwitchBtn = false;
+          //vm.helperSwitchBtn = false;
         }
       })
       .catch(function(error, status) {

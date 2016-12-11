@@ -15,13 +15,11 @@
                 <button class="btn btn-send-request" ng-click="vm.helperSwitch($index)" ng-class="{'btn-unsend-request': vm.helperSwitchBtn}"><i class="fa fa-ambulance fa-flip-horizontal" aria-hidden="true"></i></button>
             </div>
             <div class="subitem-users-list grow-small" ng-if="vm.responseList[$index].user._id === vm.user_id" uib-dropdown is-open="status.isopen" ng-mouseenter="hover = true;" ng-mouseleave="hover = false;">
-                <button class="btn btn-request-menu" id="single-button" uib-dropdown-toggle ng-disabled="disabled">
-                <strong>3</strong>&nbsp;<i class="fa fa-life-ring" ng-class="{'fa-spin': hover}" aria-hidden="true"></i>
+                <button class="btn btn-request-menu" ng-init="vm.getHelper($index)" id="single-button" uib-dropdown-toggle ng-disabled="disabled">
+                    <strong>{{vm.helpers.length}}</strong>&nbsp;<i class="fa fa-life-ring" ng-class="{'fa-spin': hover}" aria-hidden="true"></i>
                 </button>
-                    <ul class="request-menu-users" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                        <li>Action<span class="pull-right"><button type="button" class="btn btn-sm btn-cancel" ng-click=""><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click=""><i class="fa fa-check" aria-hidden="true"></i></button></span></li>
-
-                        <li>Another action<span class="pull-right"><button type="button" class="btn btn-sm btn-cancel" ng-click=""><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click=""><i class="fa fa-check" aria-hidden="true"></i></button></span></li>
+                    <ul class="request-menu-users" ng-repeat="helper in vm.helpers" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                        <li>{{helper}}<span class="pull-right"><button type="button" class="btn btn-sm btn-cancel" ng-click=""><i class="fa fa-times" aria-hidden="true"></i></button><button type="button" class="btn btn-sm btn-submit" ng-click=""><i class="fa fa-check" aria-hidden="true"></i></button></span></li>
                     </ul>
             </div>
             <div class="subitem-users-list grow-big" ng-if="vm.responseList[$index].user._id !== vm.user_id">
