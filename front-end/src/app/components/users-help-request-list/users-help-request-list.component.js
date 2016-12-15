@@ -44,7 +44,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
 
   function getHelper(index) {
     var helpRequestId = vm.responseList[index]._id;
-    console.log(helpRequestId)
+    console.log(helpRequestId, "helpRequestId")
     $http({
         method: 'GET',
         url: 'http://localhost:5000/api/helper/helprequest/' + helpRequestId,
@@ -54,9 +54,10 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
       })
       .then(function(response) {
         for (var i = 0; i < response.data.length; i++) {
-          vm.helpers.push(response.data[i].user)
+          vm.helpers.push(response.data[i].user.displayName)
         }
-        // vm.helpers = response.data
+        //vm.helpers = response.data
+        console.log(vm.helpers, index);
       })
       .catch(function(error, status) {
         console.log(error);
@@ -91,7 +92,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
 
   function helperFounder(arr) {
     for (var i = 0; i < arr.length; i++) {
-      if (arr[i].user === vm.user_id) {
+      if (arr[i].user._id === vm.user_id) {
         return i;
       }
     }
@@ -115,9 +116,13 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
   }
 
   function assignHelper(index) {
-    var helper = {};
-    helper.user = vm.user_id;
-    helper.helpRequest = vm.responseList[index]._id;
+    var helper = {
+      'user':{
+        'displayName': vm.displayName,
+        '_id': vm.user_id
+      },
+      'helpRequest': vm.responseList[index]._id
+    }
     $http({
         method: 'POST',
         url: 'http://localhost:5000/api/assignhelper',
@@ -210,13 +215,15 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
       });
   }
 
-  function getUserCity() {
+  function getUserInfo() {
     $http({
         method: 'GET',
         url: 'http://localhost:5000/api/users/' + vm.user_id
       })
       .then(function(response) {
         vm.userCity = response.data.city;
+        vm.displayName = response.data.displayName;
+        console.log(vm.displayName)
       })
       .catch(function(error, status) {
         console.log(error);
@@ -265,7 +272,7 @@ function HelpmeUsersHelpRequestListController($auth, $http, $log) {
 
   function init() {
     usersList();
-    //getUserCity();
+    getUserInfo();
     // if($auth.isAuthenticated()) {
     //setTimeout(getDistanceMatrix, 700);
     // } else {
