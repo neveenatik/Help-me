@@ -3,9 +3,7 @@ export function routerConfig($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: 'app/main/main.html',
-      controller: 'MainController',
-      controllerAs: 'main'
+      template: '<helpme-home></helpme-home>',
     })
     .state('auth', {
       url: '/auth',
